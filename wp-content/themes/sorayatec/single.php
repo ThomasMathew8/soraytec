@@ -1,4 +1,5 @@
 <?php get_header(); ?> 
-<h1>Hi</h1>
+
+<h1>Single</h1>
 
 <?php get_footer(); ?>

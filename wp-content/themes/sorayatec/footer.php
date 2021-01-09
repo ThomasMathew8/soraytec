@@ -5,7 +5,7 @@
     =================================================== -->
 
     <?php 
-    $logo = get_field( 'logo' );
+    $logo = get_field( 'footer_logo' );
     $contact = get_field('contact');
     $privacy_policy = get_field('privacy_policy');
     $follow = get_field('follow');

@@ -126,7 +126,7 @@ $args1 = array(
     'show_ui' => true,
     'capability_type' => 'post',
     'hierarchical' => false,
-    'rewrite' => array('slug' => 'ecosystem'),
+    'rewrite' => array('slug' => 'aims'),
     'query_var' => true,
     'menu_icon' => 'dashicons-randomize',
     'supports' => array(
@@ -143,6 +143,94 @@ $args1 = array(
     )
 );
 register_post_type( 'aims', $args1 );
+
+
+//custom post type-Team
+$labels2 = array(
+  'name' => 'Team Members',
+  'singular_name' => 'Team Member',
+  'add_new' => 'Add New Team Member',
+  'add_new_item' => 'Add New Team Member',
+  'edit_item' => 'Edit Team Member',
+  'new_item' => 'New Team Member',
+  'all_items' => 'All Team Members',
+  'view_item' => 'View Team Member',
+  'search_items' => 'Search Team Members',
+  'not_found' =>  'No Team Member Found',
+  'not_found_in_trash' => 'No Team Member found in Trash', 
+  'parent_item_colon' => '',
+  'menu_name' => 'team',
+);
+
+// register post type
+$args2 = array(
+  'labels' => $labels2,
+  'public' => true,
+  'has_archive' => true,
+  'show_ui' => true,
+  'capability_type' => 'post',
+  'hierarchical' => false,
+  'rewrite' => array('slug' => 'team'),
+  'query_var' => true,
+  'menu_icon' => 'dashicons-randomize',
+  'supports' => array(
+      'title',
+      'editor',
+      'excerpt',
+      'trackbacks',
+      'custom-fields',
+      'comments',
+      'revisions',
+      'thumbnail',
+      'author',
+      'page-attributes'
+  )
+);
+register_post_type( 'team', $args2 );
+
+
+//custom post type-Slider video
+$labels3 = array(
+  'name' => 'Videos',
+  'singular_name' => 'Video',
+  'add_new' => 'Add New Video',
+  'add_new_item' => 'Add New Video',
+  'edit_item' => 'Edit Video',
+  'new_item' => 'New Video',
+  'all_items' => 'All Videos',
+  'view_item' => 'View Video',
+  'search_items' => 'Search Videos',
+  'not_found' =>  'No Video Found',
+  'not_found_in_trash' => 'No Video found in Trash', 
+  'parent_item_colon' => '',
+  'menu_name' => 'Video',
+);
+
+// register post type
+$args3 = array(
+  'labels' => $labels3,
+  'public' => true,
+  'has_archive' => true,
+  'show_ui' => true,
+  'capability_type' => 'post',
+  'hierarchical' => false,
+  'rewrite' => array('slug' => 'video'),
+  'query_var' => true,
+  'menu_icon' => 'dashicons-randomize',
+  'supports' => array(
+      'title',
+      'editor',
+      'excerpt',
+      'trackbacks',
+      'custom-fields',
+      'comments',
+      'revisions',
+      'thumbnail',
+      'author',
+      'page-attributes'
+  )
+);
+register_post_type( 'video', $args3);
   
 }
 add_action( 'init', 'custom_post_type_init' );

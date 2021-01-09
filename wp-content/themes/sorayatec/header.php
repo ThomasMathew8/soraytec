@@ -21,7 +21,7 @@
             <div class="container">
 
                 <?php 
-                $logo = get_field( 'logo' );
+                $logo = get_field( 'header_logo' );
                 ?>
 
                 <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo $logo['url'] ?>" alt=""></a>
