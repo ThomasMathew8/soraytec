@@ -3,15 +3,23 @@
     <!-- ==============================================
     **Footer**
     =================================================== -->
+
+    <?php 
+    $logo = get_field( 'logo' );
+    $contact = get_field('contact');
+    $privacy_policy = get_field('privacy_policy');
+    $follow = get_field('follow');
+    ?>
+
     <footer class="footer">
         <div class="container">
             <div class="row top">
                 <div class="col-md-4">
-                    <a href="index.html" class="foot-logo"><img src="<?php bloginfo("template_directory");?>/assets/images/footer-logo.png" alt=""></a>
+                    <a href="<?php echo get_home_url(); ?>" class="foot-logo"><img src="<?php echo $logo['url'] ?>" alt=""></a>
                 </div>
                 <div class="col-md-4 contact">
-                    <h4>Contact</h4>
-                    <a href="mailto:info@soraytec.com" class="mail">info@soraytec.com</a>
+                    <h4><?php echo $contact['contact_title'] ?></h4>
+                    <a href="<?php echo $contact['contact_link'] ?>" class="mail"><?php echo $contact['contact_text'] ?></a>
                 </div>
                 <div class="col-md-4">
                     <h4>Follow Us</h4>
@@ -24,10 +32,10 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="#" class="privacy">Privacy Policy</a>
+                    <a href="<?php echo $privacy_policy['privacy_policy_link'] ?>" class="privacy"><?php echo $privacy_policy['privacy_policy_text'] ?></a>
                 </div>
                 <div class="col-md-4 copyright">
-                    <p>© 2019 Soraytec</p>
+                    <p><?php echo get_field('copyright'); ?></p>
                 </div>
             </div>
         </div>

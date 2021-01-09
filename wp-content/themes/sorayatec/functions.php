@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
 
 //Register Menu Locations
  register_nav_menus( [
-  'main-menu' => esc_html__( 'Main Menu', 'wpheirarchy' ),
+  'main-menu' => esc_html__( 'Main Menu', 'sorayatec' ),
  ]);
 
 //bootstrap-navwalker
@@ -52,6 +52,100 @@ add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
 	require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
+
+
+//  Custom Post Type
+function custom_post_type_init() {
+
+  //Ecosystem
+  // set up ecosystem labels
+  $labels = array(
+      'name' => 'Ecosystem Links',
+      'singular_name' => 'Ecosystem Link',
+      'add_new' => 'Add New Ecosystem Link',
+      'add_new_item' => 'Add New Ecosystem Link',
+      'edit_item' => 'Edit Ecosystem Link',
+      'new_item' => 'New Ecosystem Link',
+      'all_items' => 'All Ecosystem Links',
+      'view_item' => 'View Ecosystem Links',
+      'search_items' => 'Search Ecosystem Links',
+      'not_found' =>  'No Ecosystem Links Found',
+      'not_found_in_trash' => 'No Ecosystem Links found in Trash', 
+      'parent_item_colon' => '',
+      'menu_name' => 'Ecosystem',
+  );
+  
+  // register post type
+  $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'has_archive' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'hierarchical' => false,
+      'rewrite' => array('slug' => 'ecosystem'),
+      'query_var' => true,
+      'menu_icon' => 'dashicons-randomize',
+      'supports' => array(
+          'title',
+          'editor',
+          'excerpt',
+          'trackbacks',
+          'custom-fields',
+          'comments',
+          'revisions',
+          'thumbnail',
+          'author',
+          'page-attributes'
+      )
+  );
+  register_post_type( 'ecosystem', $args );
+   
+  //custom post type-Aims
+  $labels1 = array(
+    'name' => 'Aims',
+    'singular_name' => 'Aim',
+    'add_new' => 'Add New Aim',
+    'add_new_item' => 'Add New Aim',
+    'edit_item' => 'Edit Aim',
+    'new_item' => 'New Aim',
+    'all_items' => 'All Aims',
+    'view_item' => 'View Aim',
+    'search_items' => 'Search Aims',
+    'not_found' =>  'No Aims Found',
+    'not_found_in_trash' => 'No Aims found in Trash', 
+    'parent_item_colon' => '',
+    'menu_name' => 'Aims',
+);
+
+// register post type
+$args1 = array(
+    'labels' => $labels1,
+    'public' => true,
+    'has_archive' => true,
+    'show_ui' => true,
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'rewrite' => array('slug' => 'ecosystem'),
+    'query_var' => true,
+    'menu_icon' => 'dashicons-randomize',
+    'supports' => array(
+        'title',
+        'editor',
+        'excerpt',
+        'trackbacks',
+        'custom-fields',
+        'comments',
+        'revisions',
+        'thumbnail',
+        'author',
+        'page-attributes'
+    )
+);
+register_post_type( 'aims', $args1 );
+  
+}
+add_action( 'init', 'custom_post_type_init' );
 
 
 // // Setup Widget Areas

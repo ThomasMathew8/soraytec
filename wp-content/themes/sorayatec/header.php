@@ -19,7 +19,12 @@
     <header class="header">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php bloginfo("template_directory");?>/assets/images/logo.png" alt=""></a>
+
+                <?php 
+                $logo = get_field( 'logo' );
+                ?>
+
+                <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo $logo['url'] ?>" alt=""></a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,26 +46,7 @@
                             ];
                         wp_nav_menu( $args ); 
                         ?>
-                  
-                    <!-- <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="product.html">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="news.html">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                    </ul> -->
-                <!-- </div>  -->
-
-
-
-
+    
             </div>
         </nav>
     </header>
