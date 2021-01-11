@@ -18,7 +18,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 
 
-#menu-menu .menu-item{margin: 0 10px;
-                   }
+#menu-menu .menu-item{margin: 0 10px;}
+
+
+input.wpcf7-form-control.wpcf7-submit {
+    float: right;
+}
 
            

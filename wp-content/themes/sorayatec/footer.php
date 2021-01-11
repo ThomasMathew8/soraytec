@@ -15,7 +15,12 @@
         <div class="container">
             <div class="row top">
                 <div class="col-md-4">
-                    <a href="<?php echo get_home_url(); ?>" class="foot-logo"><img src="<?php echo $logo['url'] ?>" alt=""></a>
+                    <a href="<?php echo get_home_url(); ?>" class="foot-logo">
+                    <?php
+                    if ( function_exists( 'the_custom_logo' ) ) {
+                    the_custom_logo();
+                    } ?>
+                   </a>
                 </div>
                 <div class="col-md-4 contact">
                     <h4><?php echo $contact['contact_title'] ?></h4>

@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 left">
-                    <h1>CONTACT US</h1>
+                    <h1><?php echo the_title(); ?></h1>
                     <div class="address-outer">
                         <div class="row">
                             <div class="col-sm-6 address">
@@ -33,8 +33,14 @@
                 </div>
                 <div class="col-md-6">
                     <div class="contact-form">
-                        <form>
-                            <div class="form-group">
+                        <!-- <form> -->
+
+                        <?php
+                        $contact = '[contact-form-7 id="1796" title="Contact form 1"]';
+                        echo do_shortcode($contact);
+                        ?>
+
+                            <!-- <div class="form-group">
                                 <input type="text" class="form-control" placeholder="First name">
                             </div>
                             <div class="form-group">
@@ -51,8 +57,8 @@
                             </div>
                             <div class="d-flex">
                                 <input type="submit" value="Send" class="send-btn">
-                            </div>
-                        </form>
+                            </div> -->
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>

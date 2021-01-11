@@ -5,7 +5,17 @@
 add_theme_support( 'title-tag' );
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'] );
-add_theme_support( 'html5' );
+add_theme_support('html5',
+  array(
+    'comment-form',
+    'comment-list',
+    'gallery',
+    'caption',
+    'script',
+    'style',
+    'navigation-widgets',
+  )
+);
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'custom-background' );
 add_theme_support( 'custom-header' );
@@ -234,6 +244,26 @@ register_post_type( 'video', $args3);
   
 }
 add_action( 'init', 'custom_post_type_init' );
+
+
+
+function sorayatec_site_logo_setup() {
+  $defaults = array(
+  'height'      => 100,
+  'width'       => 400,
+  'flex-height' => true,
+  'flex-width'  => true,
+  'header-text' => array( 'site-title', 'site-description' ),
+ 'unlink-homepage-logo' => true, 
+  );
+  add_theme_support( 'site-logo', $defaults );
+ }
+ add_action( 'after_setup_theme', 'sorayatec_site_logo_setup' );
+
+
+//  //Adding haeder-footer customization
+//  require get_template_directory() . '/inc/headerfooter-customizer.php';
+//  new HeaderFooter_Customizer();
 
 
 // // Setup Widget Areas

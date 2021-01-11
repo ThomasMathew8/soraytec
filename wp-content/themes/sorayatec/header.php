@@ -24,7 +24,13 @@
                 $logo = get_field( 'header_logo' );
                 ?>
 
-                <a class="navbar-brand" href="<?php echo get_home_url(); ?>"><img src="<?php echo $logo['url'] ?>" alt=""></a>
+                <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
+                <?php
+                if ( function_exists( 'the_custom_logo' ) ) {
+                the_custom_logo();
+                }
+                ?>
+                </a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
