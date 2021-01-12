@@ -241,6 +241,52 @@ $args3 = array(
   )
 );
 register_post_type( 'video', $args3);
+
+
+
+
+//custom post type-News
+$labels5 = array(
+  'name' => 'News',
+  'singular_name' => 'News',
+  'add_new' => 'Add New News',
+  'add_new_item' => 'Add New News',
+  'edit_item' => 'Edit News',
+  'new_item' => 'New News',
+  'all_items' => 'All News',
+  'view_item' => 'View News',
+  'search_items' => 'Search News',
+  'not_found' =>  'No News Found',
+  'not_found_in_trash' => 'No News found in Trash', 
+  'parent_item_colon' => '',
+  'menu_name' => 'News',
+);
+
+// register post type
+$args5 = array(
+  'labels' => $labels5,
+  'public' => true,
+  'has_archive' => true,
+  'show_ui' => true,
+  'capability_type' => 'post',
+  'hierarchical' => false,
+  'rewrite' => array('slug' => 'news'),
+  'query_var' => true,
+  'menu_icon' => 'dashicons-randomize',
+  'supports' => array(
+      'title',
+      'editor',
+      'excerpt',
+      'trackbacks',
+      'custom-fields',
+      'comments',
+      'revisions',
+      'thumbnail',
+      'author',
+      'page-attributes'
+  )
+);
+register_post_type( 'news', $args5 );
   
 }
 add_action( 'init', 'custom_post_type_init' );

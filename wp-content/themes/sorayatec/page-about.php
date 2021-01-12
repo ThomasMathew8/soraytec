@@ -146,23 +146,20 @@
         <!-- ==============================================
             **Signup Newsletter**
         =================================================== -->
-            <?php 
-            $signup = get_field( 'signup' );
-            ?>
-            
-            <section class="signup-sec">
-                <div class="container">
-                    <div class="inner">
-                        <h2><?php echo $signup['signup_text']; ?></h2>
-                        <form class="form-inline signup-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="<?php echo $signup['placeholder_text']; ?>">
-                            </div>
-                            <button type="submit" class="btn btn-signup"><?php echo $signup['button_text']; ?></button>
-                        </form>
+        <section class="signup-sec">
+        <div class="container">
+            <div class="inner">
+                <h2><?php echo get_field('signup_text'); ?></h2>
+                <form class="form-inline signup-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
                     </div>
-                </div>
-            </section>
+                    <button type="submit" class="btn btn-signup"><?php echo get_field('button_text'); ?></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
 
 
 

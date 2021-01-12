@@ -33,32 +33,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="contact-form">
-                        <!-- <form> -->
 
                         <?php
                         $contact = '[contact-form-7 id="1796" title="Contact form 1"]';
                         echo do_shortcode($contact);
                         ?>
 
-                            <!-- <div class="form-group">
-                                <input type="text" class="form-control" placeholder="First name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Last name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Company">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="3" placeholder="Message"></textarea>
-                            </div>
-                            <div class="d-flex">
-                                <input type="submit" value="Send" class="send-btn">
-                            </div> -->
-                        <!-- </form> -->
+                        
                     </div>
                 </div>
             </div>
