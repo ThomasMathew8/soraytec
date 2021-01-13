@@ -10,24 +10,36 @@
                     <h1><?php echo the_title(); ?></h1>
                     <div class="address-outer">
                         <div class="row">
-                            <div class="col-sm-6 address">
-                                <h2>Norway</h2>
-                                <address>
-                                    Soraytec Scandinavia AS<br>
-                                    Uniongata 18<br>
-                                    3732 Skien, Norway<br>
-                                    <span class="mail">E-Mail: <a href="mailto:info@soraytec.com">info@soraytec.com</a></span>
-                                </address>
-                            </div>
-                            <div class="col-sm-6 address">
-                                <h2>Armenia</h2>
-                                <address>
-                                    Soarytec LLC<br>
-                                    Miasnikyan 5/1<br>
-                                    Yerevan, Armenia<br>
-                                    <span class="mail">E-Mail: <a href="mailto:info@soraytec.com">info@soraytec.com</a></span>
-                                </address>
-                            </div>
+
+                            <?php
+                            if( have_rows('address') ):
+                                while( have_rows('address') ) : the_row();
+                                $country = get_sub_field('country');
+                            ?>
+
+                                <div class="col-sm-6 address">
+                                    <h2><?php echo $country; ?></h2>
+                                    <address>
+
+                                        <?php
+                                        if( have_rows('address_fields') ):
+                                        while( have_rows('address_fields') ) : the_row();
+                                        $field = get_sub_field('fields');
+                                        echo $field;
+                                        ?>
+
+                                        <br>
+                                    
+                                        <?php
+                                        endwhile; endif;
+                                        $email =  get_sub_field( 'email' );
+                                        ?> 
+
+                                        <span class="mail"><?php echo $email['text']; ?><a href="<?php echo $email['link']; ?>"><?php echo $email['link_text']; ?></a></span>
+                                    
+                                    </address>
+                                </div>
+                            <?php endwhile; endif; ?> 
                         </div>
                     </div>
                 </div>

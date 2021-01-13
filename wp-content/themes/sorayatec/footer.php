@@ -7,7 +7,7 @@
     <?php 
     $logo = get_field( 'footer_logo' );
     $contact = get_field('contact');
-    $privacy_policy = get_field('privacy_policy');
+    $privacy_policy = get_field('policy');
     $follow = get_field('follow');
     ?>
 
@@ -23,8 +23,8 @@
                    </a>
                 </div>
                 <div class="col-md-4 contact">
-                    <h4><?php echo $contact['contact_title'] ?></h4>
-                    <a href="<?php echo $contact['contact_link'] ?>" class="mail"><?php echo $contact['contact_text'] ?></a>
+                    <h4><?php echo $contact['contact_title']; ?></h4>
+                    <a href="<?php echo $contact['contact_link']; ?>" class="mail"><?php echo $contact['contact_text']; ?></a>
                 </div>
                 <div class="col-md-4">
                     <h4>Follow Us</h4>
@@ -37,7 +37,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="<?php echo $privacy_policy['privacy_policy_link'] ?>" class="privacy"><?php echo $privacy_policy['privacy_policy_text'] ?></a>
+                     <?php $link = get_permalink( get_page_by_title( 'PRIVACY POLICY' ) ); ?>
+                    <a href="<?php echo $link; ?>" class="privacy"><?php echo $privacy_policy['privacy_policy_text'] ?></a>
                 </div>
                 <div class="col-md-4 copyright">
                     <p><?php echo get_field('copyright'); ?></p>

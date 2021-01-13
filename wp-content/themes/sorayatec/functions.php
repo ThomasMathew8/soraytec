@@ -33,7 +33,7 @@ function wphierarchy_enqueue_styles() {
   wp_enqueue_style( 'animate-css', get_stylesheet_directory_uri() . '/assets/css/animate.css', [], time(), 'all' );
   wp_enqueue_style( 'bootstrap-min-css', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', [], time(), 'all' );
   wp_enqueue_style( 'flexslider-css', get_stylesheet_directory_uri() . '/assets/css/flexslider.css', [], time(), 'all' );
-  wp_enqueue_style( 'jquery-custom-scrollbar-css', get_stylesheet_directory_uri() . '/assets/css/jquery.mCustomScrollbar.css.css', [], time(), 'all' );
+  wp_enqueue_style( 'jquery-custom-scrollbar-css', get_stylesheet_directory_uri() . '/assets/css/jquery.mCustomScrollbar.css', [], time(), 'all' );
 
 }
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles' );
@@ -45,7 +45,7 @@ function wphierarchy_enqueue_scripts() {
   wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], time(), true );
   wp_enqueue_script( 'jquery-min-js', get_stylesheet_directory_uri() . '/assets/js/jquery-3.4.1.min.js', [], time(), true );
   wp_enqueue_script( 'jquery-flexslider-js', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', [], time(), true );
-  wp_enqueue_script( 'custom-scrollbar-js', get_stylesheet_directory_uri() . '/assets/js/jquery.mCustomScrollbar.concat.min.js', [], time(), true );
+  wp_enqueue_script( 'custom-scrollbar-js', get_stylesheet_directory_uri() . '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), time(), true );
   wp_enqueue_script( 'waypoints-min-js', get_stylesheet_directory_uri() . '/assets/js/waypoints.min.js', [], time(), true );
 
 }
@@ -243,6 +243,48 @@ $args3 = array(
 register_post_type( 'video', $args3);
 
 
+//custom post type-News
+$labels4 = array(
+  'name' => 'History',
+  'singular_name' => 'History',
+  'add_new' => 'Add New Year',
+  'add_new_item' => 'Add New Year',
+  'edit_item' => 'Edit Year',
+  'new_item' => 'New Year',
+  'all_items' => 'All years',
+  'view_item' => 'View Histories',
+  'search_items' => 'Search Year',
+  'not_found' =>  'No Year Found',
+  'not_found_in_trash' => 'No year found in Trash', 
+  'parent_item_colon' => '',
+  'menu_name' => 'history',
+);
+
+// register post type
+$args4 = array(
+  'labels' => $labels4,
+  'public' => true,
+  'has_archive' => true,
+  'show_ui' => true,
+  'capability_type' => 'post',
+  'hierarchical' => false,
+  'rewrite' => array('slug' => 'history'),
+  'query_var' => true,
+  'menu_icon' => 'dashicons-randomize',
+  'supports' => array(
+      'title',
+      'editor',
+      'excerpt',
+      'trackbacks',
+      'custom-fields',
+      'comments',
+      'revisions',
+      'thumbnail',
+      'author',
+      'page-attributes'
+  )
+);
+register_post_type( 'history', $args4 );
 
 
 //custom post type-News
@@ -305,6 +347,30 @@ function sorayatec_site_logo_setup() {
   add_theme_support( 'site-logo', $defaults );
  }
  add_action( 'after_setup_theme', 'sorayatec_site_logo_setup' );
+
+
+
+ function typed_init() {
+  echo '<script>
+  (function($) {
+      var wid = $(window).width();
+      if (wid <= 1600) {
+          $("#content-6").mCustomScrollbar({
+              axis: "x",
+              theme: "light-3",
+              advanced: {
+                  autoExpandHorizontalScroll: true
+              }
+          });
+      }
+      if (wid <= 767) {
+          $("#content-6").mCustomScrollbar("destroy");
+      }
+  })(jQuery);
+
+</script>';
+}
+add_action('wp_footer', 'typed_init');
 
 
 //  //Adding haeder-footer customization

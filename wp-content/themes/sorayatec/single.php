@@ -17,12 +17,19 @@
                             <span><?php echo get_field( 'date' ); ?></span>
                             <?php echo get_field( 'place' ); ?>
                         </div>
-                        <h1><a href="#"><?php echo get_field( 'news_title' ); ?></a></h1>
-                        <p><?php echo get_field( 'content' ); ?></p>
+                        <h1><a href="#"><?php echo the_title(); ?></a></h1>
+                        <p><?php echo the_content(); ?></p>
                         <ul class="follow-us">
-                            <li><a href="https://in.linkedin.com/company/soraytec" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="https://twitter.com/hashtag/soraytec" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                
+                                <?php
+                                if( have_rows('follow') ):
+                                while( have_rows('follow') ) : the_row();
+                                ?>
+
+                                    <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                
+                                <?php endwhile; endif; ?> 
+
                         </ul>
                         <div class="pager">
                             <a href="<?php echo get_permalink( get_adjacent_post()->ID ); ?>">&#60; PREVIOUS</a>

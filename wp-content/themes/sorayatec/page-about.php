@@ -24,6 +24,348 @@
             </div>
         </div>
 
+
+      <!-- ==============================================
+        **History**
+        =================================================== -->
+        <section class="history">
+            <div class="container">
+                <h1>HISTORY</h1>
+                <div class="show-mob">
+                    <p>Click on the dates below to view information on date.</p>
+                </div>
+                <ul class="history-cnt">
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <p>Click on the dates below to view information on date.</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/timeline-img.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="active">
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>September, 2014</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>July, 2015</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>November, 2015</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>October, 2015</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>December, 2015</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>February, 2016</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>November, 2016</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>June, 2017</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>February, 2018</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>January, 2019</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>H2, 2019 </h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-md-5 left">
+                                <div class="title">
+                                    <h2>H1, 2020</h2>
+                                </div>
+                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                            </div>
+                            <div class="col-md-7 right">
+                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+
+                <?php 
+
+                // get posts
+                $posts = get_posts(array(
+                    'post_type'			=> 'event',
+                    'posts_per_page'	=> -1,
+                    'meta_key'			=> 'start_date',
+                    'orderby'			=> 'meta_value',
+                    'order'				=> 'DESC'
+                ));
+
+                if( $posts ): ?>
+                    
+                    <ul>
+                        
+                    <?php foreach( $posts as $post ): 
+                        
+                        setup_postdata( $post );
+                    ?>
+
+                        <li>
+                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?> (date: <?php the_field('start_date'); ?>)</a>
+                        </li>
+                    
+                    <?php endforeach; ?>
+                    
+                    </ul>
+                    
+                    <?php wp_reset_postdata(); ?>
+
+                <?php endif; ?>
+
+
+
+
+                <div id="content-6" class="content horizontal-images">
+
+                     <?php 
+                    // get posts
+                    $posts = get_posts(array(
+                        'post_type'			=> 'history',
+                        'posts_per_page'	=> -1,
+                        'meta_key'			=> 'year',
+                        'orderby'			=> 'meta_value',
+                        'order'				=> 'ASC'
+                    ));
+                    if( $posts ): 
+                    ?>
+
+                        <ul class="timeline">
+
+                            <?php 
+                            foreach( $posts as $post ):
+                                setup_postdata( $post );
+                            ?>    
+                                
+                                <li>
+                                    <div class="inner">
+                                        <div class="circle"><?php the_field('year'); ?></div>
+                                        <div class="timeline-cnt">
+                                            <ul>
+ 
+                                                <?php
+                                                if( have_rows('monthly_details') ):
+                                                    while( have_rows('monthly_details') ) : the_row();
+                                                ?>
+
+                                                    <li>
+                                                        <a href="#"><?php echo the_sub_field('month'); ?>,<?php the_field('year'); ?></a>
+
+                                                        <!-- <div class="row collapse-cnt active">
+                                                            <div class="col-md-5 left">
+                                                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
+                                                            </div>
+                                                        </div> -->
+
+                                                    </li>
+
+                                                <?php endwhile; endif; ?> 
+                                                   
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>    
+                                        <!-- <li>
+                                            <div class="inner">
+                                                <div class="circle">2015</div>
+                                                <div class="timeline-cnt">
+                                                    <ul>
+                                                        <li><a href="#">July, 2015</a></li>
+                                                        <li><a href="#">November, 2015</a></li>
+                                                        <li><a href="#">October, 2015</a></li>
+                                                        <li><a href="#">December, 2015</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="inner">
+                                                <div class="circle">2016</div>
+                                                <div class="timeline-cnt">
+                                                    <ul>
+                                                        <li><a href="#">February, 2016</a></li>
+                                                        <li><a href="#">November, 2016</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="inner">
+                                                <div class="circle">2017</div>
+                                                <div class="timeline-cnt">
+                                                    <ul>
+                                                        <li><a href="#">June, 2017</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="inner">
+                                                <div class="circle">2018</div>
+                                                <div class="timeline-cnt">
+                                                    <ul>
+                                                        <li><a href="#">February, 2018</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="inner">
+                                                <div class="circle">2019</div>
+                                                <div class="timeline-cnt">
+                                                    <ul>
+                                                        <li><a href="#">January, 2019</a></li>
+                                                        <li><a href="#">H2, 2019</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="inner">
+                                                <div class="circle">2020</div>
+                                                <div class="timeline-cnt">
+                                                    <ul>
+                                                        <li><a href="#">H1, 2020</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li> -->
+                        </ul>
+
+                    <?php endif; wp_reset_query(); ?>   
+                </div>
+            </div>
+        </section>
+   
+
         <!-- ==============================================
         **The Team**
         =================================================== -->

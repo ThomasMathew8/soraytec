@@ -1,4 +1,4 @@
-(function () {
+jQuery(document).ready(function ($) {
 
     // store the slider in a local variable
     var $window = $(window),

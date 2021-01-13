@@ -26,16 +26,23 @@
                             </figure>
                         </div>
                         <div class="col-lg-4 left">
-                            <h1><a href="<?php echo get_permalink(); ?>"><?php echo get_field( 'news_title' ); ?></a></h1>
+                            <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
                             <div class="source">
                                 <span><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
                             </div>
-                            <p><?php echo get_field( 'content' ); ?></p>
+                            <?php echo the_excerpt(); ?>
                             <ul class="follow-us">
-                                <li><a href="https://in.linkedin.com/company/soraytec" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                                <li><a href="https://twitter.com/hashtag/soraytec" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+
+                                <?php
+                                if( have_rows('follow') ):
+                                while( have_rows('follow') ) : the_row();
+                                ?>
+
+                                    <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                
+                                <?php endwhile; endif; ?> 
+
                             </ul>
                         </div>
                     </div>
@@ -54,10 +61,10 @@
                                 <figure><img src="<?php echo $img['url']; ?>" alt=""></figure>
                             </div>
                             <div class="col-md-8">
-                                <h1><a href="<?php echo get_permalink(); ?>"><?php echo get_field( 'news_title' ); ?></a></h1>
+                                <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
                                 <span class="date"><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
-                                <p><?php echo get_field( 'content' ); ?></p>
+                                <p><?php echo the_excerpt(); ?></p>
                                 <ul class="follow-us">
                                     <li><a href="https://in.linkedin.com/company/soraytec" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://twitter.com/hashtag/soraytec" target="_blank"><i class="fab fa-twitter"></i></a></li>
