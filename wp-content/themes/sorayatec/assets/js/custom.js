@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+jQuery(function ($) {
 
     // store the slider in a local variable
     var $window = $(window),
@@ -59,4 +59,22 @@ jQuery(document).ready(function ($) {
         flexslider.vars.minItems = gridSizes;
         flexslider.vars.maxItems = gridSizes;
     });
+
+    //For History
+
+    $('.history').click(function() {
+    
+    
+        //Compile the post data to retrieve
+        var postData = {
+        action: 'get_id',
+        post_id: $(this).attr('post_id')
+        }
+    
+        //Make AJAX post call ( USE POST instead of GET to post data and get data in return)
+        $.post( ajaxurl, postData ).done(function(result) {
+        $('.history-div').html(result);
+        });
+    });
+    
 }());

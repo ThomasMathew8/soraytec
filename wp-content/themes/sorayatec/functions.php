@@ -42,11 +42,11 @@ add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles' );
 function wphierarchy_enqueue_scripts() {
 
   wp_enqueue_script( 'theme-js', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], time(), true );
-  wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], time(), true );
   wp_enqueue_script( 'jquery-min-js', get_stylesheet_directory_uri() . '/assets/js/jquery-3.4.1.min.js', [], time(), true );
   wp_enqueue_script( 'jquery-flexslider-js', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', [], time(), true );
   wp_enqueue_script( 'custom-scrollbar-js', get_stylesheet_directory_uri() . '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), time(), true );
   wp_enqueue_script( 'waypoints-min-js', get_stylesheet_directory_uri() . '/assets/js/waypoints.min.js', [], time(), true );
+  wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], time(), true );
 
 }
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
@@ -373,7 +373,22 @@ function sorayatec_site_logo_setup() {
 add_action('wp_footer', 'typed_init');
 
 
-//  //Adding haeder-footer customization
+//Passing post id for history
+add_action('wp_ajax_nopriv_test', 'get_id');
+add_action('wp_ajax_test', 'get_id');
+
+function get_id() {
+  $post_id = filter_input( INPUT_POST, 'post_id' );
+  $pt = get_the_title( $post_id );
+
+  wp_send_json($pt); //Use WP send json function
+
+  wp_die();
+}
+
+
+
+//  //Adding header-footer customization
 //  require get_template_directory() . '/inc/headerfooter-customizer.php';
 //  new HeaderFooter_Customizer();
 
