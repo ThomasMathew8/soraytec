@@ -28,55 +28,93 @@
       <!-- ==============================================
         **History**
         =================================================== -->
+
+        <script>
+
+            function make_active(id) {
+            var id = id;
+            if( id === null ){
+            document.getElementById("default").classList.add("active");
+            }else{
+            document.getElementById("default").classList.remove("active");
+            document.getElementById(id).classList.toggle("active");
+
+
+            }
+
+            }
+        </script>   
+
+
+        <?php 
+        $default = get_field( 'history_default' );
+        $default_img = $default['default_img'];
+        ?>
         <section class="history">
             <div class="container">
-                <h1>HISTORY</h1>
+                <h1><?php echo $default['default_title']; ?></h1>
                 <div class="show-mob">
-                    <p>Click on the dates below to view information on date.</p>
+                    <p><?php echo $default['default_desc']; ?></p>
                 </div>
-                <div class="history-div">
+                <div id="bxslider">
                         <ul class="history-cnt">
+                            <li id="default" class="active">
+                                <div class="row">
+                                    <div class="col-md-5 left">
+                                        <p><?php echo $default['default_desc']; ?></p>
+                                    </div>
+                                    <div class="col-md-7 right">
+                                        <figure><img src="<?php echo $default_img['url']; ?>" class="img-fluid" alt=""></figure>
+                                    </div>
+                                </div>
+                            </li>
 
-                            <?php $post_id = $_POST['post_id']; ?>
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-5 left">
-                                        <p>Click on the dates below to view information on date.</p>
-                                    </div>
-                                    <div class="col-md-7 right">
-                                        <figure><img src="images/timeline-img.jpg" class="img-fluid" alt=""></figure>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <div class="row">
-                                    <div class="col-md-5 left">
-                                        <div class="title">
-                                            <h2>September, 2014</h2>
+                        <?php 
+                        // get posts
+                        $loop = new WP_Query( array(
+                            'post_type' => 'history',
+                            'posts_per_page' => -1
+                        )
+                        );
+                        if( $loop->have_posts() ):  
+                            while ( $loop->have_posts() ) : $loop->the_post();
+                                $id = get_the_ID() ;
+                                $year = get_field('year');
+
+                                if( have_rows('monthly_details') ):
+                                    while( have_rows('monthly_details') ) : the_row();  
+                                        $month = get_sub_field('month');
+                                        $img = get_sub_field('img');
+                                        $content = get_sub_field('desc');
+
+
+                            ?>
+                                    <li id="<?php echo $id; ?>">
+                                        <div class="row">
+                                            <div class="col-md-5 left">
+                                                <div class="title">
+                                                    <h2><?php echo $month.','.$year; ?></h2>
+                                                </div>
+                                                <p><?php echo $content; ?></p>
+                                            </div>
+                                            <div class="col-md-7 right">
+                                                <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
+                                            </div>
                                         </div>
-                                        <h1><?php echo $post_id; ?></h1>
-                                        <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
-                                    </div>
-                                    <div class="col-md-7 right">
-                                        <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
-                                    </div>
-                                </div>
-                            </li>
-                    <!-- <li>
-                        <div class="row">
-                            <div class="col-md-5 left">
-                                <div class="title">
-                                    <h2>July, 2015</h2>
-                                </div>
-                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
-                            </div>
-                            <div class="col-md-7 right">
-                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
-                            </div>
-                        </div>
-                    </li> -->
+                                    </li>
+
+
+                        <?php 
+                        $id = $id+101;;
+                        endwhile; 
+                        endif;
+                        endwhile;  
+                        endif;
+                        wp_reset_query();
+                        ?>
+                    
                     </ul>
-                </div>
+                
 
 
 
@@ -99,34 +137,31 @@
                             <?php 
                             foreach( $posts as $post ):
                                 setup_postdata( $post );
+                                $id = get_the_ID() ;
+                                $year = get_field('year');
                             ?>    
                                 
                                 <li>
                                     <div class="inner">
-                                        <div class="circle"><?php the_field('year'); ?></div>
+                                        <div class="circle"></div>
                                         <div class="timeline-cnt">
                                             <ul>
  
                                                 <?php
                                                 if( have_rows('monthly_details') ):
                                                     while( have_rows('monthly_details') ) : the_row();
+                                                 
+                                                    $month = get_sub_field('month');
+                                                    $img = get_sub_field('img');
+                                                    $content = get_sub_field('desc');
                                                 ?>
 
                                                     <li>
-                                                        <a href="javascript:void(0);" class="history" data-postid="<?php echo get_the_id(); ?>"><?php echo the_sub_field('month'); ?>,<?php the_field('year'); ?></a>
-
-                                                        <!-- <div class="row collapse-cnt active">
-                                                            <div class="col-md-5 left">
-                                                                <p>Optimization of design to fulfill safety requirements for installation in Norwegian electricity network</p>
-                                                            </div>
-                                                            <div class="col-md-7">
-                                                                <figure><img src="images/november-2016.jpg" class="img-fluid" alt=""></figure>
-                                                            </div>
-                                                        </div> -->
-
+                                                    <!-- create span -->
+                                                        <a id="<?php echo $id; ?>" onclick="make_active(<?php echo $id; ?>)" href="#"><?php echo $month.','.$year; ?></a>
                                                     </li>
 
-                                                <?php endwhile; endif; ?> 
+                                                <?php $id = $id+101; endwhile; endif; ?> 
                                                    
                                             </ul>
                                         </div>
