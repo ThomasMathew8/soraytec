@@ -1,35 +1,39 @@
-jQuery(function ($) {
-    
-    // store the slider in a local variable
-    var $window = $(window),
-        flexslider = {
-            vars: {}
-        };
+(function($) {
+    $(document).ready(function(){
+   
+      $('#bxslider').bxSlider({
+            mode:'fade',
+            slideWidth:1000,
+            auto: true,
+            pagerCustom: '#bxpager'
+        });
 
-    function getSliderDirection() {
-        return (window.innerWidth > 768) ? "vertical" : "horizontal";
+
+   //function
+
+     var jQuerywindow = $(window),
+       flexslider = {
+       vars: {}
+       };
+
+     function getSliderDirection() {
+   return (window.innerWidth > 768) ? "vertical" : "horizontal";
     }
-    
-    function getGridSize() {
-        return (window.innerWidth < 768) ? 2 : 1;
 
-    }
+     function getGridSize() {
+       return (window.innerWidth < 768) ? 2 : 1;
 
-    /* $(function() {
-       SyntaxHighlighter.all();
-     });
-    */
-    $window.load(function () {
+      }
+  
 
-        $('#carousel').flexslider({
+   //function
+   
+    $('#carousel').flexslider({
             animation: "slide",
             controlNav: false,
             animationLoop: false,
             slideshow: false,
             itemWidth: 191,
-            direction: getSliderDirection(),
-            minItems: getGridSize(),
-            maxItems: getGridSize(),
             asNavFor: '#slider'
         });
 
@@ -44,23 +48,43 @@ jQuery(function ($) {
                 $('body').removeClass('loading');
             }
         });
-    });
+      
 
-    // check grid size on resize event
-    $window.resize(function () {
+   //function
 
-        var gridSize = getSliderDirection();
 
-        flexslider.vars.direction = gridSize;
-        flexslider.vars.direction = gridSize;
 
-        var gridSizes = getGridSize();
+   jQuerywindow.resize(function () {
 
-        flexslider.vars.minItems = gridSizes;
-        flexslider.vars.maxItems = gridSizes;
-    });
+    var gridSize = getSliderDirection();
 
-    //For History
+    flexslider.vars.direction = gridSize;
+    flexslider.vars.direction = gridSize;
+
+    var gridSizes = getGridSize();
+
+    flexslider.vars.minItems = gridSizes;
+    flexslider.vars.maxItems = gridSizes;
+});
+
+
+
+    var wid = $(window).width();
+    if (wid <= 1600) {
+        $("#content-6").mCustomScrollbar({
+            axis: "x",
+            theme: "light-3",
+            advanced: {
+                autoExpandHorizontalScroll: true
+            }
+        });
+    }
+    if (wid <= 767) {
+        $("#content-6").mCustomScrollbar("destroy");
+    }
+
+   }) 
     
-    
-}());
+
+
+})(jQuery);

@@ -16,10 +16,7 @@
             <div class="row top">
                 <div class="col-md-4">
                     <a href="<?php echo get_home_url(); ?>" class="foot-logo">
-                    <?php
-                    if ( function_exists( 'the_custom_logo' ) ) {
-                    the_custom_logo();
-                    } ?>
+                    <img src="<?php echo wp_get_attachment_url(get_theme_mod('basic-footer-image')); ?>" alt="" />
                    </a>
                 </div>
                 <div class="col-md-4 contact">

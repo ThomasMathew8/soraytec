@@ -39,6 +39,12 @@ function wphierarchy_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles' );
 
+//De-registering wordpress's jQuery
+add_action('wp_enqueue_scripts', 'no_more_jquery');
+function no_more_jquery(){
+    wp_deregister_script('jquery');
+}
+
 //Load js themes 
 function wphierarchy_enqueue_scripts() {
 
@@ -48,7 +54,7 @@ function wphierarchy_enqueue_scripts() {
   wp_enqueue_script( 'custom-scrollbar-js', get_stylesheet_directory_uri() . '/assets/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), time(), true );
   wp_enqueue_script( 'waypoints-min-js', get_stylesheet_directory_uri() . '/assets/js/waypoints.min.js', [], time(), true );
   wp_enqueue_script( 'bxslider-min-js', get_stylesheet_directory_uri() . '/assets/js/jquery.bxslider.min.js', [], time(), true );
-  wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], time(), true );
+  wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js',[], time(), true );
 
 }
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
@@ -201,49 +207,6 @@ $args2 = array(
 register_post_type( 'team', $args2 );
 
 
-//custom post type-Slider video
-$labels3 = array(
-  'name' => 'Videos',
-  'singular_name' => 'Video',
-  'add_new' => 'Add New Video',
-  'add_new_item' => 'Add New Video',
-  'edit_item' => 'Edit Video',
-  'new_item' => 'New Video',
-  'all_items' => 'All Videos',
-  'view_item' => 'View Video',
-  'search_items' => 'Search Videos',
-  'not_found' =>  'No Video Found',
-  'not_found_in_trash' => 'No Video found in Trash', 
-  'parent_item_colon' => '',
-  'menu_name' => 'Video',
-);
-
-// register post type
-$args3 = array(
-  'labels' => $labels3,
-  'public' => true,
-  'has_archive' => true,
-  'show_ui' => true,
-  'capability_type' => 'post',
-  'hierarchical' => false,
-  'rewrite' => array('slug' => 'video'),
-  'query_var' => true,
-  'menu_icon' => 'dashicons-randomize',
-  'supports' => array(
-      'title',
-      'editor',
-      'excerpt',
-      'trackbacks',
-      'custom-fields',
-      'comments',
-      'revisions',
-      'thumbnail',
-      'author',
-      'page-attributes'
-  )
-);
-register_post_type( 'video', $args3);
-
 
 //custom post type-News
 $labels4 = array(
@@ -352,36 +315,10 @@ function sorayatec_site_logo_setup() {
 
 
 
- function typed_init() {
-  echo '<script>
-  (function($) {
-      var wid = $(window).width();
-      if (wid <= 1600) {
-          $("#content-6").mCustomScrollbar({
-              axis: "x",
-              theme: "light-3",
-              advanced: {
-                  autoExpandHorizontalScroll: true
-              }
-          });
-      }
-      if (wid <= 767) {
-          $("#content-6").mCustomScrollbar("destroy");
-      }
-  })(jQuery);
 
-</script>';
-}
-add_action('wp_footer', 'typed_init');
-
-
-
-
-
-
-//  //Adding header-footer customization
-//  require get_template_directory() . '/inc/headerfooter-customizer.php';
-//  new HeaderFooter_Customizer();
+ //Adding header-footer customization
+ require get_template_directory() . '/inc/headerfooter-customizer.php';
+ new HeaderFooter_Customizer();
 
 
 // // Setup Widget Areas

@@ -29,21 +29,6 @@
         **History**
         =================================================== -->
 
-        <script>
-
-            function make_active(id) {
-            var id = id;
-            if( id === null ){
-            document.getElementById("default").classList.add("active");
-            }else{
-            document.getElementById("default").classList.remove("active");
-            document.getElementById(id).classList.toggle("active");
-
-
-            }
-
-            }
-        </script>   
 
 
         <?php 
@@ -56,8 +41,8 @@
                 <div class="show-mob">
                     <p><?php echo $default['default_desc']; ?></p>
                 </div>
-                <div id="bxslider">
-                        <ul class="history-cnt">
+               
+                        <ul class="history-cnt" id="bxslider">
                             <li id="default" class="active">
                                 <div class="row">
                                     <div class="col-md-5 left">
@@ -69,49 +54,71 @@
                                 </div>
                             </li>
 
-                        <?php 
-                        // get posts
-                        $loop = new WP_Query( array(
-                            'post_type' => 'history',
-                            'posts_per_page' => -1
-                        )
-                        );
-                        if( $loop->have_posts() ):  
-                            while ( $loop->have_posts() ) : $loop->the_post();
-                                $id = get_the_ID() ;
-                                $year = get_field('year');
+                            <?php 
+                            // get posts
+                            $loop = new WP_Query( array(
+                                'post_type' => 'history',
+                                'orderby'=>'title',
+                                'order'=>'ASC'
+                            )
+                            );
+                            if( $loop->have_posts() ):  
+                                while ( $loop->have_posts() ) : $loop->the_post();
 
-                                if( have_rows('monthly_details') ):
-                                    while( have_rows('monthly_details') ) : the_row();  
-                                        $month = get_sub_field('month');
-                                        $img = get_sub_field('img');
-                                        $content = get_sub_field('desc');
+                                
+                                    
+                                    // Get repeater value
+                                    $repeater = get_field('monthly_details');
+                                    $date_stamp = array();
 
 
+                                    // Obtain list of columns
+                                    foreach ($repeater as $key => $row):
+                                        $dates = $row['date'];
+
+                                        $pieces = explode(",", $dates);
+                                        $m = $pieces[0];
+                                        $y = $pieces[1];
+
+
+                                        // create UNIX
+                                        $date_stamp[$key] = strtotime("$m,$y");
+                                        
+                                    endforeach;
+
+                                    // Sort the data by date, ascending
+                                    array_multisort($date_stamp, SORT_ASC, $repeater);
+
+                                    // Display newly orded columns
+                                    // Unsure if this is the optimal way to do this...
+                                    if( $repeater ):
+                                        foreach( $repeater as $row ) :
+                                            $i++;
+                                            $img = $row['image'];
+
+                                    ?>
+                                            <li>
+                                                    <div class="row">
+                                                        <div class="col-md-5 left">
+                                                            <div class="title">
+                                                                <h2><?php echo $row['date']; ?></h2>
+                                                            </div>
+                                                            <p><?php echo $row['desc']; ?></p>
+                                                        </div>
+                                                        <div class="col-md-7 right">
+                                                            <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
+                                                        </div>
+                                                    </div>
+                                            </li>
+                                    <?php endforeach; endif; ?>
+
+
+                                    <?php 
+                                    
+                                    endwhile;  
+                            endif;
+                            wp_reset_query();
                             ?>
-                                    <li id="<?php echo $id; ?>">
-                                        <div class="row">
-                                            <div class="col-md-5 left">
-                                                <div class="title">
-                                                    <h2><?php echo $month.','.$year; ?></h2>
-                                                </div>
-                                                <p><?php echo $content; ?></p>
-                                            </div>
-                                            <div class="col-md-7 right">
-                                                <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
-                                            </div>
-                                        </div>
-                                    </li>
-
-
-                        <?php 
-                        $id = $id+101;;
-                        endwhile; 
-                        endif;
-                        endwhile;  
-                        endif;
-                        wp_reset_query();
-                        ?>
                     
                     </ul>
                 
@@ -120,58 +127,74 @@
 
             <div id="content-6" class="content horizontal-images">
 
-                     <?php 
-                    // get posts
-                    $posts = get_posts(array(
-                        'post_type'			=> 'history',
-                        'posts_per_page'	=> -1,
-                        'meta_key'			=> 'year',
-                        'orderby'			=> 'meta_value',
-                        'order'				=> 'ASC'
-                    ));
-                    if( $posts ): 
+                    <?php 
+                    $args = array( 
+                        'post_type' => 'history',
+                        'orderby'=>'title',
+                        'order'=>'ASC');
+                    $loop = new WP_Query( $args );
                     ?>
 
-                        <ul class="timeline">
+                        <ul class="timeline" id="bxpager">
 
                             <?php 
-                            foreach( $posts as $post ):
-                                setup_postdata( $post );
-                                $id = get_the_ID() ;
-                                $year = get_field('year');
+                            $i=0;
+                            if( $loop->have_posts() ):  
+                                while ( $loop->have_posts() ) : $loop->the_post();
+                                $date= get_sub_field('date');
                             ?>    
                                 
                                 <li>
-                                    <div class="inner">
-                                        <div class="circle"></div>
+                                    <div class="inner" id="inner-content">
+                                        <div class="circle"><?php echo the_title(); ?></div>
                                         <div class="timeline-cnt">
                                             <ul>
- 
-                                                <?php
-                                                if( have_rows('monthly_details') ):
-                                                    while( have_rows('monthly_details') ) : the_row();
-                                                 
-                                                    $month = get_sub_field('month');
-                                                    $img = get_sub_field('img');
-                                                    $content = get_sub_field('desc');
+
+
+                                                <?php 
+                                                // Get repeater value
+                                                $repeater = get_field('monthly_details');
+                                                $date_stamp = array();
+                
+
+                                                // Obtain list of columns
+                                                foreach ($repeater as $key => $row):
+                                                    $dates = $row['date'];
+
+                                                    $pieces = explode(",", $dates);
+                                                    $m = $pieces[0];
+                                                    $y = $pieces[1];
+
+
+                                                    // create UNIX
+                                                    $date_stamp[$key] = strtotime("$m,$y");
+                                                   
+                                                endforeach;
+
+                                                // Sort the data by date, ascending
+                                                array_multisort($date_stamp, SORT_ASC,  $repeater);
+
+                                                // Display newly orded columns
+                                                // Unsure if this is the optimal way to do this...
+                                                if( $repeater ):
+                                                    foreach( $repeater as $row ) :
+                                                        $i++;
+
                                                 ?>
-
                                                     <li>
-                                                    <!-- create span -->
-                                                        <a id="<?php echo $id; ?>" onclick="make_active(<?php echo $id; ?>)" href="#"><?php echo $month.','.$year; ?></a>
+                                                        <a href="#" data-slide-index="<?php echo $i; ?>"><?php echo $row['date'];?></a>
                                                     </li>
-
-                                                <?php $id = $id+101; endwhile; endif; ?> 
+                                                <?php endforeach; endif; ?>
                                                    
                                             </ul>
                                         </div>
                                     </div>
                                 </li>
-                            <?php endforeach; ?>    
+                            <?php  endwhile; endif; ?>     
                         </ul>
 
-                    <?php wp_reset_postdata(); endif; ?>   
-                </div>
+                    <?php wp_reset_query(); ?>   
+                
             </div>
         </section>
    
@@ -255,23 +278,21 @@
                             <div class="video-outer">
                                 <div id="slider" class="flexslider video">
                                     <ul class="slides">
-                                    <?php 
-                                        $loop = new WP_Query( array(
-                                            'post_type' => 'video',
-                                            'posts_per_page' => -1,
-                                            'order' => 'ASC'
-                                        )
-                                        );
-                                        if ( $loop->have_posts() ): while ( $loop->have_posts() ) : $loop->the_post();
+                                        <?php
+                                        if( have_rows('youtube') ):
+                                            while( have_rows('youtube') ) : the_row();
+                                            $yt_id = get_sub_field('id');
                                         ?>
 
                                             <li>
                                                 <div class="youtube-video">
-                                                    <iframe width="100%" height="100%" src="<?php  echo get_field('link'); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                   
+                                                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $yt_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                
                                                 </div>
                                             </li>
 
-                                        <?php endwhile; ?>
+                                        <?php endwhile; endif; ?>
 
                                     </ul>
                                 </div>
@@ -279,13 +300,14 @@
                                     <ul class="slides">
 
                                         <?php
-                                        while ( $loop->have_posts() ) : $loop->the_post();
-                                        $thumb = get_field('thumbnail');
+                                        if( have_rows('youtube') ):
+                                            while( have_rows('youtube') ) : the_row();
+                                            $yt_id = get_sub_field('id');
                                         ?>
                                         
-                                            <li><img src="<?php  echo $thumb['url']; ?>" class="img-fluid" alt=""></li>
+                                            <li><img src="http://i3.ytimg.com/vi/<?php echo $yt_id; ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
                                         
-                                        <?php endwhile; endif; wp_reset_query(); ?>
+                                        <?php endwhile; endif;  ?>
 
                                     </ul>
                                 </div>
@@ -317,6 +339,20 @@
 
 </div>
 
+<script>
 
+function make_active(id) {
+var id = id;
+if( id === null ){
+document.getElementById("default").classList.add("active");
+}else{
+document.getElementById("default").classList.remove("active");
+document.getElementById(id).classList.toggle("active");
+
+
+}
+
+}
+</script>   
 
 <?php get_footer(); ?>
