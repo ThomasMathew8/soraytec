@@ -233,11 +233,11 @@
                 </div>
                 <div class="col-md-6 right">
 
-                    <?php $contact = get_field('contact'); ?>
+                    <?php $contact = get_field('contact_product'); ?>
 
-                    <h2><?php echo $contact['contact_title'] ?></h2>
+                    <h2><?php echo $contact['contact_title']; ?></h2>
 
-                    <a href="<?php echo $contact['contact_link'] ?>" class="mail"><?php echo $contact['contact_text'] ?></a>
+                    <a href="mailto:<?php echo $contact['contact_email']; ?>" class="mail"><?php echo $contact['contact_email']; ?></a>
                 </div>
             </div>
         </div>
