@@ -7,31 +7,26 @@
         <!-- ==============================================
     **Banner**
     =================================================== -->
-    
-    <?php 
-    $primary = get_field( 'primary_info' );
-    $primary_img = $primary[ 'primary_info_img' ];
-    ?> 
-    
     <div class="banner">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><?php echo $primary['primary_info_title']; ?></h1>
-                    <p><?php echo $primary['primary_info_desc']; ?></p>
+                    <h1>PRIMARY SIDE METERING</h1>
+                    <p>Innovative hardware solutions for direct voltage metering and monitoring in electricity distribution networks, combined with analytics and artificial intelligence to maximize efficiency and reduce grid emission factors.</p>
                 </div>
                 <div class="col-md-6 right">
                     <figure>
-                        <img src="<?php echo $primary_img['url']; ?>" >
+                        <img src="<?php bloginfo("template_directory");?>/assets/images/home-banner-product.png" alt="">
                     </figure>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
     <!-- ==============================================
     **About**
     =================================================== -->
+
     
     <?php 
     $loop = new WP_Query( array(
@@ -62,9 +57,14 @@
                         </div>
                         <div class="col-md-5">
                             <figure><img src="<?php echo $even_img['url']; ?>" class="rounded-circle" alt=""></figure>
+
                         </div>
                     </div>
+                    <div class="col-md-5">
+                        <figure><img src="<?php bloginfo("template_directory");?>/assets/images/vision-img.png" class="rounded-circle" alt=""></figure>
+                    </div>
                 </div>
+
             </div>
         
             <?php $i++;else: ?>
@@ -85,6 +85,7 @@
                         <div class="col-md-5">
                             <figure><img src="<?php echo $odd_img['url'];?>" class="rounded-circle" alt=""></figure>
                         </div>
+
                     </div>
                 </div>
             </div>
