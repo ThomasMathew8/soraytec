@@ -1,15 +1,15 @@
 /*
-Theme Name: Assignment-01
+Theme Name: Sorayatec
 Theme URI: https://wordpress.org/
 Author: Thomas
 Author URI: https://wordpress.org/
-Description: My First Assignment Website
+Description: Sorayatec Website Theme
 Version: 2.5
 Requires at least: 4.7
 Requires PHP: 5.2.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: assignment01
+Text Domain: Sorayatec
 Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-patterns
 
 This theme, like WordPress, is licensed under the GPL.
@@ -17,15 +17,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 
-
-
 #menu-menu .menu-item{margin: 0 10px !important;}
-
 
 input.wpcf7-form-control.wpcf7-submit {
     float: right !important;
 }
-
 
 .prdct-feature-cnt{justify-content: center !important;}
 
@@ -34,7 +30,4 @@ input.wpcf7-form-control.wpcf7-submit {
 .timeline-cnt span:hover{
     text-decoration: underline;
     cursor: pointer;}
-
-
-           
 
