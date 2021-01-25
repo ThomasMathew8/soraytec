@@ -19,26 +19,37 @@
     <header class="header">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="<?php bloginfo("template_directory");?>/assets/images/logo.png" alt=""></a>
+
+
+                <?php 
+                $logo = get_field( 'header_logo' );
+                ?>
+
+                <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
+                <?php
+                if ( function_exists( 'the_custom_logo' ) ) {
+                the_custom_logo();
+                }
+                ?>
+                </a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="product.html">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="news.html">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div>
+
+
+                        <?php 
+                        $args = [
+                            'theme_location' => 'main-menu',
+                            'menu_class'        => "navbar-nav ml-auto",
+                            'container'         => "div",
+                            'container_class'   => "navbar-collapse collapse",
+                            'container_id'      => "navbarCollapse",
+                            'walker'            => new WP_Bootstrap_Navwalker()
+                            ];
+                        wp_nav_menu( $args ); 
+                        ?>
+    
+
             </div>
         </nav>
     </header>
