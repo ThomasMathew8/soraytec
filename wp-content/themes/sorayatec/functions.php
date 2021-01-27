@@ -59,6 +59,7 @@ function wphierarchy_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
 
+
 //Register Menu Locations
  register_nav_menus( [
   'main-menu' => esc_html__( 'Main Menu', 'sorayatec' ),
