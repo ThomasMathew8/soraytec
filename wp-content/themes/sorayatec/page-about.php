@@ -13,11 +13,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-lg-5">
-                        <h1><?php echo $banner['banner_title']; ?></h1>
+                        <h1>
+                            <?php 
+                            if($banner['banner_title']):
+                                echo $banner['banner_title']; 
+                            endif;    
+                            ?>
+                        </h1>
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="about-desc">
-                            <p><?php echo $banner['banner_desc']; ?></p>
+                            <p>
+                            <?php
+                            if($banner['banner_desc']): 
+                                echo $banner['banner_desc']; 
+                            endif;    
+                            ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -37,19 +49,37 @@
         ?>
         <section class="history">
             <div class="container">
-                <h1><?php echo $default['default_title']; ?></h1>
+                <h1>
+                    <?php
+                    if($default['default_title']):
+                        echo $default['default_title']; 
+                    endif;
+                    ?>
+                </h1>
                 <div class="show-mob">
-                    <p><?php echo $default['default_desc']; ?></p>
+                    <p>
+                    <?php 
+                    if($default['default_desc']):
+                        echo $default['default_desc'];
+                    endif;
+                    ?>
+                    </p>
                 </div>
                
                         <ul class="history-cnt" id="bxslider">
                             <li id="default" class="active">
                                 <div class="row">
                                     <div class="col-md-5 left">
-                                        <p><?php echo $default['default_desc']; ?></p>
+                                        <p>
+                                            <?php 
+                                            if($default['default_desc']):
+                                                echo $default['default_desc']; 
+                                            endif;
+                                            ?>
+                                        </p>
                                     </div>
                                     <div class="col-md-7 right">
-                                        <figure><img src="<?php echo $default_img['url']; ?>" class="img-fluid" alt=""></figure>
+                                        <figure><img src="<?php if($default_img['url']): echo $default_img['url']; endif; ?>" class="img-fluid" alt=""></figure>
                                     </div>
                                 </div>
                             </li>
@@ -101,12 +131,24 @@
                                                     <div class="row">
                                                         <div class="col-md-5 left">
                                                             <div class="title">
-                                                                <h2><?php echo $row['date']; ?></h2>
+                                                                <h2>
+                                                                    <?php
+                                                                    if($row['date']):
+                                                                        echo $row['date']; 
+                                                                    endif;
+                                                                    ?>
+                                                                </h2>
                                                             </div>
-                                                            <p><?php echo $row['desc']; ?></p>
+                                                            <p>
+                                                                <?php
+                                                                if($row['desc']):
+                                                                    echo $row['desc']; 
+                                                                endif;
+                                                                ?>
+                                                            </p>
                                                         </div>
                                                         <div class="col-md-7 right">
-                                                            <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
+                                                            <figure><img src="<?php if($img['url']): echo $img['url']; endif; ?>" alt=""></figure>
                                                         </div>
                                                     </div>
                                             </li>
@@ -182,7 +224,7 @@
 
                                                 ?>
                                                     <li>
-                                                        <a href="#" data-slide-index="<?php echo $i; ?>"><?php echo $row['date'];?></a>
+                                                        <a href="#" data-slide-index="<?php echo $i; ?>"><?php if($row['date']): echo $row['date']; endif; ?></a>
                                                     </li>
                                                 <?php endforeach; endif; ?>
                                                    
@@ -211,11 +253,23 @@
                     ?>
 
                     <div class="col-md-5 col-lg-5">
-                        <h1><?php echo $team_top['team_title']; ?></h1>
+                        <h1>
+                            <?php 
+                            if($team_top['team_title']):
+                                echo $team_top['team_title']; 
+                            endif;
+                            ?>
+                        </h1>
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="team-desc">
-                            <p><?php echo $team_top['team_desc']; ?> </p>
+                            <p>
+                                <?php
+                                if($team_top['team_desc']):
+                                    echo $team_top['team_desc']; 
+                                endif;
+                                ?> 
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -242,19 +296,43 @@
                                 <div class="inner">
                                     <div class="flipper">
                                         <div class="front">
-                                            <img src="<?php echo $member_img[ 'url' ]; ?>" alt="">
+                                            <img src="<?php if($member_img[ 'url' ]): echo $member_img[ 'url' ]; endif; ?>" alt="">
                                         </div>
                                         <div class="back">
-                                            <p><?php echo $card[ 'card_text' ]; ?></p>
-                                            <p><?php echo $card[ 'card_desc' ]; ?></p>
+                                            <p>
+                                                <?php 
+                                                if($card[ 'card_text' ]):
+                                                    echo $card[ 'card_text' ]; 
+                                                endif;
+                                                ?>
+                                            </p>
+                                            <p>
+                                                <?php 
+                                                if($card[ 'card_desc' ]):
+                                                    echo $card[ 'card_desc' ]; 
+                                                endif;
+                                                ?>
+                                            </p>
                                             <div class="d-flex mt-auto">
-                                                <a href="<?php echo get_field('linkedin_link'); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                <a href="<?php if(get_field('linkedin_link')): echo get_field('linkedin_link'); endif; ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="source">
-                                        <div class="name"><?php echo $member_info[ 'name' ]; ?></div>
-                                        <span><?php echo $member_info[ 'position' ]; ?></span>
+                                        <div class="name">
+                                            <?php 
+                                            if($member_info[ 'name' ]):
+                                                echo $member_info[ 'name' ]; 
+                                            endif;
+                                            ?>
+                                        </div>
+                                        <span>
+                                            <?php 
+                                            if($member_info[ 'position' ]):
+                                                echo $member_info[ 'position' ]; 
+                                            endif;
+                                            ?>
+                                        </span>
                                     </div>
                                 </div>
                             </li>
@@ -281,6 +359,7 @@
                                         <?php
                                         if( have_rows('youtube') ):
                                             while( have_rows('youtube') ) : the_row();
+                                            if(get_sub_field('id')):
                                             $yt_id = get_sub_field('id');
                                         ?>
 
@@ -292,7 +371,7 @@
                                                 </div>
                                             </li>
 
-                                        <?php endwhile; endif; ?>
+                                        <?php endif; endwhile; endif; ?>
 
                                     </ul>
                                 </div>
@@ -302,12 +381,13 @@
                                         <?php
                                         if( have_rows('youtube') ):
                                             while( have_rows('youtube') ) : the_row();
+                                            if(get_sub_field('id')):
                                             $yt_id = get_sub_field('id');
                                         ?>
                                         
                                             <li><img src="http://i3.ytimg.com/vi/<?php echo $yt_id; ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
                                         
-                                        <?php endwhile; endif;  ?>
+                                        <?php endif; endwhile; endif;  ?>
 
                                     </ul>
                                 </div>
@@ -326,9 +406,9 @@
                 <h2><?php echo get_field('signup_text'); ?></h2>
                 <form class="form-inline signup-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
+                        <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup"><?php echo get_field('button_text'); ?></button>
+                    <button type="submit" class="btn btn-signup"><?php if(get_field('button_text')): echo get_field('button_text'); endif; ?></button>
                 </form>
             </div>
         </div>
