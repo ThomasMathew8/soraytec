@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 left">
-                    <h1><?php echo the_title(); ?></h1>
+                    <h1><?php echo strtoupper(the_title()); ?></h1>
                     <div class="address-outer">
                         <div class="row">
 

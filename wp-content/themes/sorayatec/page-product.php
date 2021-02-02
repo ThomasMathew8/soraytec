@@ -48,10 +48,11 @@
 
         <div class="container">
             <div class="prdct-feature-header">
+
                 <h2>
                     <?php 
                     if($feature['title']): 
-                        echo $feature['title']; 
+                        echo strtoupper($feature['title']); 
                     endif; 
                     ?>
                 </h2>
@@ -62,6 +63,7 @@
                     endif; 
                     ?>
                 </p>
+
             </div>
             <ul class="row prdct-feature-cnt">
 
@@ -140,13 +142,15 @@
                 ?>
                                     
                     <div class="col-md-6 left">
+
                         <h2>
                             <?php 
                             if($application['title']): 
-                                echo $application['title']; 
+                                echo strtoupper($application['title']); 
                             endif; 
                             ?>
                         </h2>
+
                         <ul>
 
                         
@@ -179,13 +183,15 @@
                     ?>
 
                         <div class="application-cnt">
+
                             <h3>
                                 <?php
                                  if(get_sub_field('title')): 
-                                    echo get_sub_field('title'); 
+                                    echo strtoupper(get_sub_field('title')); 
                                  endif; 
                                 ?>
                             </h3>
+
                             <ul>
                                 <?php
                                 if( have_rows('rows') ):
@@ -245,12 +251,14 @@
                         $features = get_field('features'); 
                         $img = $features['img'];
                         ?>
+
                         <h2>
                             <?php
                              if($features['title']): 
-                                echo $features['title']; endif; 
+                                echo strtoupper($features['title']); endif; 
                              ?>
                         </h2>
+
 
                         <ul>
                             <?php
@@ -300,16 +308,18 @@
 
                     <?php $contact = get_field('contact_product'); ?>
 
+
                     <h2>
                         <?php 
                         if($contact['contact_title']): 
-                            echo $contact['contact_title']; 
+                            echo strtoupper($contact['contact_title']); 
                         endif; ?>
                     </h2>
 
                     <a href="mailto:<?php if($contact['contact_email']): echo $contact['contact_email']; endif; ?>" class="mail">
                         <?php if($contact['contact_email']): echo $contact['contact_email']; endif; ?>
                     </a>
+
                 </div>
             </div>
         </div>

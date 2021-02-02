@@ -18,10 +18,11 @@
             <div class="row">
                 <div class="col-md-6">
 
+
                     <h1>
                         <?php 
                         if($primary['primary_info_title']):
-                            echo $primary['primary_info_title']; 
+                            echo strtoupper($primary['primary_info_title']); 
                         endif;
                         ?>
                     </h1>
@@ -74,10 +75,11 @@
                     <div class="row">
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
+
                                 <h2>
                                     <?php
                                     if($even['aim_title']):
-                                        echo $even['aim_title']; 
+                                        echo strtoupper($even['aim_title']); 
                                     endif;
                                     ?>
                                 </h2>
@@ -88,6 +90,7 @@
                                     endif;
                                     ?>
                                 </p>
+
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -108,10 +111,11 @@
                     <div class="row">
                         <div class="col-md-7 text-right">
                             <div class="inner">
+
                                 <h2>
                                     <?php
                                     if($odd['aim_title']):
-                                        echo $odd['aim_title']; 
+                                        echo strtoupper($odd['aim_title']); 
                                     endif;    
                                     ?>
                                 </h2>
@@ -122,6 +126,7 @@
                                     endif;     
                                     ?>
                                 </p>
+
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -152,13 +157,15 @@
 
     <section class="soraytec-ecosystem">
         <div class="container">
+
             <h2>
                 <?php 
                 if(get_field('ecosystem_title')):
-                    echo get_field('ecosystem_title'); 
+                    echo strtoupper(get_field('ecosystem_title')); 
                 endif;    
                 ?>
             </h2>
+
             <ul class="row logos-list">
             
                 <?php
@@ -194,7 +201,8 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup"><?php if(get_field('button_text')): echo get_field('button_text'); endif; ?></button>
+
+                    <button type="submit" class="btn btn-signup"><?php if(get_field('button_text')): echo strtoupper(get_field('button_text')); endif; ?></button>
                 </form>
             </div>
         </div>

@@ -126,16 +126,18 @@
                 <h2><?php echo get_field('signup_text'); ?></h2>
                 <form class="form-inline signup-form">
                     <div class="form-group">
+
                         <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
                     </div> 
 
                     <button type="submit" class="btn btn-signup">
                     <?php 
-                    if(get_field('placeholder_text')):
-                    echo get_field('button_text'); 
+                    if(get_field('button_text')):
+                    echo strtoupper(get_field('button_text'));; 
                     endif;
                     ?>
                     </button>
+
 
                 </form>
             </div>

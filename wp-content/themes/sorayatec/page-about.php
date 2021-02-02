@@ -13,13 +13,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-lg-5">
+
                         <h1>
                             <?php 
                             if($banner['banner_title']):
-                                echo $banner['banner_title']; 
+                                echo strtoupper($banner['banner_title']); 
                             endif;    
                             ?>
                         </h1>
+
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="about-desc">
@@ -49,13 +51,15 @@
         ?>
         <section class="history">
             <div class="container">
+
                 <h1>
                     <?php
                     if($default['default_title']):
-                        echo $default['default_title']; 
+                        echo strtoupper($default['default_title']); 
                     endif;
                     ?>
                 </h1>
+
                 <div class="show-mob">
                     <p>
                     <?php 
@@ -253,13 +257,15 @@
                     ?>
 
                     <div class="col-md-5 col-lg-5">
+
                         <h1>
                             <?php 
                             if($team_top['team_title']):
-                                echo $team_top['team_title']; 
+                                echo strtoupper($team_top['team_title']); 
                             endif;
                             ?>
                         </h1>
+
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="team-desc">
@@ -352,7 +358,7 @@
         
                     <section class="video-sec">
                         <div class="container">
-                            <h1><?php echo get_field('video_title'); ?></h1>
+                            <h1><?php echo strtoupper(get_field('video_title')); ?></h1>
                             <div class="video-outer">
                                 <div id="slider" class="flexslider video">
                                     <ul class="slides">
@@ -408,13 +414,15 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
                     </div>
+
                     <button type="submit" class="btn btn-signup">
                         <?php 
                         if(get_field('button_text')): 
-                            echo get_field('button_text'); 
+                            echo strtoupper(get_field('button_text')); 
                         endif; 
                         ?>
                     </button>
+
                 </form>
             </div>
         </div>
@@ -423,22 +431,6 @@
 
 
 
-</div>
-
-<script>
-
-function make_active(id) {
-var id = id;
-if( id === null ){
-document.getElementById("default").classList.add("active");
-}else{
-document.getElementById("default").classList.remove("active");
-document.getElementById(id).classList.toggle("active");
-
-
-}
-
-}
-</script>   
+</div>  
 
 <?php get_footer(); ?>
