@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1><?php echo $primary['primary_info_title']; ?></h1>
-                    <p><?php echo $primary['primary_info_desc']; ?></p>
+                     <p><?php echo wp_trim_words( $primary['primary_info_desc'], 100, '  .....'); ?></p>
                 </div>
                 <div class="col-md-6 right">
                     <figure>
@@ -58,7 +58,7 @@
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
                                 <h2><?php echo $even['aim_title']; ?></h2>
-                                <p><?php echo $even['aim_desc']; ?></p>
+                                <p><?php echo wp_trim_words( $even['aim_desc'], 25, '  .....'); ?></p>
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -80,7 +80,7 @@
                         <div class="col-md-7 text-right">
                             <div class="inner">
                                 <h2><?php echo $odd['aim_title']; ?></h2>
-                                <p><?php echo $odd['aim_desc']; ?></p>
+                                <p><?php echo wp_trim_words( $odd['aim_desc'], 25, '  .....'); ?></p>
                             </div>
                         </div>
                         <div class="col-md-5">

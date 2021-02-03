@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-md-4 left">
-                    <p><?php echo $banner['banner_desc']; ?></p>
+                    <p><?php echo wp_trim_words( $banner['banner_desc'], 15, '  .....'); ?></p>
                     <figure>
                         <img src="<?php echo $left['url']; ?>" alt=""/>
                     </figure>
@@ -43,7 +43,7 @@
         <div class="container">
             <div class="prdct-feature-header">
                 <h2><?php echo $feature['title']; ?></h2>
-                <p><?php echo $feature['desc']; ?></p>
+                <p><?php echo wp_trim_words( $feature['desc'], 15, '  .....'); ?></p>
             </div>
             <ul class="row prdct-feature-cnt">
 
@@ -58,7 +58,7 @@
                         <figure>
                             <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
                         </figure>
-                        <p><?php echo $desc; ?></p>
+                        <p><?php echo wp_trim_words( $desc, 10, '  .....'); ?></p>
                     </li>
                     
                 <?php endwhile; endif; ?>    

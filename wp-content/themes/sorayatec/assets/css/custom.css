@@ -1048,7 +1048,7 @@ ul.team-list li .source span{
     padding-right: 0px;
 }
 ul.post-lists > li{
-    margin-bottom: 100px;
+    margin-bottom: 100px !important;
 }
 ul.post-lists > li:last-child{
     margin-bottom: 0px;
@@ -1066,7 +1066,7 @@ ul.post-lists > li .date{
     color: #232323;
 }
 ul.post-lists > li p{
-    padding-bottom: 30px;
+    padding-bottom: 0px;
 }
 ul.post-lists > li .source{
     margin-bottom: 30px;
