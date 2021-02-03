@@ -42,8 +42,10 @@
 
         <div class="container">
             <div class="prdct-feature-header">
-                <h2><?php echo $feature['title']; ?></h2>
+
+                <h2><?php echo strtoupper($feature['title']); ?></h2>
                 <p><?php echo wp_trim_words( $feature['desc'], 15, '  .....'); ?></p>
+
             </div>
             <ul class="row prdct-feature-cnt">
 
@@ -117,7 +119,7 @@
                 ?>
                                     
                     <div class="col-md-6 left">
-                        <h2><?php echo $application['title']; ?></h2>
+                        <h2><?php echo strtoupper($application['title']); ?></h2>
                         <ul>
 
                         
@@ -145,7 +147,7 @@
                     ?>
 
                         <div class="application-cnt">
-                            <h3><?php echo $title; ?></h3>
+                            <h3><?php echo strtoupper($title); ?></h3>
                             <ul>
                                 <?php
                                 if( have_rows('rows') ):
@@ -195,7 +197,7 @@
                         $features = get_field('features'); 
                         $img = $features['img'];
                         ?>
-                        <h2><?php echo $features['title']; ?></h2>
+                        <h2><?php echo strtoupper($features['title']); ?></h2>
 
                         <ul>
                             <?php
@@ -235,7 +237,7 @@
 
                     <?php $contact = get_field('contact_product'); ?>
 
-                    <h2><?php echo $contact['contact_title']; ?></h2>
+                    <h2><?php echo strtoupper($contact['contact_title']); ?></h2>
 
                     <a href="mailto:<?php echo $contact['contact_email']; ?>" class="mail"><?php echo $contact['contact_email']; ?></a>
                 </div>

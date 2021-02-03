@@ -24,7 +24,7 @@ button:focus, select:focus{
     outline: none;
 }
 input:focus, textarea:focus{
-    box-shadow: none !important;
+    box-shadow: none;
 }
 ::-moz-selection {
     color: #fff;
@@ -39,7 +39,7 @@ input:focus, textarea:focus{
 /* Header */ 
 /* ================================================== */
 .bg-light{
-    background: none!important;
+    background: none;
 }
 .navbar-brand img{
     max-width: 100%;

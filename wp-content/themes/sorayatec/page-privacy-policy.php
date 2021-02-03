@@ -6,7 +6,7 @@
     <section class="inner-outer about-outer single-page">
         <div class="about-banner">
             <div class="container">
-                <h1><?php echo the_title(); ?></h1>
+                <h1><?php echo strtoupper(the_title()); ?></h1>
             </div>
         </div>
         <div class="container">

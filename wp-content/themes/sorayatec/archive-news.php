@@ -95,7 +95,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup"><?php echo get_field('button_text'); ?></button>
+                    <button type="submit" class="btn btn-signup"><?php echo strtoupper(get_field('button_text')); ?></button>
                 </form>
             </div>
         </div>
