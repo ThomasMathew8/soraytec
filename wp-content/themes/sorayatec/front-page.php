@@ -7,21 +7,27 @@
         <!-- ==============================================
     **Banner**
     =================================================== -->
+    <?php 
+    $primary = get_field( 'primary_info' );
+    $primary_img = $primary[ 'primary_info_img' ];
+    ?> 
+    
     <div class="banner">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1>PRIMARY SIDE METERING</h1>
-                    <p>Innovative hardware solutions for direct voltage metering and monitoring in electricity distribution networks, combined with analytics and artificial intelligence to maximize efficiency and reduce grid emission factors.</p>
+                    <h1><?php echo strtoupper($primary['primary_info_title']); ?></h1>
+                    <p><?php echo $primary['primary_info_desc']; ?></p>
                 </div>
                 <div class="col-md-6 right">
                     <figure>
-                        <img src="<?php bloginfo("template_directory");?>/assets/images/home-banner-product.png" alt="">
+                        <img src="<?php echo $primary_img['url']; ?>" >
                     </figure>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
+
 
     <!-- ==============================================
     **About**
@@ -51,20 +57,15 @@
                     <div class="row">
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
-                                <h2><?php echo $even['aim_title']; ?></h2>
+                                <h2><?php echo strtoupper($even['aim_title']); ?></h2>
                                 <p><?php echo $even['aim_desc']; ?></p>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <figure><img src="<?php echo $even_img['url']; ?>" class="rounded-circle" alt=""></figure>
-
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <figure><img src="<?php bloginfo("template_directory");?>/assets/images/vision-img.png" class="rounded-circle" alt=""></figure>
-                    </div>
                 </div>
-
             </div>
         
             <?php $i++;else: ?>
@@ -78,14 +79,13 @@
                     <div class="row">
                         <div class="col-md-7 text-right">
                             <div class="inner">
-                                <h2><?php echo $odd['aim_title']; ?></h2>
+                                <h2><?php echo strtoupper($odd['aim_title']); ?></h2>
                                 <p><?php echo $odd['aim_desc']; ?></p>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <figure><img src="<?php echo $odd_img['url'];?>" class="rounded-circle" alt=""></figure>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
 
     <section class="soraytec-ecosystem">
         <div class="container">
-            <h2><?php echo get_field('ecosystem_title'); ?></h2>
+            <h2><?php echo strtoupper(get_field('ecosystem_title')); ?></h2>
             <ul class="row logos-list">
             
                 <?php
@@ -147,7 +147,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup"><?php echo get_field('button_text'); ?></button>
+                    <button type="submit" class="btn btn-signup"><?php echo strtoupper(get_field('button_text')); ?></button>
                 </form>
             </div>
         </div>

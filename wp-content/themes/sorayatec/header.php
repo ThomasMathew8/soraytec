@@ -20,7 +20,6 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
 
-
                 <?php 
                 $logo = get_field( 'header_logo' );
                 ?>
@@ -49,8 +48,7 @@
                         wp_nav_menu( $args ); 
                         ?>
     
-
-            </div>
+           </div>
         </nav>
     </header>
 
