@@ -321,4 +321,16 @@ function sorayatec_site_logo_setup() {
  require get_template_directory() . '/inc/headerfooter-customizer.php';
  new HeaderFooter_Customizer();
 
+
+ function search_url_rewrite() {
+
+    if ( is_search() && ! empty( $_GET['s'] ) ) {
+
+      wp_redirect( home_url( "/" ) . urlencode( get_query_var( 's' ) ) );
+      exit();
+      
+    }	
+  
+}
+add_action( 'template_redirect', 'search_url_rewrite' );
 ?>
