@@ -4,7 +4,7 @@
 
       <main id="main" class="site-main" role="main">
 
-        <div class="Error404">
+        <div class="error-404">
 
              <header class="page-header">
 				<h1 class="page-title"><?php _e( 'Not Found', 'sorayatec' ); ?></h1>
