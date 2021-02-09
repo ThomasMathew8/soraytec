@@ -4,13 +4,6 @@
     **Footer**
     =================================================== -->
 
-    <?php 
-    $logo = get_field( 'footer_logo' );
-    $contact = get_field('contact');
-    $privacy_policy = get_field('policy');
-    $follow = get_field('follow');
-    ?>
-
     <footer class="footer">
         <div class="container">
             <div class="row top">
