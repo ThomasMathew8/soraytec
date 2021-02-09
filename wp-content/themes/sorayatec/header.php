@@ -19,11 +19,7 @@
     <header class="header">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
-
-                <?php 
-                $logo = get_field( 'header_logo' );
-                ?>
-
+            
                 <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
                 <?php
                 if ( function_exists( 'the_custom_logo' ) ) {

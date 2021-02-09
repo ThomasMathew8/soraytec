@@ -124,10 +124,9 @@
                                 <?php
                                 if( have_rows('application_points') ):
                                 while( have_rows('application_points') ) : the_row();
-                                $point = get_sub_field('application_point');
                                 ?>
 
-                                <li><?php echo $point; ?></li>
+                                <li><?php echo get_sub_field('application_point'); ?></li>
 
                                 <?php endwhile; endif; ?> 
 
@@ -141,20 +140,18 @@
                     <?php
                     if( have_rows('specification_box') ):
                     while( have_rows('specification_box') ) : the_row();
-                    $title = get_sub_field('title');
                     ?>
 
                         <div class="application-cnt">
-                            <h3><?php echo strtoupper($title); ?></h3>
+                            <h3><?php echo strtoupper(get_sub_field('title')); ?></h3>
                             <ul>
                                 <?php
                                 if( have_rows('rows') ):
                                 while( have_rows('rows') ) : the_row();
-                                $row_title = get_sub_field('row_title');
                                 ?>
                                     <li>
                                         <div class="left-table">
-                                            <h4><?php echo $row_title; ?></h4>
+                                            <h4><?php echo get_sub_field('row_title'); ?></h4>
                                         </div>
 
                                         <div class="right-table">
@@ -162,10 +159,9 @@
                                             <?php
                                             if( have_rows('row_fields') ):
                                             while( have_rows('row_fields') ) : the_row();
-                                            $column = get_sub_field('row_field');
                                             ?>
 
-                                                <span><?php echo $column; ?></span>
+                                                <span><?php echo get_sub_field('row_field'); ?></span>
 
                                             <?php endwhile; endif; ?>    
                                         </div>
@@ -201,10 +197,9 @@
                             <?php
                             if( have_rows('features_points') ):
                                 while( have_rows('features_points') ) : the_row();
-                                $point = get_sub_field('features_point');
                             ?>
 
-                            <li><?php echo $point; ?></li>
+                            <li><?php echo get_sub_field('features_point'); ?></li>
 
                             <?php endwhile; endif; ?>     
                             
