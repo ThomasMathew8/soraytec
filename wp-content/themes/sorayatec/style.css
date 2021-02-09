@@ -31,3 +31,9 @@ input.wpcf7-form-control.wpcf7-submit {
     text-decoration: underline;
     cursor: pointer;}
 
+article{margin : 100px 0;
+    background: rgba(255, 255, 255, 0.6);}
+
+.entry-header{
+    margin-bottom: 30px;
+    }
