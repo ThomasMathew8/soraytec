@@ -1,5 +1,7 @@
 <?php get_header(); ?> 
 
+<?php if( class_exists('ACF') ) : ?>
+
 <!-- =============================================
     **Contact**
     =================================================== -->
@@ -12,6 +14,7 @@
                         <div class="row">
 
                             <?php
+                            if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                             if( have_rows('address') ):
                                 while( have_rows('address') ) : the_row();
                                 $country = get_sub_field('country');
@@ -40,6 +43,16 @@
                                     </address>
                                 </div>
                             <?php endwhile; endif; ?> 
+                            <?php else:?>
+
+                                <div class="container">
+
+                                    <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
+
+                                </div>   
+
+                            <?php endif;?>
+
                         </div>
                     </div>
                 </div>
@@ -57,5 +70,15 @@
             </div>
         </div>
     </div>
+
+<?php else:?>
+
+    <div class="container">
+
+        <h1 class="entry-header">ACF does not exist!</h1>
+
+    </div>   
+
+<?php endif;?> 
 
     <?php get_footer(); ?>    

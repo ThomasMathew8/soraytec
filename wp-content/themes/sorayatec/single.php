@@ -1,5 +1,7 @@
 <?php get_header(); ?> 
 
+<?php if( class_exists('ACF') ) : ?>
+
 <section class="inner-outer posts-outer news-single">
         <div class="top-post">
             <div class="container">
@@ -40,5 +42,16 @@
             </div>
         </div>
     </section>
+
+
+<?php else:?>
+
+    <div class="container">
+
+        <h1 class="entry-header">ACF does not exist!</h1>
+
+    </div>   
+
+<?php endif;?> 
 
 <?php get_footer(); ?>
