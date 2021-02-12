@@ -31,3 +31,6 @@ input.wpcf7-form-control.wpcf7-submit {
     text-decoration: underline;
     cursor: pointer;}
 
+.mc4wp-form-fields{display: flex;}
+
+.mc4wp-form-fields h2{margin-top: 12px;}

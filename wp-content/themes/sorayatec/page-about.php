@@ -322,14 +322,10 @@
         =================================================== -->
         <section class="signup-sec">
         <div class="container">
-            <div class="inner">
-                <h2><?php echo get_field('signup_text'); ?></h2>
-                <form class="form-inline signup-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
-                    </div>
-                    <button type="submit" class="btn btn-signup"><?php echo strtoupper(get_field('button_text')); ?></button>
-                </form>
+            <div class="inner form-inline signup-form">
+                    
+                    <?php echo do_shortcode('[mc4wp_form id="2206"]'); ?>
+
             </div>
         </div>
     </section>
