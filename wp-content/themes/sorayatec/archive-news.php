@@ -91,7 +91,7 @@
         <div class="container">
         <div class="inner form-inline signup-form">
                 
-            <?php get_template_part( 'template-parts/content', 'signup' ); ?>
+                <?php echo do_shortcode('[mc4wp_form id="2206"]'); ?>
 
         </div>
         </div>
