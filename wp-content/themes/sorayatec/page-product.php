@@ -14,14 +14,20 @@
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-md-4 left">
-                    <p><?php echo $banner['banner_desc']; ?></p>
+                    <p>
+                        <?php 
+                        if($banner['banner_desc']): 
+                            echo $banner['banner_desc']; 
+                        endif; 
+                        ?>
+                    </p>
                     <figure>
-                        <img src="<?php echo $left['url']; ?>" alt=""/>
+                        <img src="<?php if($left['url']): echo $left['url']; endif;?>" alt=""/>
                     </figure>
                 </div>
                 <div class="col-md-8 right">
                     <figure>
-                        <img src="<?php echo $right['url']; ?>" alt="">
+                        <img src="<?php if($right['url']): echo $right['url']; endif; ?>" alt="">
                     </figure>
                 </div>
             </div>
@@ -42,8 +48,22 @@
 
         <div class="container">
             <div class="prdct-feature-header">
-                <h2><?php echo $feature['title']; ?></h2>
-                <p><?php echo $feature['desc']; ?></p>
+
+                <h2>
+                    <?php 
+                    if($feature['title']): 
+                        echo strtoupper($feature['title']); 
+                    endif; 
+                    ?>
+                </h2>
+                <p>
+                    <?php 
+                    if($feature['desc']): 
+                        echo $feature['desc']; 
+                    endif; 
+                    ?>
+                </p>
+
             </div>
             <ul class="row prdct-feature-cnt">
 
@@ -56,9 +76,15 @@
 
                     <li class="col-md-4 col-sm-6">
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
+                            <img src="<?php if($img['url']): echo $img['url']; endif; ?>" class="img-fluid" alt=""/>
                         </figure>
-                        <p><?php echo $desc; ?></p>
+                        <p>
+                            <?php 
+                            if($desc): 
+                                echo $desc; 
+                            endif; 
+                            ?>
+                        </p>
                     </li>
                     
                 <?php endwhile; endif; ?>    
@@ -80,7 +106,7 @@
 
                             <div class="col-md-6">
                                 <figure>
-                                    <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
+                                    <img src="<?php if($img['url']): echo $img['url']; endif; ?>" class="img-fluid" alt=""/>
                                 </figure>
                             </div>
                         <?
@@ -90,7 +116,7 @@
 
                             <div class="col-md-6 right">
                                 <figure>
-                                    <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
+                                    <img src="<?php if($img['url']): echo $img['url']; endif; ?>" class="img-fluid" alt=""/>
                                 </figure>
                             </div>
 
@@ -117,7 +143,15 @@
                 ?>
                                     
                     <div class="col-md-6 left">
-                        <h2><?php echo $application['title']; ?></h2>
+
+                        <h2>
+                            <?php 
+                            if($application['title']): 
+                                echo strtoupper($application['title']); 
+                            endif; 
+                            ?>
+                        </h2>
+
                         <ul>
 
                         
@@ -127,25 +161,40 @@
                                 $point = get_sub_field('application_point');
                                 ?>
 
-                                <li><?php echo $point; ?></li>
+                                <li>
+                                    <?php
+                                     if($point): 
+                                        echo $point; 
+                                     endif; 
+                                    ?>
+                                </li>
 
                                 <?php endwhile; endif; ?> 
 
                         </ul>
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid"/>
+                            <img src="<?php if($img['url']): echo $img['url']; endif; ?>" class="img-fluid"/>
                         </figure>
                     </div>
                 <?php endif; ?>
+
                 <div class="col-md-6 right">
                     <?php
                     if( have_rows('specification_box') ):
                     while( have_rows('specification_box') ) : the_row();
-                    $title = get_sub_field('title');
+                    $title = get_sub_field('title');                
                     ?>
 
                         <div class="application-cnt">
-                            <h3><?php echo $title; ?></h3>
+
+                            <h3>
+                                <?php
+                                 if($title): 
+                                    echo $title; 
+                                 endif; 
+                                ?>
+                            </h3>
+
                             <ul>
                                 <?php
                                 if( have_rows('rows') ):
@@ -154,7 +203,13 @@
                                 ?>
                                     <li>
                                         <div class="left-table">
-                                            <h4><?php echo $row_title; ?></h4>
+                                            <h4>
+                                                <?php 
+                                                if($row_title): 
+                                                    echo $row_title; 
+                                                endif; 
+                                                ?>
+                                            </h4>
                                         </div>
 
                                         <div class="right-table">
@@ -165,7 +220,13 @@
                                             $column = get_sub_field('row_field');
                                             ?>
 
-                                                <span><?php echo $column; ?></span>
+                                                <span>
+                                                    <?php
+                                                    if($column): 
+                                                        echo $column; 
+                                                    endif; 
+                                                    ?>
+                                                </span>
 
                                             <?php endwhile; endif; ?>    
                                         </div>
@@ -195,7 +256,14 @@
                         $features = get_field('features'); 
                         $img = $features['img'];
                         ?>
-                        <h2><?php echo $features['title']; ?></h2>
+
+                        <h2>
+                            <?php
+                             if($features['title']): 
+                                echo strtoupper($features['title']); endif; 
+                             ?>
+                        </h2>
+
 
                         <ul>
                             <?php
@@ -204,7 +272,12 @@
                                 $point = get_sub_field('features_point');
                             ?>
 
-                            <li><?php echo $point; ?></li>
+                            <li>
+                                <?php 
+                                if($point): 
+                                    echo $point; 
+                                endif;?>
+                            </li>
 
                             <?php endwhile; endif; ?>     
                             
@@ -213,7 +286,7 @@
                     </div>
                     <div class="col-md-6 right">
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid"/>
+                            <img src="<?php if($img['url']): echo $img['url']; endif; ?>" class="img-fluid"/>
                         </figure>
                     </div>
                 </div>
@@ -229,15 +302,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 left">
-                    <p><?php the_field('more_info_text'); ?></p>
+                    <p>
+                        <?php 
+                        if(the_field('more_info_text')): 
+                            the_field('more_info_text'); 
+                        endif; 
+                        ?>
+                    </p>
                 </div>
                 <div class="col-md-6 right">
 
                     <?php $contact = get_field('contact_product'); ?>
 
-                    <h2><?php echo $contact['contact_title']; ?></h2>
 
-                    <a href="mailto:<?php echo $contact['contact_email']; ?>" class="mail"><?php echo $contact['contact_email']; ?></a>
+                    <h2>
+                        <?php 
+                        if($contact['contact_title']): 
+                            echo strtoupper($contact['contact_title']); 
+                        endif; ?>
+                    </h2>
+
+                    <a href="mailto:<?php if($contact['contact_email']): echo $contact['contact_email']; endif; ?>" class="mail">
+                        <?php if($contact['contact_email']): echo $contact['contact_email']; endif; ?>
+                    </a>
+
                 </div>
             </div>
         </div>
