@@ -408,13 +408,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup">
-                        <?php 
-                        if(get_field('button_text')): 
-                            echo get_field('button_text'); 
-                        endif; 
-                        ?>
-                    </button>
+                    <button type="submit" class="btn btn-signup"><?php if(get_field('button_text')): echo get_field('button_text'); endif; ?></button>
                 </form>
             </div>
         </div>

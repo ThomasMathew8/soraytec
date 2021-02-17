@@ -50,11 +50,9 @@
                                 while( have_rows('follow') ) : the_row();
                                 ?>
 
-                                        <li>
-                                        <a href="<?php if(the_sub_field( 'link' )): echo the_sub_field( 'link' ); endif; ?>" target="_blank">
+                                        <li><a href="<?php if(the_sub_field( 'link' )): echo the_sub_field( 'link' ); endif; ?>" target="_blank">
                                         <i class="<?php if(the_sub_field( 'icon_class' )): echo the_sub_field( 'icon_class' ); endif; ?>"></i>
-                                        </a>
-                                        </li>
+                                        </a></li>
                                 
                                 <?php endwhile; endif; ?> 
 

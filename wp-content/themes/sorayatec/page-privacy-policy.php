@@ -18,38 +18,21 @@
                     while( have_rows('privacy_policy') ) : the_row();
                     ?>
 
-                        <h2>
-                            <?php
-                                if(the_sub_field( 'main_title' )): 
-                                    echo the_sub_field( 'main_title' ); 
-                                endif; 
-                            ?>
-                        </h2>
+                        <h2><?php echo the_sub_field( 'main_title' ); ?></h2>
 
                             <?php
                             if( have_rows('sub_section') ):
                             while( have_rows('sub_section') ) : the_row();
                             ?>
 
-                            <h3>
-                                <?php 
-                                if(the_sub_field( 'sub_title' )): 
-                                    echo the_sub_field( 'sub_title' ); 
-                                endif;?>
-                            </h3>
+                            <h3><?php echo the_sub_field( 'sub_title' ); ?></h3>
 
                                 <?php
                                 if( have_rows('sub_content') ):
                                 while( have_rows('sub_content') ) : the_row();
                                 ?>
                                 
-                                    <p>
-                                        <?php 
-                                        if(the_sub_field( 'paragraph' )): 
-                                            echo the_sub_field( 'paragraph' ); 
-                                        endif; 
-                                        ?>
-                                    </p>
+                                    <p><?php echo the_sub_field( 'paragraph' ); ?></p>
 
                                 <?php endwhile; endif; ?>
 
