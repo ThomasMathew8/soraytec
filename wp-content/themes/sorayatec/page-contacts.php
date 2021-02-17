@@ -75,7 +75,7 @@
 
     <div class="container">
 
-        <h1 class="entry-header">Please Install ACF Plugin!</h1>
+        <h1 class="entry-header">ACF does not exist!</h1>
 
     </div>   
 
