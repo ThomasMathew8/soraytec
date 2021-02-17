@@ -18,7 +18,7 @@
                             <?php echo get_field( 'place' ); ?>
                         </div>
                         <h1><a href="#"><?php echo the_title(); ?></a></h1>
-                        <div><?php echo the_content(); ?></div>
+                        <p><?php echo the_content(); ?></p>
                         <ul class="follow-us">
                                 
                                 <?php

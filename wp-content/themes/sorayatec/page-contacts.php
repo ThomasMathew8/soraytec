@@ -14,29 +14,28 @@
                             <?php
                             if( have_rows('address') ):
                                 while( have_rows('address') ) : the_row();
+                                $country = get_sub_field('country');
                             ?>
 
                                 <div class="col-sm-6 address">
-                                    <h2>
-                                        <?php 
-                                        if(get_sub_field('country')):
-                                            echo get_sub_field('country'); 
-                                        endif;
-                                        ?>
-                                    </h2>
+                                    <h2><?php echo $country; ?></h2>
                                     <address>
 
                                         <?php
                                         if( have_rows('address_fields') ):
                                         while( have_rows('address_fields') ) : the_row();
-                                            if(get_sub_field('fields')):
-                                                echo get_sub_field('fields').'<br>';
-                                            endif;  
-                                        endwhile; endif;      
+                                        $field = get_sub_field('fields');
+                                        echo $field;
+                                        ?>
+
+                                        <br>
+                                    
+                                        <?php
+                                        endwhile; endif;
                                         $email =  get_sub_field( 'email' );
                                         ?> 
 
-                                        <span class="mail"><?php echo $email['text']; ?><a href="<?php if($email['link']): echo $email['link']; endif; ?>"><?php if($email['link_text']): echo $email['link_text']; endif; ?></a></span>
+                                        <span class="mail"><?php echo $email['text']; ?><a href="<?php echo $email['link']; ?>"><?php echo $email['link_text']; ?></a></span>
                                     
                                     </address>
                                 </div>
