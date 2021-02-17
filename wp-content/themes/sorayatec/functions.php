@@ -1,21 +1,20 @@
-
 <?php
 
-// Add Theme Support
+/*******Add Theme Support*******/
 add_theme_support( 'title-tag' );
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'] );
 add_theme_support('html5',
-  array(
-    'comment-form',
-    'comment-list',
-    'gallery',
-    'caption',
-    'script',
-    'style',
-    'navigation-widgets',
-  )
-);
+                    array(
+                      'comment-form',
+                      'comment-list',
+                      'gallery',
+                      'caption',
+                      'script',
+                      'style',
+                      'navigation-widgets',
+                    )
+                  );
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'custom-background' );
 add_theme_support( 'custom-header' );
@@ -23,7 +22,8 @@ add_theme_support( 'custom-logo' );
 add_theme_support( 'customize-selective-refresh-widgets' );
 add_theme_support( 'starter-content' );
 
-// Load in our CSS
+
+/*******Loading CSS*********/
 function wphierarchy_enqueue_styles() {
 
   wp_enqueue_style( 'roboto', 'https://fonts.googleapis.com/css?family=Anton|Roboto:300,400,500,700&display=swap', [], '', 'all' );  
@@ -39,13 +39,15 @@ function wphierarchy_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles' );
 
-//De-registering wordpress's jQuery
+
+/*******De-registering wordpress's jQuery********/
 add_action('wp_enqueue_scripts', 'no_more_jquery');
 function no_more_jquery(){
     wp_deregister_script('jquery');
 }
 
-//Load js themes 
+
+/*******Loading js themes*********/
 function wphierarchy_enqueue_scripts() {
 
   wp_enqueue_script( 'jquery-min-js', get_stylesheet_directory_uri() . '/assets/js/jquery-3.4.1.min.js', [], time(), true );
@@ -60,49 +62,139 @@ function wphierarchy_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
 
 
-//Register Menu Locations
+/*******Register Menu Locations*******/
  register_nav_menus( [
   'main-menu' => esc_html__( 'Main Menu', 'sorayatec' ),
  ]);
 
-//bootstrap-navwalker
 
+/********Adding bootstrap-navwalker*********/
  function register_navwalker(){
 	require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
 
-//  Custom Post Type
+/*******Custom Post Type Start*******/
 function custom_post_type_init() {
 
-  //Ecosystem
-  // set up ecosystem labels
-  $labels = array(
-      'name' => 'Ecosystem Links',
-      'singular_name' => 'Ecosystem Link',
-      'add_new' => 'Add New Ecosystem Link',
-      'add_new_item' => 'Add New Ecosystem Link',
-      'edit_item' => 'Edit Ecosystem Link',
-      'new_item' => 'New Ecosystem Link',
-      'all_items' => 'All Ecosystem Links',
-      'view_item' => 'View Ecosystem Links',
-      'search_items' => 'Search Ecosystem Links',
-      'not_found' =>  'No Ecosystem Links Found',
-      'not_found_in_trash' => 'No Ecosystem Links found in Trash', 
+  /*******CPT-Ecosystem start*******/
+    //ecosystem labels
+    $labels = array(
+        'name' => 'Ecosystem Links',
+        'singular_name' => 'Ecosystem Link',
+        'add_new' => 'Add New Ecosystem Link',
+        'add_new_item' => 'Add New Ecosystem Link',
+        'edit_item' => 'Edit Ecosystem Link',
+        'new_item' => 'New Ecosystem Link',
+        'all_items' => 'All Ecosystem Links',
+        'view_item' => 'View Ecosystem Links',
+        'search_items' => 'Search Ecosystem Links',
+        'not_found' =>  'No Ecosystem Links Found',
+        'not_found_in_trash' => 'No Ecosystem Links found in Trash', 
+        'parent_item_colon' => '',
+        'menu_name' => 'Ecosystem',
+    );
+    
+    // register post type
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'ecosystem'),
+        'query_var' => true,
+        'menu_icon' => 'dashicons-randomize',
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'trackbacks',
+            'custom-fields',
+            'comments',
+            'revisions',
+            'thumbnail',
+            'author',
+            'page-attributes'
+        )
+    );
+    register_post_type( 'ecosystem', $args );
+  /*******CPT-Ecosystem end*******/
+   
+  /*******CPT-Aims start*******/
+    //Aims label
+    $labels1 = array(
+        'name' => 'Aims',
+        'singular_name' => 'Aim',
+        'add_new' => 'Add New Aim',
+        'add_new_item' => 'Add New Aim',
+        'edit_item' => 'Edit Aim',
+        'new_item' => 'New Aim',
+        'all_items' => 'All Aims',
+        'view_item' => 'View Aim',
+        'search_items' => 'Search Aims',
+        'not_found' =>  'No Aims Found',
+        'not_found_in_trash' => 'No Aims found in Trash', 
+        'parent_item_colon' => '',
+        'menu_name' => 'Aims',
+    );
+
+    // register post type
+    $args1 = array(
+        'labels' => $labels1,
+        'public' => true,
+        'has_archive' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'aims'),
+        'query_var' => true,
+        'menu_icon' => 'dashicons-randomize',
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'trackbacks',
+            'custom-fields',
+            'comments',
+            'revisions',
+            'thumbnail',
+            'author',
+            'page-attributes'
+        )
+    );
+    register_post_type( 'aims', $args1 );
+  /*******CPT-Aims end*******/
+
+  /*******CPT-Team start*******/ 
+    //Team label
+    $labels2 = array(
+      'name' => 'Team Members',
+      'singular_name' => 'Team Member',
+      'add_new' => 'Add New Team Member',
+      'add_new_item' => 'Add New Team Member',
+      'edit_item' => 'Edit Team Member',
+      'new_item' => 'New Team Member',
+      'all_items' => 'All Team Members',
+      'view_item' => 'View Team Member',
+      'search_items' => 'Search Team Members',
+      'not_found' =>  'No Team Member Found',
+      'not_found_in_trash' => 'No Team Member found in Trash', 
       'parent_item_colon' => '',
-      'menu_name' => 'Ecosystem',
-  );
-  
-  // register post type
-  $args = array(
-      'labels' => $labels,
+      'menu_name' => 'team',
+    );
+
+    // register post type
+    $args2 = array(
+      'labels' => $labels2,
       'public' => true,
       'has_archive' => true,
       'show_ui' => true,
       'capability_type' => 'post',
       'hierarchical' => false,
-      'rewrite' => array('slug' => 'ecosystem'),
+      'rewrite' => array('slug' => 'team'),
       'query_var' => true,
       'menu_icon' => 'dashicons-randomize',
       'supports' => array(
@@ -117,190 +209,105 @@ function custom_post_type_init() {
           'author',
           'page-attributes'
       )
-  );
-  register_post_type( 'ecosystem', $args );
-   
-  //custom post type-Aims
-  $labels1 = array(
-    'name' => 'Aims',
-    'singular_name' => 'Aim',
-    'add_new' => 'Add New Aim',
-    'add_new_item' => 'Add New Aim',
-    'edit_item' => 'Edit Aim',
-    'new_item' => 'New Aim',
-    'all_items' => 'All Aims',
-    'view_item' => 'View Aim',
-    'search_items' => 'Search Aims',
-    'not_found' =>  'No Aims Found',
-    'not_found_in_trash' => 'No Aims found in Trash', 
-    'parent_item_colon' => '',
-    'menu_name' => 'Aims',
-);
+    );
+    register_post_type( 'team', $args2 );
+  /*******CPT-Team end*******/
 
-// register post type
-$args1 = array(
-    'labels' => $labels1,
-    'public' => true,
-    'has_archive' => true,
-    'show_ui' => true,
-    'capability_type' => 'post',
-    'hierarchical' => false,
-    'rewrite' => array('slug' => 'aims'),
-    'query_var' => true,
-    'menu_icon' => 'dashicons-randomize',
-    'supports' => array(
-        'title',
-        'editor',
-        'excerpt',
-        'trackbacks',
-        'custom-fields',
-        'comments',
-        'revisions',
-        'thumbnail',
-        'author',
-        'page-attributes'
-    )
-);
-register_post_type( 'aims', $args1 );
+  /*******CPT-History start*******/
+    //News label
+    $labels4 = array(
+      'name' => 'History',
+      'singular_name' => 'History',
+      'add_new' => 'Add New Year',
+      'add_new_item' => 'Add New Year',
+      'edit_item' => 'Edit Year',
+      'new_item' => 'New Year',
+      'all_items' => 'All years',
+      'view_item' => 'View Histories',
+      'search_items' => 'Search Year',
+      'not_found' =>  'No Year Found',
+      'not_found_in_trash' => 'No year found in Trash', 
+      'parent_item_colon' => '',
+      'menu_name' => 'history',
+    );
 
+    // register post type
+    $args4 = array(
+      'labels' => $labels4,
+      'public' => true,
+      'has_archive' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'hierarchical' => false,
+      'rewrite' => array('slug' => 'history'),
+      'query_var' => true,
+      'menu_icon' => 'dashicons-randomize',
+      'supports' => array(
+          'title',
+          'editor',
+          'excerpt',
+          'trackbacks',
+          'custom-fields',
+          'comments',
+          'revisions',
+          'thumbnail',
+          'author',
+          'page-attributes'
+      )
+    );
+    register_post_type( 'history', $args4 );
+  /*******CPT-History end*******/
 
-//custom post type-Team
-$labels2 = array(
-  'name' => 'Team Members',
-  'singular_name' => 'Team Member',
-  'add_new' => 'Add New Team Member',
-  'add_new_item' => 'Add New Team Member',
-  'edit_item' => 'Edit Team Member',
-  'new_item' => 'New Team Member',
-  'all_items' => 'All Team Members',
-  'view_item' => 'View Team Member',
-  'search_items' => 'Search Team Members',
-  'not_found' =>  'No Team Member Found',
-  'not_found_in_trash' => 'No Team Member found in Trash', 
-  'parent_item_colon' => '',
-  'menu_name' => 'team',
-);
+  /*******CPT-News start*******/
+    //News label
+    $labels5 = array(
+      'name' => 'News',
+      'singular_name' => 'News',
+      'add_new' => 'Add New News',
+      'add_new_item' => 'Add New News',
+      'edit_item' => 'Edit News',
+      'new_item' => 'New News',
+      'all_items' => 'All News',
+      'view_item' => 'View News',
+      'search_items' => 'Search News',
+      'not_found' =>  'No News Found',
+      'not_found_in_trash' => 'No News found in Trash', 
+      'parent_item_colon' => '',
+      'menu_name' => 'News',
+    );
 
-// register post type
-$args2 = array(
-  'labels' => $labels2,
-  'public' => true,
-  'has_archive' => true,
-  'show_ui' => true,
-  'capability_type' => 'post',
-  'hierarchical' => false,
-  'rewrite' => array('slug' => 'team'),
-  'query_var' => true,
-  'menu_icon' => 'dashicons-randomize',
-  'supports' => array(
-      'title',
-      'editor',
-      'excerpt',
-      'trackbacks',
-      'custom-fields',
-      'comments',
-      'revisions',
-      'thumbnail',
-      'author',
-      'page-attributes'
-  )
-);
-register_post_type( 'team', $args2 );
-
-
-
-//custom post type-News
-$labels4 = array(
-  'name' => 'History',
-  'singular_name' => 'History',
-  'add_new' => 'Add New Year',
-  'add_new_item' => 'Add New Year',
-  'edit_item' => 'Edit Year',
-  'new_item' => 'New Year',
-  'all_items' => 'All years',
-  'view_item' => 'View Histories',
-  'search_items' => 'Search Year',
-  'not_found' =>  'No Year Found',
-  'not_found_in_trash' => 'No year found in Trash', 
-  'parent_item_colon' => '',
-  'menu_name' => 'history',
-);
-
-// register post type
-$args4 = array(
-  'labels' => $labels4,
-  'public' => true,
-  'has_archive' => true,
-  'show_ui' => true,
-  'capability_type' => 'post',
-  'hierarchical' => false,
-  'rewrite' => array('slug' => 'history'),
-  'query_var' => true,
-  'menu_icon' => 'dashicons-randomize',
-  'supports' => array(
-      'title',
-      'editor',
-      'excerpt',
-      'trackbacks',
-      'custom-fields',
-      'comments',
-      'revisions',
-      'thumbnail',
-      'author',
-      'page-attributes'
-  )
-);
-register_post_type( 'history', $args4 );
-
-
-//custom post type-News
-$labels5 = array(
-  'name' => 'News',
-  'singular_name' => 'News',
-  'add_new' => 'Add New News',
-  'add_new_item' => 'Add New News',
-  'edit_item' => 'Edit News',
-  'new_item' => 'New News',
-  'all_items' => 'All News',
-  'view_item' => 'View News',
-  'search_items' => 'Search News',
-  'not_found' =>  'No News Found',
-  'not_found_in_trash' => 'No News found in Trash', 
-  'parent_item_colon' => '',
-  'menu_name' => 'News',
-);
-
-// register post type
-$args5 = array(
-  'labels' => $labels5,
-  'public' => true,
-  'has_archive' => true,
-  'show_ui' => true,
-  'capability_type' => 'post',
-  'hierarchical' => false,
-  'rewrite' => array('slug' => 'news'),
-  'query_var' => true,
-  'menu_icon' => 'dashicons-randomize',
-  'supports' => array(
-      'title',
-      'editor',
-      'excerpt',
-      'trackbacks',
-      'custom-fields',
-      'comments',
-      'revisions',
-      'thumbnail',
-      'author',
-      'page-attributes'
-  )
-);
-register_post_type( 'news', $args5 );
-  
+    // register post type
+    $args5 = array(
+      'labels' => $labels5,
+      'public' => true,
+      'has_archive' => true,
+      'show_ui' => true,
+      'capability_type' => 'post',
+      'hierarchical' => false,
+      'rewrite' => array('slug' => 'news'),
+      'query_var' => true,
+      'menu_icon' => 'dashicons-randomize',
+      'supports' => array(
+          'title',
+          'editor',
+          'excerpt',
+          'trackbacks',
+          'custom-fields',
+          'comments',
+          'revisions',
+          'thumbnail',
+          'author',
+          'page-attributes'
+      )
+    );
+    register_post_type( 'news', $args5 );
+  /*******CPT-News end*******/
 }
 add_action( 'init', 'custom_post_type_init' );
+/*******Custom Post Type End*******/
 
 
-
+/*******Setting Up Site Logo*******/
 function sorayatec_site_logo_setup() {
   $defaults = array(
   'height'      => 100,
@@ -317,8 +324,6 @@ function sorayatec_site_logo_setup() {
 
 
 
- //Adding header-footer customization
+ /*******Adding Header Footer Customizer*******/
  require get_template_directory() . '/inc/headerfooter-customizer.php';
  new HeaderFooter_Customizer();
-
-?>
