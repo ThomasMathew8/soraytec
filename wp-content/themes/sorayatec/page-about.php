@@ -1,7 +1,5 @@
 <?php get_header(); ?> 
 
-<?php if( class_exists('ACF') ) : ?>
-
 <!-- ==============================================
     **Banner**
     =================================================== -->
@@ -57,7 +55,6 @@
                             </li>
 
                             <?php 
-                            if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                             // get posts
                             $loop = new WP_Query( array(
                                 'post_type' => 'history',
@@ -121,15 +118,6 @@
                                     endwhile;  
                             endif;
                             wp_reset_query();
-                            else:?>
-
-                                <div class="container">
-
-                                    <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
-
-                                </div>   
-
-                            <?php endif;
                             ?>
                     
                     </ul>
@@ -164,7 +152,6 @@
 
 
                                                 <?php 
-                                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                                                 // Get repeater value
                                                 $repeater = get_field('monthly_details');
                                                 $date_stamp = array();
@@ -198,16 +185,6 @@
                                                         <a href="#" data-slide-index="<?php echo $i; ?>"><?php echo $row['date'];?></a>
                                                     </li>
                                                 <?php endforeach; endif; ?>
-
-                                            <?php else:?>
-
-                                                <div class="container">
-
-                                                    <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
-
-                                                </div>   
-
-                                            <?php endif;?>
                                                    
                                             </ul>
                                         </div>
@@ -300,9 +277,6 @@
                             <h1><?php echo strtoupper(get_field('video_title')); ?></h1>
                             <div class="video-outer">
                                 <div id="slider" class="flexslider video">
-
-                                    <?php if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )): ?>
-
                                     <ul class="slides">
                                         <?php
                                         if( have_rows('youtube') ):
@@ -336,17 +310,6 @@
                                         <?php endwhile; endif;  ?>
 
                                     </ul>
-
-                                    <?php else:?>
-
-                                        <div class="container">
-
-                                            <h3 class="entry-header">Please Install ACF PRO Plugin!</h3>
-
-                                        </div>   
-
-                                    <?php endif;?>
-
                                 </div>
                             </div>
                         </div>
@@ -374,16 +337,6 @@
 
 
 
-</div> 
-
-<?php else:?>
-
-<div class="container">
-
-    <h1 class="entry-header">ACF does not exist!</h1>
-
-</div>   
-
-<?php endif;?> 
+</div>  
 
 <?php get_footer(); ?>

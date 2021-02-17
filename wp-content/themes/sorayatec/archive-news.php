@@ -1,9 +1,6 @@
 <?php get_header(); ?> 
 
 <?php 
-
-    if( class_exists('ACF') ) :
-
     $loop = new WP_Query( array(
         'post_type' => 'news',
         'posts_per_page' => -1,
@@ -38,23 +35,13 @@
                             <ul class="follow-us">
 
                                 <?php
-                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
-                                    if( have_rows('follow') ):
-                                    while( have_rows('follow') ) : the_row();
-                                    ?>
+                                if( have_rows('follow') ):
+                                while( have_rows('follow') ) : the_row();
+                                ?>
 
-                                        <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
-                                    
-                                    <?php endwhile; endif; 
-                                else:?>
-
-                                    <div class="container">
-
-                                        <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
-
-                                    </div>   
-
-                                    <?php endif; ?>     
+                                    <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                
+                                <?php endwhile; endif; ?> 
 
                             </ul>
                         </div>
@@ -77,28 +64,11 @@
                                 <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
                                 <span class="date"><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
-                                <?php echo the_excerpt(); ?>
+                                <p><?php echo the_excerpt(); ?></p>
                                 <ul class="follow-us">
-                                
-                                <?php
-                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
-                                    if( have_rows('follow') ):
-                                    while( have_rows('follow') ) : the_row();
-                                    ?>
-
-                                        <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
-                                    
-                                    <?php endwhile; endif; 
-                                else:?>
-
-                                    <div class="container">
-
-                                        <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
-
-                                    </div>   
-
-                                <?php endif; ?>  
-                                
+                                    <li><a href="https://in.linkedin.com/company/soraytec" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://twitter.com/hashtag/soraytec" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 </ul>
                             </div>
                         </li>
@@ -131,14 +101,5 @@
         </div>
     </section>
 
-<?php else:?>
-
-    <div class="container">
-
-        <h1 class="entry-header">ACF does not exist!</h1>
-
-    </div>   
-
-<?php endif;?> 
 
 <?php get_footer(); ?>

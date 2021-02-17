@@ -4,8 +4,6 @@
 
       <main id="main" class="site-main" role="main">
 
-      <?php if( class_exists('ACF') ) : ?>
-
         <!-- ==============================================
     **Banner**
     =================================================== -->
@@ -160,14 +158,5 @@
 
 </div>
 
-<?php else:?>
-
-    <div class="container">
-
-        <h1 class="entry-header">ACF does not exist!</h1>
-
-    </div>   
-
-<?php endif;?> 
 
 <?php get_footer(); ?>
