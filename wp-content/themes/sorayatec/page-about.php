@@ -281,13 +281,12 @@
                                         <?php
                                         if( have_rows('youtube') ):
                                             while( have_rows('youtube') ) : the_row();
-                                            $yt_id = get_sub_field('id');
                                         ?>
 
                                             <li>
                                                 <div class="youtube-video">
                                                    
-                                                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $yt_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php the_sub_field('id'); ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 
                                                 </div>
                                             </li>
@@ -302,10 +301,9 @@
                                         <?php
                                         if( have_rows('youtube') ):
                                             while( have_rows('youtube') ) : the_row();
-                                            $yt_id = get_sub_field('id');
                                         ?>
                                         
-                                            <li><img src="http://i3.ytimg.com/vi/<?php echo $yt_id; ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
+                                            <li><img src="http://i3.ytimg.com/vi/<?php the_sub_field('id'); ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
                                         
                                         <?php endwhile; endif;  ?>
 
