@@ -321,4 +321,9 @@ function sorayatec_site_logo_setup() {
  require get_template_directory() . '/inc/headerfooter-customizer.php';
  new HeaderFooter_Customizer();
 
-?>
+//Adding is_plugin_active function
+ if( !function_exists('is_plugin_active') ) {
+
+  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+}
