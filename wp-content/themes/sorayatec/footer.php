@@ -27,8 +27,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                     <?php $link = get_permalink( get_page_by_title( 'PRIVACY POLICY' ) ); ?>
-                    <a href="<?php echo $link; ?>" class="privacy"><?php echo get_theme_mod('footer_privacy_policy_title'); ?></a>
+                    <a href="<?php echo get_home_url(); ?>/privacy-policy/"  class="privacy"><?php echo get_theme_mod('footer_privacy_policy_title'); ?></a>
                 </div>
                 <div class="col-md-4 copyright">
                     <p><?php echo get_theme_mod('footer_copyright_title'); ?></p>
