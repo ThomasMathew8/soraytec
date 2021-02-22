@@ -79,19 +79,19 @@ function custom_post_type_init() {
   //Ecosystem
   // set up ecosystem labels
   $labels = array(
-      'name' => 'Ecosystem Links',
-      'singular_name' => 'Ecosystem Link',
-      'add_new' => 'Add New Ecosystem Link',
-      'add_new_item' => 'Add New Ecosystem Link',
-      'edit_item' => 'Edit Ecosystem Link',
-      'new_item' => 'New Ecosystem Link',
-      'all_items' => 'All Ecosystem Links',
-      'view_item' => 'View Ecosystem Links',
-      'search_items' => 'Search Ecosystem Links',
-      'not_found' =>  'No Ecosystem Links Found',
-      'not_found_in_trash' => 'No Ecosystem Links found in Trash', 
+      'name' => __('Ecosystem Links', 'Sorayatec'),
+      'singular_name' => __('Ecosystem Link', 'Sorayatec'),
+      'add_new' => __('Add New Ecosystem Link', 'Sorayatec'),
+      'add_new_item' => __('Add New Ecosystem Link', 'Sorayatec'),
+      'edit_item' => __('Edit Ecosystem Link', 'Sorayatec'),
+      'new_item' => __('New Ecosystem Link', 'Sorayatec'),
+      'all_items' => __('All Ecosystem Links', 'Sorayatec'),
+      'view_item' => __('View Ecosystem Links', 'Sorayatec'),
+      'search_items' => __('Search Ecosystem Links', 'Sorayatec'),
+      'not_found' =>  __('No Ecosystem Links Found', 'Sorayatec'),
+      'not_found_in_trash' => __('No Ecosystem Links found in Trash', 'Sorayatec'), 
       'parent_item_colon' => '',
-      'menu_name' => 'Ecosystem',
+      'menu_name' => __('Ecosystem', 'Sorayatec'),
   );
   
   // register post type
@@ -122,19 +122,19 @@ function custom_post_type_init() {
    
   //custom post type-Aims
   $labels1 = array(
-    'name' => 'Aims',
-    'singular_name' => 'Aim',
-    'add_new' => 'Add New Aim',
-    'add_new_item' => 'Add New Aim',
-    'edit_item' => 'Edit Aim',
-    'new_item' => 'New Aim',
-    'all_items' => 'All Aims',
-    'view_item' => 'View Aim',
-    'search_items' => 'Search Aims',
-    'not_found' =>  'No Aims Found',
-    'not_found_in_trash' => 'No Aims found in Trash', 
+    'name' => __('Aims', 'Sorayatec'),
+    'singular_name' => __('Aim', 'Sorayatec'),
+    'add_new' => __('Add New Aim', 'Sorayatec'),
+    'add_new_item' => __('Add New Aim', 'Sorayatec'),
+    'edit_item' => __('Edit Aim', 'Sorayatec'),
+    'new_item' => __('New Aim', 'Sorayatec'),
+    'all_items' => __('All Aims', 'Sorayatec'),
+    'view_item' => __('View Aim', 'Sorayatec'),
+    'search_items' => __('Search Aims', 'Sorayatec'),
+    'not_found' =>  __('No Aims Found', 'Sorayatec'),
+    'not_found_in_trash' => __('No Aims found in Trash', 'Sorayatec'), 
     'parent_item_colon' => '',
-    'menu_name' => 'Aims',
+    'menu_name' => __('Aims', 'Sorayatec'),
 );
 
 // register post type
@@ -166,19 +166,19 @@ register_post_type( 'aims', $args1 );
 
 //custom post type-Team
 $labels2 = array(
-  'name' => 'Team Members',
-  'singular_name' => 'Team Member',
-  'add_new' => 'Add New Team Member',
-  'add_new_item' => 'Add New Team Member',
-  'edit_item' => 'Edit Team Member',
-  'new_item' => 'New Team Member',
-  'all_items' => 'All Team Members',
-  'view_item' => 'View Team Member',
-  'search_items' => 'Search Team Members',
-  'not_found' =>  'No Team Member Found',
-  'not_found_in_trash' => 'No Team Member found in Trash', 
+  'name' => __('Team Members', 'Sorayatec'),
+  'singular_name' => __('Team Member', 'Sorayatec'),
+  'add_new' => __('Add New Team Member', 'Sorayatec'),
+  'add_new_item' => __('Add New Team Member', 'Sorayatec'),
+  'edit_item' => __('Edit Team Member', 'Sorayatec'),
+  'new_item' => __('New Team Member', 'Sorayatec'),
+  'all_items' => __('All Team Members', 'Sorayatec'),
+  'view_item' => __('View Team Member', 'Sorayatec'),
+  'search_items' => __('Search Team Members', 'Sorayatec'),
+  'not_found' =>  __('No Team Member Found', 'Sorayatec'),
+  'not_found_in_trash' => __('No Team Member found in Trash', 'Sorayatec'), 
   'parent_item_colon' => '',
-  'menu_name' => 'team',
+  'menu_name' => __('team', 'Sorayatec'),
 );
 
 // register post type
@@ -211,19 +211,19 @@ register_post_type( 'team', $args2 );
 
 //custom post type-News
 $labels4 = array(
-  'name' => 'History',
-  'singular_name' => 'History',
-  'add_new' => 'Add New Year',
-  'add_new_item' => 'Add New Year',
-  'edit_item' => 'Edit Year',
-  'new_item' => 'New Year',
-  'all_items' => 'All years',
-  'view_item' => 'View Histories',
-  'search_items' => 'Search Year',
-  'not_found' =>  'No Year Found',
-  'not_found_in_trash' => 'No year found in Trash', 
+  'name' => __('History', 'Sorayatec'),
+  'singular_name' => __('History', 'Sorayatec'),
+  'add_new' => __('Add New Year', 'Sorayatec'),
+  'add_new_item' => __('Add New Year', 'Sorayatec'),
+  'edit_item' => __('Edit Year', 'Sorayatec'),
+  'new_item' => __('New Year', 'Sorayatec'),
+  'all_items' => __('All years', 'Sorayatec'),
+  'view_item' => __('View Histories', 'Sorayatec'),
+  'search_items' => __('Search Year', 'Sorayatec'),
+  'not_found' =>  __('No Year Found', 'Sorayatec'),
+  'not_found_in_trash' => __('No year found in Trash', 'Sorayatec'), 
   'parent_item_colon' => '',
-  'menu_name' => 'history',
+  'menu_name' => __('history'),
 );
 
 // register post type
@@ -255,19 +255,19 @@ register_post_type( 'history', $args4 );
 
 //custom post type-News
 $labels5 = array(
-  'name' => 'News',
-  'singular_name' => 'News',
-  'add_new' => 'Add New News',
-  'add_new_item' => 'Add New News',
-  'edit_item' => 'Edit News',
-  'new_item' => 'New News',
-  'all_items' => 'All News',
-  'view_item' => 'View News',
-  'search_items' => 'Search News',
-  'not_found' =>  'No News Found',
-  'not_found_in_trash' => 'No News found in Trash', 
+  'name' => __('News', 'Sorayatec'),
+  'singular_name' => __('News', 'Sorayatec'),
+  'add_new' => __('Add New News', 'Sorayatec'),
+  'add_new_item' => __('Add New News', 'Sorayatec'),
+  'edit_item' => __('Edit News', 'Sorayatec'),
+  'new_item' => __('New News', 'Sorayatec'),
+  'all_items' => __('All News', 'Sorayatec'),
+  'view_item' => __('View News', 'Sorayatec'),
+  'search_items' => __('Search News', 'Sorayatec'),
+  'not_found' =>  __('No News Found', 'Sorayatec'),
+  'not_found_in_trash' => __('No News found in Trash', 'Sorayatec'), 
   'parent_item_colon' => '',
-  'menu_name' => 'News',
+  'menu_name' => __('News', 'Sorayatec'),
 );
 
 // register post type
