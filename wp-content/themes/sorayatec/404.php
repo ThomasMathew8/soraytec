@@ -1,10 +1,20 @@
-<?php get_header(); ?> 
+<?php
+/**
+ * The template for displaying 404 pages (not found)
+ *
+ * @link https://codex.wordpress.org/Creating_an_Error_404_Page
+ *
+ * @package sorayatec
+ */
 
-<div id="primary" class="content-area">
+get_header();
+?>
 
-      <main id="main" class="site-main" role="main">
+<section class="inner-outer posts-outer">
+	<div class="top-post">
+		<div class="container">
 
-        <div class="error-404">
+        <article class="error-404">
 
              <header class="page-header">
 				<h1 class="page-title"><?php _e( 'Not Found', 'sorayatec' ); ?></h1>
@@ -20,11 +30,10 @@
                 
 			</div><!-- .page-wrapper -->
 
-        </div>
-        
-    </main>
-
-</div>
+		</article>
+		</div>    
+    </div>
+</section>
 
 
 <?php get_footer(); ?>
