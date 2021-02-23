@@ -2,7 +2,7 @@
 
 <?php 
 
-    if( class_exists('ACF') ) :
+    if( $acf_label) :
 
     $loop = new WP_Query( array(
         'post_type' => 'news',
@@ -37,7 +37,7 @@
                             <?php echo the_excerpt(); ?>
                             <ul class="follow-us">
 
-                                <?php
+                            <?php
                                 if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                                     if( have_rows('follow') ):
                                     while( have_rows('follow') ) : the_row();
@@ -45,16 +45,16 @@
 
                                         <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
                                     
-                                    <?php endwhile; endif; 
-                                else:?>
+                                    <?php endwhile; endif; ?>                             
+                                <?php else:?>
 
                                     <div class="container">
 
-                                        <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
+                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
 
                                     </div>   
 
-                                    <?php endif; ?>     
+                                <?php endif;?> 
 
                             </ul>
                         </div>
@@ -88,16 +88,16 @@
 
                                         <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
                                     
-                                    <?php endwhile; endif; 
-                                else:?>
+                                    <?php endwhile; endif; ?>                             
+                                <?php else:?>
 
                                     <div class="container">
 
-                                        <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
+                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
 
                                     </div>   
 
-                                <?php endif; ?>  
+                                <?php endif;?>
                                 
                                 </ul>
                             </div>
@@ -131,14 +131,10 @@
         </div>
     </section>
 
-<?php else:?>
+<?php else:
 
-    <div class="container">
+get_template_part( 'template-parts/acf', 'none'); 
 
-        <h1 class="entry-header">Please Install ACF Plugin!</h1>
-
-    </div>   
-
-<?php endif;?> 
+endif;?> 
 
 <?php get_footer(); ?>

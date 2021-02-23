@@ -1,6 +1,6 @@
 <?php get_header(); ?> 
 
-<?php if( class_exists('ACF') ) : ?>
+<?php if( $acf_label ) : ?>
 
 <!-- ==============================================
     **Post**
@@ -47,7 +47,7 @@
 
                     <div class="container">
 
-                        <h2 class="entry-header">Please Install ACF PRO Plugin!</h2>
+                        <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
 
                     </div>   
 
@@ -58,15 +58,11 @@
         </div>
     </section>
 
-<?php else:?>
+<?php else:
 
-    <div class="container">
+get_template_part( 'template-parts/acf', 'none'); 
 
-        <h1 class="entry-header">Please Install ACF Plugin!</h1>
-
-    </div>   
-
-<?php endif;?> 
+endif;?>  
 
 
 <?php get_footer(); ?>

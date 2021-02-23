@@ -327,3 +327,12 @@ function sorayatec_site_logo_setup() {
   include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 }
+
+
+/***Checking if ACF is present***/
+if( class_exists('ACF') ){
+  $acf_label = True;
+}
+else{
+  $acf_label = False;
+}

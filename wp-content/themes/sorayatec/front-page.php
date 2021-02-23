@@ -4,7 +4,7 @@
 
       <main id="main" class="site-main" role="main">
 
-      <?php if( class_exists('ACF') ) : ?>
+      <?php if( $acf_label ) : ?>
 
         <!-- ==============================================
     **Banner**
@@ -160,14 +160,10 @@
 
 </div>
 
-<?php else:?>
+<?php else:
 
-    <div class="container">
+    get_template_part( 'template-parts/acf', 'none'); 
 
-        <h1 class="entry-header">Please Install ACF Plugin!</h1>
-
-    </div>   
-
-<?php endif;?> 
+ endif;?> 
 
 <?php get_footer(); ?>
