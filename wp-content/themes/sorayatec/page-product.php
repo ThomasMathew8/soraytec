@@ -7,8 +7,6 @@
     <?php 
     $banner = get_field('banner');
     if (!empty($banner)):
-        $right = $banner['right_img'];
-        $left = $banner['left_img'];
     ?>
     <div class="banner prdct-banner">
         <div class="container">
@@ -16,12 +14,12 @@
                 <div class="col-md-4 left">
                     <p><?php echo $banner['banner_desc']; ?></p>
                     <figure>
-                        <img src="<?php echo $left['url']; ?>" alt=""/>
+                        <img src="<?php echo $banner['left_img']['url']; ?>" alt=""/>
                     </figure>
                 </div>
                 <div class="col-md-8 right">
                     <figure>
-                        <img src="<?php echo $right['url']; ?>" alt="">
+                        <img src="<?php echo $banner['right_img']['url']; ?>" alt="">
                     </figure>
                 </div>
             </div>
@@ -112,7 +110,6 @@
                 <?php 
                 $application = get_field('application');
                 if (!empty($application)):
-                    $img = $application['image'];
                 ?>
                                     
                     <div class="col-md-6 left">
@@ -131,7 +128,7 @@
 
                         </ul>
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid"/>
+                            <img src="<?php echo $application['image']['url']; ?>" class="img-fluid"/>
                         </figure>
                     </div>
                 <?php endif; ?>
@@ -188,7 +185,6 @@
                     <div class="col-md-6 left">
                         <?php 
                         $features = get_field('features'); 
-                        $img = $features['img'];
                         ?>
                         <h2><?php echo strtoupper($features['title']); ?></h2>
 
@@ -207,7 +203,7 @@
                     </div>
                     <div class="col-md-6 right">
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid"/>
+                            <img src="<?php echo $features['img']['url']; ?>" class="img-fluid"/>
                         </figure>
                     </div>
                 </div>

@@ -33,7 +33,6 @@
 
         <?php 
         $default = get_field( 'history_default' );
-        $default_img = $default['default_img'];
         ?>
         <section class="history">
             <div class="container">
@@ -49,7 +48,7 @@
                                         <p><?php echo $default['default_desc']; ?></p>
                                     </div>
                                     <div class="col-md-7 right">
-                                        <figure><img src="<?php echo $default_img['url']; ?>" class="img-fluid" alt=""></figure>
+                                        <figure><img src="<?php echo $default['default_img']['url']; ?>" class="img-fluid" alt=""></figure>
                                     </div>
                                 </div>
                             </li>
@@ -94,7 +93,6 @@
                                     if( $repeater ):
                                         foreach( $repeater as $row ) :
                                             $i++;
-                                            $img = $row['image'];
 
                                     ?>
                                             <li>
@@ -106,7 +104,7 @@
                                                             <p><?php echo $row['desc']; ?></p>
                                                         </div>
                                                         <div class="col-md-7 right">
-                                                            <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
+                                                            <figure><img src="<?php echo $row['image']['url'];?>" alt=""></figure>
                                                         </div>
                                                     </div>
                                             </li>
