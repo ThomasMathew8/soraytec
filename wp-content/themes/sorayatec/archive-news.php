@@ -26,12 +26,12 @@
                             </figure>
                         </div>
                         <div class="col-lg-4 left">
-                            <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
+                            <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
                             <div class="source">
                                 <span><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
                             </div>
-                            <?php echo the_excerpt(); ?>
+                            <?php the_excerpt(); ?>
                             <ul class="follow-us">
 
                                 <?php
@@ -61,10 +61,10 @@
                                 <figure><img src="<?php echo $img['url']; ?>" alt=""></figure>
                             </div>
                             <div class="col-md-8">
-                                <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
+                                <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
                                 <span class="date"><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
-                                <p><?php echo the_excerpt(); ?></p>
+                                <?php the_excerpt(); ?>
                                 <ul class="follow-us">
                                     <li><a href="https://in.linkedin.com/company/soraytec" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="https://twitter.com/hashtag/soraytec" target="_blank"><i class="fab fa-twitter"></i></a></li>

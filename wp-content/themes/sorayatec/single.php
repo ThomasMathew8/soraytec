@@ -17,8 +17,8 @@
                             <span><?php echo get_field( 'date' ); ?></span>
                             <?php echo get_field( 'place' ); ?>
                         </div>
-                        <h1><a href="#"><?php echo the_title(); ?></a></h1>
-                        <p><?php echo the_content(); ?></p>
+                        <h1><a href="#"><?php the_title(); ?></a></h1>
+                        <?php the_content(); ?>
                         <ul class="follow-us">
                                 
                                 <?php
@@ -32,8 +32,8 @@
 
                         </ul>
                         <div class="pager">
-                            <a href="<?php echo get_permalink( get_adjacent_post()->ID ); ?>">&#60; PREVIOUS</a>
-                            <a href="<?php echo get_permalink( get_adjacent_post( false, '', false )->ID ); ?>" class="ml-auto">NEXT &#62;</a>
+                            <a href="<?php echo get_permalink( get_adjacent_post()->ID ); ?>">&#60; <?php esc_html__( 'Previous:', 'sorayatec' ); ?></a>
+                            <a href="<?php echo get_permalink( get_adjacent_post( false, '', false )->ID ); ?>" class="ml-auto"><?php esc_html__( 'Next:', 'sorayatec' ); ?> &#62;</a>
                         </div>
                     </div>
                 </div>
