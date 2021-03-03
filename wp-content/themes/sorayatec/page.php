@@ -1,27 +1,34 @@
-<?php get_header(); ?> 
+<?php
+/**
+ * The template for displaying all pages
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages
+ * and that other 'pages' on your WordPress site may use a
+ * different template.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package sorayatec
+ */
 
-<section class="inner-outer posts-outer">
+get_header();
+?>
 
-    <div class="top-post">
+	<main id="primary" class="site-main">
+
+                    <?php
+                    if ( have_posts() ) :
+                    while ( have_posts() ) :
+                        the_post();
+
+                            get_template_part( 'template-parts/content',basename(get_permalink()) );
+
+                    endwhile; // End of the loop.
+                    endif;
+                    ?>
                 
-        <div class="container">
+	</main><!-- #main -->
 
-            <?php if( have_posts() ):  while( have_posts() ):  the_post(); ?>
-
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-                    <h1 class="entry-header"><?php echo strtoupper(get_the_title()); ?></h1>
-        
-                    <p><?php echo the_content(); ?></p>
-
-                </article>
-
-            <?php endwhile; endif; ?> 
-            
-        </div>    
-
-    </div>
-
-</section>
-
-<?php get_footer(); ?>
+<?php 
+get_footer();
