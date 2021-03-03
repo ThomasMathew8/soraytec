@@ -20,7 +20,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 #menu-menu .menu-item{margin: 0 10px !important;}
 
 input.wpcf7-form-control.wpcf7-submit {
-    float: right !important;
+    display: block;
 }
 
 .prdct-feature-cnt{justify-content: center !important;}
@@ -30,4 +30,10 @@ input.wpcf7-form-control.wpcf7-submit {
 .timeline-cnt span:hover{
     text-decoration: underline;
     cursor: pointer;}
-
+   
+article{margin : 100px 0;
+        background: rgba(255, 255, 255, 0.6);}
+    
+.entry-header{
+    margin-bottom: 30px;
+    }     
