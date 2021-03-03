@@ -1,4 +1,12 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * Template Name: About
+ * 
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <?php if( $acf_label ) : ?>
 

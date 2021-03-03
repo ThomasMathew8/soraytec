@@ -1,4 +1,14 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * The template for displaying archive page for News CPT
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <?php 
 
@@ -137,4 +147,5 @@ get_template_part( 'template-parts/acf', 'none');
 
 endif;?> 
 
-<?php get_footer(); ?>
+<?php
+get_footer();

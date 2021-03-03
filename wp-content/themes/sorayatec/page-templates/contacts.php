@@ -1,4 +1,12 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * Template Name: Contacts
+ * 
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <?php if( $acf_label ) : ?>
 
@@ -76,5 +84,6 @@
    get_template_part( 'template-parts/acf', 'none'); 
 
 endif;?> 
-
-    <?php get_footer(); ?>    
+ 
+<?php 
+get_footer();
