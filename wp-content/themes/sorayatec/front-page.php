@@ -1,4 +1,11 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * The template for showing Front page
+ *
+ * @package sorayatec
+ */
+get_header(); 
+?> 
 
 <div id="primary" class="content-area">
 
@@ -159,4 +166,5 @@
 </div>
 
 
-<?php get_footer(); ?>
+<?php 
+get_footer();

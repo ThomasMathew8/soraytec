@@ -1,4 +1,12 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * Template Name: Contacts
+ * 
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <!-- =============================================
     **Contact**
@@ -58,4 +66,5 @@
         </div>
     </div>
 
-    <?php get_footer(); ?>    
+<?php 
+get_footer();    
