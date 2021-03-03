@@ -1,4 +1,12 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * Template Name: Privacy Policy
+ * 
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <!-- ==============================================
     **Post**
