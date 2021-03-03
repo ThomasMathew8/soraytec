@@ -1,59 +1,29 @@
-<?php get_header(); ?> 
+<?php
+/**
+ * The template for displaying all single posts
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ *
+ * @package sorayatec
+ */
 
-<section class="inner-outer posts-outer news-single">
-        <div class="top-post">
-            <div class="container">
+get_header();
+?>
 
-                <?php 
-                $img = get_field( 'news_img' );
-                ?> 
+	<main id="primary" class="site-main">
 
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-8">
-                        <figure>
-                            <img src="<?php if($img['url']): echo $img['url']; endif; ?>" class="img-fluid" alt="">
-                        </figure>
-                        <div class="source">
-                            <span>
-                                <?php
-                                 if(get_field( 'date' )): 
-                                    echo get_field( 'date' ); 
-                                 endif; 
-                                ?>
-                            </span>
-                            <?php if(get_field( 'place' )): echo get_field( 'place' ); endif; ?>
-                        </div>
-                        <h1><a href="#"><?php echo the_title(); ?></a></h1>
-                        <p><?php echo the_content(); ?></p>
-                        <ul class="follow-us">
-                                
-                                <?php
-                                if( have_rows('follow') ):
-                                while( have_rows('follow') ) : the_row();
-                                ?>
+		<?php
+        if ( have_posts() ) :
+		while ( have_posts() ) :
+			the_post();
 
-                                    <li>
-                                        <a href="<?php if(the_sub_field( 'link' )): echo the_sub_field( 'link' ); endif; ?>" target="_blank">
-                                            <i class="<?php if(the_sub_field( 'icon_class' )): echo the_sub_field( 'icon_class' ); endif; ?>"></i>
-                                        </a>
-                                    </li>
-                                
-                                <?php endwhile; endif; ?> 
+			get_template_part( 'template-parts/content', get_post_type() );
 
-                        </ul>
-                        <div class="pager">
-                            <?php $pager = get_field( 'pager_text' ); ?>
-                            <a href="<?php if(get_permalink( get_adjacent_post()->ID )): echo get_permalink( get_adjacent_post()->ID ); endif; ?>">
-                                &#60; <?php if($pager['previous']): echo $pager['previous']; endif; ?>
-                            </a>
-                            <a href="<?php if(get_permalink( get_adjacent_post( false, '', false )->ID )): echo get_permalink( get_adjacent_post( false, '', false )->ID ); endif; ?>" class="ml-auto">
-                                <?php if($pager['next']): echo $pager['next']; endif; ?> &#62;
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        endwhile;// End of the loop.
+        endif;
+		?>
 
-<?php get_footer(); ?>
+	</main><!-- #main -->
+
+<?php
+get_footer();

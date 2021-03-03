@@ -1,4 +1,14 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * The template for displaying archive page for News CPT
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <?php 
     $loop = new WP_Query( array(
@@ -145,4 +155,5 @@
     </section>
 
 
-<?php get_footer(); ?>
+<?php
+get_footer();
