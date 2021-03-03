@@ -1,4 +1,12 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * Template Name: Product
+ * 
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 
 <!-- ==============================================

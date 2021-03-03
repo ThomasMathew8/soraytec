@@ -1,31 +1,52 @@
 <?php
+/**
+ * sorayatec functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package sorayatec
+ */
 
+ 
 /*******Add Theme Support*******/
-add_theme_support( 'title-tag' );
-add_theme_support( 'post-thumbnails' );
-add_theme_support( 'post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'] );
-add_theme_support('html5',
-                    array(
-                      'comment-form',
-                      'comment-list',
-                      'gallery',
-                      'caption',
-                      'script',
-                      'style',
-                      'navigation-widgets',
-                    )
-                  );
-add_theme_support( 'automatic-feed-links' );
-add_theme_support( 'custom-background' );
-add_theme_support( 'custom-header' );
-add_theme_support( 'custom-logo' );
-add_theme_support( 'customize-selective-refresh-widgets' );
-add_theme_support( 'starter-content' );
+if ( ! function_exists( 'sorayatec_setup' ) ) :
+  function sorayatec_setup() {
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'] );
+    add_theme_support('html5',
+                        array(
+                          'comment-form',
+                          'comment-list',
+                          'gallery',
+                          'caption',
+                          'script',
+                          'style',
+                          'navigation-widgets',
+                        )
+                      );
+    add_theme_support( 'automatic-feed-links' );
+    add_theme_support( 'custom-background' );
+    add_theme_support( 'custom-header' );
+    add_theme_support( 'custom-logo' );
+    add_theme_support( 'customize-selective-refresh-widgets' );
+    add_theme_support( 'starter-content' );
+  }
+endif;
+add_action( 'after_setup_theme', 'sorayatec_setup' );
 
 
-/*******Loading CSS*********/
-function wphierarchy_enqueue_styles() {
+/*******De-registering wordpress's jQuery********/
+add_action('wp_enqueue_scripts', 'no_more_jquery');
+function no_more_jquery(){
+    wp_deregister_script('jquery');
+}
 
+
+/*******Loading CSS & JS*********/
+function wphierarchy_enqueue_styles_scripts() {
+
+  /*******Loading CSS*********/
   wp_enqueue_style( 'roboto', 'https://fonts.googleapis.com/css?family=Anton|Roboto:300,400,500,700&display=swap', [], '', 'all' );  
   wp_enqueue_style( 'all-min', get_stylesheet_directory_uri() . '/assets/css/all.min.css', [], time(), 'all' );
   wp_enqueue_style( 'animate-css', get_stylesheet_directory_uri() . '/assets/css/animate.css', [], time(), 'all' );
@@ -36,20 +57,8 @@ function wphierarchy_enqueue_styles() {
   wp_enqueue_style( 'main-css', get_stylesheet_directory_uri() . '/style.css', ['roboto'], time(), 'all' );
   wp_enqueue_style( 'custom-css', get_stylesheet_directory_uri() . '/assets/css/custom.css', ['main-css'], time(), 'all' );
   
-}
-add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles' );
 
-
-/*******De-registering wordpress's jQuery********/
-add_action('wp_enqueue_scripts', 'no_more_jquery');
-function no_more_jquery(){
-    wp_deregister_script('jquery');
-}
-
-
-/*******Loading js themes*********/
-function wphierarchy_enqueue_scripts() {
-
+  /*******Loading js themes*********/
   wp_enqueue_script( 'jquery-min-js', get_stylesheet_directory_uri() . '/assets/js/jquery-3.4.1.min.js', [], time(), true );
   wp_enqueue_script( 'theme-js', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], time(), true );
   wp_enqueue_script( 'jquery-flexslider-js', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', [], time(), true );
@@ -59,7 +68,7 @@ function wphierarchy_enqueue_scripts() {
   wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/assets/js/custom.js',[], time(), true );
 
 }
-add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles_scripts' );
 
 
 /*******Register Menu Locations*******/
@@ -69,8 +78,8 @@ add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_scripts' );
 
 
 /********Adding bootstrap-navwalker*********/
- function register_navwalker(){
-	require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+function register_navwalker(){
+	require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
@@ -320,8 +329,6 @@ function sorayatec_site_logo_setup() {
   add_theme_support( 'site-logo', $defaults );
  }
  add_action( 'after_setup_theme', 'sorayatec_site_logo_setup' );
-
-
 
 
  /*******Adding Header Footer Customizer*******/
