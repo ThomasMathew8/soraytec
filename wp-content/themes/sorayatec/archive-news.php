@@ -1,4 +1,14 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * The template for displaying archive page for News CPT
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package sorayatec
+ */
+
+get_header(); 
+?> 
 
 <?php 
     $loop = new WP_Query( array(
@@ -95,11 +105,12 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup"><?php echo get_field('button_text'); ?></button>
+                    <button type="submit" class="btn btn-signup"><?php echo strtoupper(get_field('button_text')); ?></button>
                 </form>
             </div>
         </div>
     </section>
 
 
-<?php get_footer(); ?>
+<?php
+get_footer();

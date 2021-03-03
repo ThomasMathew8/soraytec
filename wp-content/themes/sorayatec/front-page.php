@@ -1,4 +1,11 @@
-<?php get_header(); ?> 
+<?php 
+/**
+ * The template for showing Front page
+ *
+ * @package sorayatec
+ */
+get_header(); 
+?> 
 
 <div id="primary" class="content-area">
 
@@ -16,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><?php echo $primary['primary_info_title']; ?></h1>
+                    <h1><?php echo strtoupper($primary['primary_info_title']); ?></h1>
                     <p><?php echo $primary['primary_info_desc']; ?></p>
                 </div>
                 <div class="col-md-6 right">
@@ -57,7 +64,7 @@
                     <div class="row">
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
-                                <h2><?php echo $even['aim_title']; ?></h2>
+                                <h2><?php echo strtoupper($even['aim_title']); ?></h2>
                                 <p><?php echo $even['aim_desc']; ?></p>
                             </div>
                         </div>
@@ -79,7 +86,7 @@
                     <div class="row">
                         <div class="col-md-7 text-right">
                             <div class="inner">
-                                <h2><?php echo $odd['aim_title']; ?></h2>
+                                <h2><?php echo strtoupper($odd['aim_title']); ?></h2>
                                 <p><?php echo $odd['aim_desc']; ?></p>
                             </div>
                         </div>
@@ -111,7 +118,7 @@
 
     <section class="soraytec-ecosystem">
         <div class="container">
-            <h2><?php echo get_field('ecosystem_title'); ?></h2>
+            <h2><?php echo strtoupper(get_field('ecosystem_title')); ?></h2>
             <ul class="row logos-list">
             
                 <?php
@@ -147,7 +154,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
                     </div>
-                    <button type="submit" class="btn btn-signup"><?php echo get_field('button_text'); ?></button>
+                    <button type="submit" class="btn btn-signup"><?php echo strtoupper(get_field('button_text')); ?></button>
                 </form>
             </div>
         </div>
@@ -158,4 +165,6 @@
 
 </div>
 
-<?php get_footer(); ?>
+
+<?php 
+get_footer();
