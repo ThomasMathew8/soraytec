@@ -172,7 +172,7 @@ get_header();
 
                         </ul>
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid"/>
+                            <img src="<?php echo $img['url']; ?>" class="img-fluid" alt="" />
                         </figure>
                     </div>
                 <?php endif; ?>
@@ -273,7 +273,7 @@ get_header();
                     </div>
                     <div class="col-md-6 right">
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid"/>
+                            <img src="<?php echo $img['url']; ?>" class="img-fluid" alt="" />
                         </figure>
                     </div>
                 </div>
