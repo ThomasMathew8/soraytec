@@ -11,6 +11,8 @@ get_header();
 
       <main id="main" class="site-main" role="main">
 
+      <?php if( $acf_label ) : ?>
+
         <!-- ==============================================
     **Banner**
     =================================================== -->
@@ -161,6 +163,11 @@ get_header();
 
 </div>
 
+<?php else:
+
+    get_template_part( 'template-parts/acf', 'none'); 
+
+ endif;?> 
 
 <?php 
 get_footer();

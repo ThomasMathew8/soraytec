@@ -332,8 +332,21 @@ function sorayatec_site_logo_setup() {
  add_action( 'after_setup_theme', 'sorayatec_site_logo_setup' );
 
 
-
-
  /*******Adding Header Footer Customizer*******/
  require get_template_directory() . '/inc/headerfooter-customizer.php';
  new HeaderFooter_Customizer();
+
+
+/*******Adding is_plugin_active function*******/
+ if( !function_exists('is_plugin_active') ) {
+  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
+
+
+/***Checking if ACF is present***/
+if( class_exists('ACF') ){
+  $acf_label = True;
+}
+else{
+  $acf_label = False;
+}
