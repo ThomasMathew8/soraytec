@@ -115,7 +115,7 @@ function custom_post_type_init() {
         'hierarchical' => false,
         'rewrite' => array('slug' => 'ecosystem'),
         'query_var' => true,
-        'menu_icon' => 'dashicons-randomize',
+        'menu_icon' => 'dashicons-admin-site-alt3',
         'supports' => array(
             'title',
             'editor',
@@ -160,7 +160,7 @@ function custom_post_type_init() {
         'hierarchical' => false,
         'rewrite' => array('slug' => 'aims'),
         'query_var' => true,
-        'menu_icon' => 'dashicons-randomize',
+        'menu_icon' => 'dashicons-image-filter',
         'supports' => array(
             'title',
             'editor',
@@ -205,7 +205,7 @@ function custom_post_type_init() {
       'hierarchical' => false,
       'rewrite' => array('slug' => 'team'),
       'query_var' => true,
-      'menu_icon' => 'dashicons-randomize',
+      'menu_icon' => 'dashicons-groups',
       'supports' => array(
           'title',
           'editor',
@@ -251,7 +251,7 @@ function custom_post_type_init() {
       'hierarchical' => false,
       'rewrite' => array('slug' => 'history'),
       'query_var' => true,
-      'menu_icon' => 'dashicons-randomize',
+      'menu_icon' => 'dashicons-backup',
       'supports' => array(
           'title',
           'editor',
@@ -296,7 +296,7 @@ function custom_post_type_init() {
       'hierarchical' => false,
       'rewrite' => array('slug' => 'news'),
       'query_var' => true,
-      'menu_icon' => 'dashicons-randomize',
+      'menu_icon' => 'dashicons-media-interactive',
       'supports' => array(
           'title',
           'editor',
