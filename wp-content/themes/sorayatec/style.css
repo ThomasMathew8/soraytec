@@ -37,6 +37,9 @@ input.wpcf7-form-control.wpcf7-submit {
     margin-top: 80px;
     margin-bottom: 80px;} 
 
+ #mc_embed_signup_scroll{display: flex;}
+
+ #mc_embed_signup_scroll h2{margin-top: 12px;}
    
 article{margin : 100px 0;
         background: rgba(255, 255, 255, 0.6);}
