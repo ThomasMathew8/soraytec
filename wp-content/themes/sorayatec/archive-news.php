@@ -11,6 +11,9 @@ get_header();
 ?> 
 
 <?php 
+
+    if( $acf_label) :
+
     $loop = new WP_Query( array(
         'post_type' => 'news',
         'posts_per_page' => -1,
@@ -44,14 +47,24 @@ get_header();
                             <?php echo the_excerpt(); ?>
                             <ul class="follow-us">
 
-                                <?php
-                                if( have_rows('follow') ):
-                                while( have_rows('follow') ) : the_row();
-                                ?>
+                            <?php
+                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                                    if( have_rows('follow') ):
+                                    while( have_rows('follow') ) : the_row();
+                                    ?>
 
-                                    <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
-                                
-                                <?php endwhile; endif; ?> 
+                                        <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                    
+                                    <?php endwhile; endif; ?>                             
+                                <?php else:?>
+
+                                    <div class="container">
+
+                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                                    </div>   
+
+                                <?php endif;?> 
 
                             </ul>
                         </div>
@@ -76,9 +89,26 @@ get_header();
                                 <?php echo get_field( 'place' ); ?>
                                 <p><?php echo the_excerpt(); ?></p>
                                 <ul class="follow-us">
-                                    <li><a href="https://in.linkedin.com/company/soraytec" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="https://twitter.com/hashtag/soraytec" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                
+                                <?php
+                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                                    if( have_rows('follow') ):
+                                    while( have_rows('follow') ) : the_row();
+                                    ?>
+
+                                        <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                    
+                                    <?php endwhile; endif; ?>                             
+                                <?php else:?>
+
+                                    <div class="container">
+
+                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                                    </div>   
+
+                                <?php endif;?>
+                                
                                 </ul>
                             </div>
                         </li>
@@ -99,18 +129,19 @@ get_header();
 
     <section class="signup-sec">
         <div class="container">
-            <div class="inner">
-                <h2><?php echo get_field('signup_text'); ?></h2>
-                <form class="form-inline signup-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="<?php echo get_field('placeholder_text'); ?>">
-                    </div>
-                    <button type="submit" class="btn btn-signup"><?php echo strtoupper(get_field('button_text')); ?></button>
-                </form>
-            </div>
+        <div class="inner form-inline signup-form">
+                
+            <?php get_template_part( 'template-parts/content', 'signup' ); ?>
+
+        </div>
         </div>
     </section>
 
+<?php else:
+
+get_template_part( 'template-parts/acf', 'none'); 
+
+endif;?> 
 
 <?php
 get_footer();
