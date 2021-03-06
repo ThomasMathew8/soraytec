@@ -29,21 +29,38 @@ get_header();
                     while( have_rows('privacy_policy') ) : the_row();
                     ?>
 
-                        <h2><?php echo the_sub_field( 'main_title' ); ?></h2>
+                        <h2>
+                            <?php
+                                if(the_sub_field( 'main_title' )): 
+                                    echo the_sub_field( 'main_title' ); 
+                                endif; 
+                            ?>
+                        </h2>
 
                             <?php
                             if( have_rows('sub_section') ):
                             while( have_rows('sub_section') ) : the_row();
                             ?>
 
-                            <h3><?php echo the_sub_field( 'sub_title' ); ?></h3>
+                            <h3>
+                                <?php 
+                                if(the_sub_field( 'sub_title' )): 
+                                    echo the_sub_field( 'sub_title' ); 
+                                endif;?>
+                            </h3>
 
                                 <?php
                                 if( have_rows('sub_content') ):
                                 while( have_rows('sub_content') ) : the_row();
                                 ?>
                                 
-                                    <p><?php echo the_sub_field( 'paragraph' ); ?></p>
+                                    <p>
+                                        <?php 
+                                        if(the_sub_field( 'paragraph' )): 
+                                            echo the_sub_field( 'paragraph' ); 
+                                        endif; 
+                                        ?>
+                                    </p>
 
                                 <?php endwhile; endif; ?>
 
@@ -73,4 +90,5 @@ get_template_part( 'template-parts/acf', 'none');
 endif;?>  
 
 
-<?php get_footer(); ?>
+<?php 
+get_footer();

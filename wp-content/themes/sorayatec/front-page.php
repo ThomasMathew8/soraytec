@@ -18,6 +18,7 @@ get_header();
     =================================================== -->
     <?php 
     $primary = get_field( 'primary_info' );
+    if(!empty($primary)):
     $primary_img = $primary[ 'primary_info_img' ];
     ?> 
     
@@ -25,18 +26,35 @@ get_header();
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><?php echo strtoupper($primary['primary_info_title']); ?></h1>
-                    <p><?php echo $primary['primary_info_desc']; ?></p>
+
+
+                    <h1>
+                        <?php 
+                        if($primary['primary_info_title']):
+                            echo strtoupper($primary['primary_info_title']); 
+                        endif;
+                        ?>
+                    </h1>
+
+                    <p>
+                        <?php 
+                        if($primary['primary_info_desc']):
+                            echo $primary['primary_info_desc']; 
+                        endif;
+                        ?>
+                    </p>
+
                 </div>
                 <div class="col-md-6 right">
                     <figure>
-                        <img src="<?php echo $primary_img['url']; ?>" >
+                        <img src="<?php if($primary_img['url']): echo $primary_img['url']; endif; ?>" >
                     </figure>
                 </div>
             </div>
         </div> 
     </div>
 
+    <?php endif; ?>
 
     <!-- ==============================================
     **About**
@@ -66,12 +84,26 @@ get_header();
                     <div class="row">
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
-                                <h2><?php echo strtoupper($even['aim_title']); ?></h2>
-                                <p><?php echo $even['aim_desc']; ?></p>
+
+                                <h2>
+                                    <?php
+                                    if($even['aim_title']):
+                                        echo strtoupper($even['aim_title']); 
+                                    endif;
+                                    ?>
+                                </h2>
+                                <p>
+                                    <?php 
+                                    if($even['aim_desc']):
+                                        echo $even['aim_desc']; 
+                                    endif;
+                                    ?>
+                                </p>
+
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <figure><img src="<?php echo $even_img['url']; ?>" class="rounded-circle" alt=""></figure>
+                            <figure><img src="<?php if($even_img['url']):  echo $even_img['url']; endif; ?>" class="rounded-circle" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -88,12 +120,26 @@ get_header();
                     <div class="row">
                         <div class="col-md-7 text-right">
                             <div class="inner">
-                                <h2><?php echo strtoupper($odd['aim_title']); ?></h2>
-                                <p><?php echo $odd['aim_desc']; ?></p>
+
+                                <h2>
+                                    <?php
+                                    if($odd['aim_title']):
+                                        echo strtoupper($odd['aim_title']); 
+                                    endif;    
+                                    ?>
+                                </h2>
+                                <p>
+                                    <?php 
+                                    if($odd['aim_desc']):
+                                        echo $odd['aim_desc'];
+                                    endif;     
+                                    ?>
+                                </p>
+
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <figure><img src="<?php echo $odd_img['url'];?>" class="rounded-circle" alt=""></figure>
+                            <figure><img src="<?php if($odd_img['url']): echo $odd_img['url']; endif; ?>" class="rounded-circle" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -120,7 +166,15 @@ get_header();
 
     <section class="soraytec-ecosystem">
         <div class="container">
-            <h2><?php echo strtoupper(get_field('ecosystem_title')); ?></h2>
+
+            <h2>
+                <?php 
+                if(get_field('ecosystem_title')):
+                    echo strtoupper(get_field('ecosystem_title')); 
+                endif;    
+                ?>
+            </h2>
+
             <ul class="row logos-list">
             
                 <?php
@@ -131,8 +185,8 @@ get_header();
                 $ecosystem_img = $ecosystem[ 'link_img' ];
                 ?> 
                         <li class="col-sm-6 col-md-4">
-                            <a href="<?php echo $ecosystem[ 'link_url' ]; ?>" target="_blank">
-                            <img src="<?php echo $ecosystem_img['url']; ?>" alt="">
+                            <a href="<?php if($ecosystem[ 'link_url' ]): echo $ecosystem[ 'link_url' ]; endif; ?>" target="_blank">
+                            <img src="<?php if($ecosystem_img['url']): echo $ecosystem_img['url']; endif; ?>" alt="">
                             </a>
                         </li>
                 <?php endwhile; ?> 
