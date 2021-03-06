@@ -8,6 +8,7 @@
 get_header(); 
 ?> 
 
+<?php if( $acf_label ) : ?>
 
 <!-- ==============================================
     **Banner**
@@ -54,9 +55,10 @@ get_header();
             <ul class="row prdct-feature-cnt">
 
                 <?php
-                if( have_rows('features_loop') ):
-                while( have_rows('features_loop') ) : the_row();
-                $img = get_sub_field('img');
+                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                    if( have_rows('features_loop') ):
+                    while( have_rows('features_loop') ) : the_row();
+                    $img = get_sub_field('img');
                 ?>
 
                     <li class="col-md-4 col-sm-6">
@@ -66,8 +68,18 @@ get_header();
                         <p><?php the_sub_field('desc'); ?></p>
                     </li>
                     
-                <?php endwhile; endif; ?>    
+                <?php 
+                endwhile; endif;    
+                else:
+                ?>
 
+                    <div class="container">
+
+                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                    </div>   
+
+                <?php endif;?>
             </ul>
         </div>
         <?php endif; ?>
@@ -76,30 +88,40 @@ get_header();
                 <div class="row align-items-center">
 
                         <?php
-                        $i=0;
-                        if( have_rows('features_bottom') ):
-                            while( have_rows('features_bottom') ) : the_row();
-                            $img = get_sub_field('img');
-                            if($i%2==0):
-                        ?>
+                        if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                            $i=0;
+                            if( have_rows('features_bottom') ):
+                                while( have_rows('features_bottom') ) : the_row();
+                                $img = get_sub_field('img');
+                                if($i%2==0):
+                            ?>
 
-                            <div class="col-md-6">
-                                <figure>
-                                    <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
-                                </figure>
-                            </div>
-                        <?
-                        $i++;
-                            else:
-                        ?>
+                                <div class="col-md-6">
+                                    <figure>
+                                        <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
+                                    </figure>
+                                </div>
+                            <?
+                            $i++;
+                                else:
+                            ?>
 
-                            <div class="col-md-6 right">
-                                <figure>
-                                    <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
-                                </figure>
-                            </div>
+                                <div class="col-md-6 right">
+                                    <figure>
+                                        <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
+                                    </figure>
+                                </div>
 
-                        <?php $i++; endif; endwhile; endif; ?>
+                            <?php $i++; endif; endwhile; endif; ?>
+                        <?php else:?>
+
+                            <div class="container">
+
+                                <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                            </div>   
+
+                        <?php endif;?>
 
                     </div>
                     
@@ -123,61 +145,82 @@ get_header();
                     <div class="col-md-6 left">
                         <h2><?php echo strtoupper($application['title']); ?></h2>
                         <ul>
-
                         
-                                <?php
-                                if( have_rows('application_points') ):
-                                while( have_rows('application_points') ) : the_row();
-                                ?>
+                              <?php
+                              if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                                  if( have_rows('application_points') ):
+                                      while( have_rows('application_points') ) : the_row();
+                              ?>
 
-                                <li><?php echo get_sub_field('application_point'); ?></li>
+                                         <li><?php echo get_sub_field('application_point'); ?></li>
+                          
+                                 <?php endwhile; endif; ?>
 
-                                <?php endwhile; endif; ?> 
+                              <?php else:?>
+
+                                  <div class="container">
+
+                                      <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                                  </div>   
+
+                              <?php endif;?>
 
                         </ul>
                         <figure>
-                            <img src="<?php echo $application['image']['url']; ?>" class="img-fluid"/>
+                            <img src="<?php echo $application['image']['url']; ?>" class="img-fluid" alt="" />
                         </figure>
                     </div>
                 <?php endif; ?>
                 <div class="col-md-6 right">
                     <?php
-                    if( have_rows('specification_box') ):
-                    while( have_rows('specification_box') ) : the_row();
-                    ?>
+                    if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                        if( have_rows('specification_box') ):
+                        while( have_rows('specification_box') ) : the_row();
+                        ?>
 
-                        <div class="application-cnt">
-                            <h3><?php echo strtoupper(get_sub_field('title')); ?></h3>
-                            <ul>
-                                <?php
-                                if( have_rows('rows') ):
-                                while( have_rows('rows') ) : the_row();
-                                ?>
-                                    <li>
-                                        <div class="left-table">
-                                            <h4><?php echo get_sub_field('row_title'); ?></h4>
-                                        </div>
+                            <div class="application-cnt">
+                                <h3><?php echo strtoupper(get_sub_field('title')); ?></h3>
+                                <ul>
+                                    <?php
+                                    if( have_rows('rows') ):
+                                    while( have_rows('rows') ) : the_row();
+                                    ?>
+                                        <li>
+                                            <div class="left-table">
+                                                <h4><?php echo get_sub_field('row_title'); ?></h4>
+                                            </div>
 
-                                        <div class="right-table">
+                                            <div class="right-table">
 
-                                            <?php
-                                            if( have_rows('row_fields') ):
-                                            while( have_rows('row_fields') ) : the_row();
-                                            ?>
+                                                <?php
+                                                if( have_rows('row_fields') ):
+                                                while( have_rows('row_fields') ) : the_row();
+                                                ?>
 
-                                                <span><?php echo get_sub_field('row_field'); ?></span>
+                                                    <span><?php echo get_sub_field('row_field'); ?></span>
 
-                                            <?php endwhile; endif; ?>    
-                                        </div>
+                                                <?php endwhile; endif; ?>    
+                                            </div>
 
-                                    </li>
+                                        </li>
 
-                                <?php endwhile; endif; ?> 
+                                    <?php endwhile; endif; ?> 
 
-                            </ul>
-                        </div>
-                        
-                    <?php endwhile; endif; ?> 
+                                </ul>
+                            </div>
+                            
+                        <?php endwhile; endif; ?> 
+
+                    <?php else:?>
+
+                        <div class="container">
+
+                            <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                        </div>   
+
+                    <?php endif;?>
 
                 </div>
             </div>
@@ -198,20 +241,30 @@ get_header();
 
                         <ul>
                             <?php
-                            if( have_rows('features_points') ):
-                                while( have_rows('features_points') ) : the_row();
+                            if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                                if( have_rows('features_points') ):
+                                    while( have_rows('features_points') ) : the_row();
                             ?>
 
-                            <li><?php echo get_sub_field('features_point'); ?></li>
+                                <li><?php echo get_sub_field('features_point'); ?></li>
 
-                            <?php endwhile; endif; ?>     
-                            
+                                <?php endwhile; endif; ?>  
+
+                            <?php else:?>
+
+                                <div class="container">
+
+                                    <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                                </div>   
+
+                            <?php endif;?>
                         </ul> 
                         
                     </div>
                     <div class="col-md-6 right">
                         <figure>
-                            <img src="<?php echo $features['img']['url']; ?>" class="img-fluid"/>
+                            <img src="<?php echo $features['img']['url']; ?>" class="img-fluid" alt="" />
                         </figure>
                     </div>
                 </div>
@@ -240,6 +293,13 @@ get_header();
             </div>
         </div>
     </section>
+
+<?php else:
+
+get_template_part( 'template-parts/acf', 'none'); 
+
+endif;?> 
+
 
 
 
