@@ -30,6 +30,10 @@ input.wpcf7-form-control.wpcf7-submit {
 .timeline-cnt span:hover{
     text-decoration: underline;
     cursor: pointer;}
+
+ #mc_embed_signup_scroll{display: flex;}
+
+ #mc_embed_signup_scroll h2{margin-top: 12px;}
    
 article{margin : 100px 0;
         background: rgba(255, 255, 255, 0.6);}

@@ -58,6 +58,7 @@ function wphierarchy_enqueue_styles_scripts() {
   wp_enqueue_style( 'custom-css', get_stylesheet_directory_uri() . '/assets/css/custom.css', ['main-css'], time(), 'all' );
   
   /*******Loading js themes*********/
+  wp_enqueue_script( 'mailchimp-js', '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js',[], time(), true );
   wp_enqueue_script( 'jquery-min-js', get_stylesheet_directory_uri() . '/assets/js/jquery-3.4.1.min.js', [], time(), true );
   wp_enqueue_script( 'theme-js', get_stylesheet_directory_uri() . '/assets/js/bootstrap.bundle.min.js', [], time(), true );
   wp_enqueue_script( 'jquery-flexslider-js', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', [], time(), true );
@@ -89,20 +90,20 @@ function custom_post_type_init() {
   /*******CPT-Ecosystem start*******/
     //ecosystem labels
     $labels = array(
-        'name' => 'Ecosystem Links',
-        'singular_name' => 'Ecosystem Link',
-        'add_new' => 'Add New Ecosystem Link',
-        'add_new_item' => 'Add New Ecosystem Link',
-        'edit_item' => 'Edit Ecosystem Link',
-        'new_item' => 'New Ecosystem Link',
-        'all_items' => 'All Ecosystem Links',
-        'view_item' => 'View Ecosystem Links',
-        'search_items' => 'Search Ecosystem Links',
-        'not_found' =>  'No Ecosystem Links Found',
-        'not_found_in_trash' => 'No Ecosystem Links found in Trash', 
-        'parent_item_colon' => '',
-        'menu_name' => 'Ecosystem',
-    );
+      'name' => __('Ecosystem Links', 'Sorayatec'),
+      'singular_name' => __('Ecosystem Link', 'Sorayatec'),
+      'add_new' => __('Add New Ecosystem Link', 'Sorayatec'),
+      'add_new_item' => __('Add New Ecosystem Link', 'Sorayatec'),
+      'edit_item' => __('Edit Ecosystem Link', 'Sorayatec'),
+      'new_item' => __('New Ecosystem Link', 'Sorayatec'),
+      'all_items' => __('All Ecosystem Links', 'Sorayatec'),
+      'view_item' => __('View Ecosystem Links', 'Sorayatec'),
+      'search_items' => __('Search Ecosystem Links', 'Sorayatec'),
+      'not_found' =>  __('No Ecosystem Links Found', 'Sorayatec'),
+      'not_found_in_trash' => __('No Ecosystem Links found in Trash', 'Sorayatec'), 
+      'parent_item_colon' => '',
+      'menu_name' => __('Ecosystem', 'Sorayatec'),
+  );
     
     // register post type
     $args = array(
@@ -114,7 +115,7 @@ function custom_post_type_init() {
         'hierarchical' => false,
         'rewrite' => array('slug' => 'ecosystem'),
         'query_var' => true,
-        'menu_icon' => 'dashicons-randomize',
+        'menu_icon' => 'dashicons-admin-site-alt3',
         'supports' => array(
             'title',
             'editor',
@@ -134,19 +135,19 @@ function custom_post_type_init() {
   /*******CPT-Aims start*******/
     //Aims label
     $labels1 = array(
-        'name' => 'Aims',
-        'singular_name' => 'Aim',
-        'add_new' => 'Add New Aim',
-        'add_new_item' => 'Add New Aim',
-        'edit_item' => 'Edit Aim',
-        'new_item' => 'New Aim',
-        'all_items' => 'All Aims',
-        'view_item' => 'View Aim',
-        'search_items' => 'Search Aims',
-        'not_found' =>  'No Aims Found',
-        'not_found_in_trash' => 'No Aims found in Trash', 
-        'parent_item_colon' => '',
-        'menu_name' => 'Aims',
+    'name' => __('Aims', 'Sorayatec'),
+    'singular_name' => __('Aim', 'Sorayatec'),
+    'add_new' => __('Add New Aim', 'Sorayatec'),
+    'add_new_item' => __('Add New Aim', 'Sorayatec'),
+    'edit_item' => __('Edit Aim', 'Sorayatec'),
+    'new_item' => __('New Aim', 'Sorayatec'),
+    'all_items' => __('All Aims', 'Sorayatec'),
+    'view_item' => __('View Aim', 'Sorayatec'),
+    'search_items' => __('Search Aims', 'Sorayatec'),
+    'not_found' =>  __('No Aims Found', 'Sorayatec'),
+    'not_found_in_trash' => __('No Aims found in Trash', 'Sorayatec'), 
+    'parent_item_colon' => '',
+    'menu_name' => __('Aims', 'Sorayatec'),
     );
 
     // register post type
@@ -159,7 +160,7 @@ function custom_post_type_init() {
         'hierarchical' => false,
         'rewrite' => array('slug' => 'aims'),
         'query_var' => true,
-        'menu_icon' => 'dashicons-randomize',
+        'menu_icon' => 'dashicons-image-filter',
         'supports' => array(
             'title',
             'editor',
@@ -179,20 +180,20 @@ function custom_post_type_init() {
   /*******CPT-Team start*******/ 
     //Team label
     $labels2 = array(
-      'name' => 'Team Members',
-      'singular_name' => 'Team Member',
-      'add_new' => 'Add New Team Member',
-      'add_new_item' => 'Add New Team Member',
-      'edit_item' => 'Edit Team Member',
-      'new_item' => 'New Team Member',
-      'all_items' => 'All Team Members',
-      'view_item' => 'View Team Member',
-      'search_items' => 'Search Team Members',
-      'not_found' =>  'No Team Member Found',
-      'not_found_in_trash' => 'No Team Member found in Trash', 
-      'parent_item_colon' => '',
-      'menu_name' => 'team',
-    );
+    'name' => __('Team Members', 'Sorayatec'),
+    'singular_name' => __('Team Member', 'Sorayatec'),
+    'add_new' => __('Add New Team Member', 'Sorayatec'),
+    'add_new_item' => __('Add New Team Member', 'Sorayatec'),
+    'edit_item' => __('Edit Team Member', 'Sorayatec'),
+    'new_item' => __('New Team Member', 'Sorayatec'),
+    'all_items' => __('All Team Members', 'Sorayatec'),
+    'view_item' => __('View Team Member', 'Sorayatec'),
+    'search_items' => __('Search Team Members', 'Sorayatec'),
+    'not_found' =>  __('No Team Member Found', 'Sorayatec'),
+    'not_found_in_trash' => __('No Team Member found in Trash', 'Sorayatec'), 
+    'parent_item_colon' => '',
+    'menu_name' => __('team', 'Sorayatec'),
+     );
 
     // register post type
     $args2 = array(
@@ -204,7 +205,7 @@ function custom_post_type_init() {
       'hierarchical' => false,
       'rewrite' => array('slug' => 'team'),
       'query_var' => true,
-      'menu_icon' => 'dashicons-randomize',
+      'menu_icon' => 'dashicons-groups',
       'supports' => array(
           'title',
           'editor',
@@ -217,26 +218,27 @@ function custom_post_type_init() {
           'author',
           'page-attributes'
       )
+
     );
     register_post_type( 'team', $args2 );
   /*******CPT-Team end*******/
 
   /*******CPT-History start*******/
     //News label
-    $labels4 = array(
-      'name' => 'History',
-      'singular_name' => 'History',
-      'add_new' => 'Add New Year',
-      'add_new_item' => 'Add New Year',
-      'edit_item' => 'Edit Year',
-      'new_item' => 'New Year',
-      'all_items' => 'All years',
-      'view_item' => 'View Histories',
-      'search_items' => 'Search Year',
-      'not_found' =>  'No Year Found',
-      'not_found_in_trash' => 'No year found in Trash', 
-      'parent_item_colon' => '',
-      'menu_name' => 'history',
+     $labels4 = array(
+    'name' => __('History', 'Sorayatec'),
+    'singular_name' => __('History', 'Sorayatec'),
+    'add_new' => __('Add New Year', 'Sorayatec'),
+    'add_new_item' => __('Add New Year', 'Sorayatec'),
+    'edit_item' => __('Edit Year', 'Sorayatec'),
+    'new_item' => __('New Year', 'Sorayatec'),
+    'all_items' => __('All years', 'Sorayatec'),
+    'view_item' => __('View Histories', 'Sorayatec'),
+    'search_items' => __('Search Year', 'Sorayatec'),
+    'not_found' =>  __('No Year Found', 'Sorayatec'),
+    'not_found_in_trash' => __('No year found in Trash', 'Sorayatec'), 
+    'parent_item_colon' => '',
+    'menu_name' => __('history'),
     );
 
     // register post type
@@ -249,7 +251,7 @@ function custom_post_type_init() {
       'hierarchical' => false,
       'rewrite' => array('slug' => 'history'),
       'query_var' => true,
-      'menu_icon' => 'dashicons-randomize',
+      'menu_icon' => 'dashicons-backup',
       'supports' => array(
           'title',
           'editor',
@@ -269,19 +271,19 @@ function custom_post_type_init() {
   /*******CPT-News start*******/
     //News label
     $labels5 = array(
-      'name' => 'News',
-      'singular_name' => 'News',
-      'add_new' => 'Add New News',
-      'add_new_item' => 'Add New News',
-      'edit_item' => 'Edit News',
-      'new_item' => 'New News',
-      'all_items' => 'All News',
-      'view_item' => 'View News',
-      'search_items' => 'Search News',
-      'not_found' =>  'No News Found',
-      'not_found_in_trash' => 'No News found in Trash', 
-      'parent_item_colon' => '',
-      'menu_name' => 'News',
+    'name' => __('News', 'Sorayatec'),
+    'singular_name' => __('News', 'Sorayatec'),
+    'add_new' => __('Add New News', 'Sorayatec'),
+    'add_new_item' => __('Add New News', 'Sorayatec'),
+    'edit_item' => __('Edit News', 'Sorayatec'),
+    'new_item' => __('New News', 'Sorayatec'),
+    'all_items' => __('All News', 'Sorayatec'),
+    'view_item' => __('View News', 'Sorayatec'),
+    'search_items' => __('Search News', 'Sorayatec'),
+    'not_found' =>  __('No News Found', 'Sorayatec'),
+    'not_found_in_trash' => __('No News found in Trash', 'Sorayatec'), 
+    'parent_item_colon' => '',
+    'menu_name' => __('News', 'Sorayatec'),
     );
 
     // register post type
@@ -294,7 +296,7 @@ function custom_post_type_init() {
       'hierarchical' => false,
       'rewrite' => array('slug' => 'news'),
       'query_var' => true,
-      'menu_icon' => 'dashicons-randomize',
+      'menu_icon' => 'dashicons-media-interactive',
       'supports' => array(
           'title',
           'editor',
@@ -330,8 +332,21 @@ function sorayatec_site_logo_setup() {
  add_action( 'after_setup_theme', 'sorayatec_site_logo_setup' );
 
 
-
-
  /*******Adding Header Footer Customizer*******/
  require get_template_directory() . '/inc/headerfooter-customizer.php';
  new HeaderFooter_Customizer();
+
+
+/*******Adding is_plugin_active function*******/
+ if( !function_exists('is_plugin_active') ) {
+  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
+
+
+/***Checking if ACF is present***/
+if( class_exists('ACF') ){
+  $acf_label = True;
+}
+else{
+  $acf_label = False;
+}

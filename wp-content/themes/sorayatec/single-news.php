@@ -10,7 +10,8 @@
 get_header();
 ?>
 
-<section class="inner-outer posts-outer news-single">
+<?php if( $acf_label ) : ?>
+    <section class="inner-outer posts-outer news-single">
         <div class="top-post">
             <div class="container">
 
@@ -50,6 +51,13 @@ get_header();
             </div>
         </div>
     </section>
+    
+<?php else:
 
+get_template_part( 'template-parts/acf', 'none'); 
+
+endif;?>  
+
+<?php get_footer(); ?>
 <?php
 get_footer();

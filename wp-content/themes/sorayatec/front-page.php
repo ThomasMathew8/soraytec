@@ -11,6 +11,8 @@ get_header();
 
       <main id="main" class="site-main" role="main">
 
+      <?php if( $acf_label ) : ?>
+
         <!-- ==============================================
     **Banner**
     =================================================== -->
@@ -202,15 +204,10 @@ get_header();
     
     <section class="signup-sec">
         <div class="container">
-            <div class="inner">
-                <h2><?php echo get_field('signup_text'); ?></h2>
-                <form class="form-inline signup-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
-                    </div>
+            <div class="inner form-inline signup-form">
+                
+                <?php get_template_part( 'template-parts/content', 'signup' ); ?>
 
-                    <button type="submit" class="btn btn-signup"><?php if(get_field('button_text')): echo strtoupper(get_field('button_text')); endif; ?></button>
-                </form>
             </div>
         </div>
     </section>
@@ -220,6 +217,11 @@ get_header();
 
 </div>
 
+<?php else:
+
+    get_template_part( 'template-parts/acf', 'none'); 
+
+ endif;?> 
 
 <?php 
 get_footer();

@@ -8,6 +8,8 @@
 get_header(); 
 ?> 
 
+<?php if( $acf_label ) : ?>
+
 <!-- ==============================================
     **Banner**
     =================================================== -->
@@ -97,6 +99,7 @@ get_header();
                             </li>
 
                             <?php 
+                            if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                             // get posts
                             $loop = new WP_Query( array(
                                 'post_type' => 'history',
@@ -172,6 +175,15 @@ get_header();
                                     endwhile;  
                             endif;
                             wp_reset_query();
+                            else:?>
+
+                                <div class="container">
+
+                                    <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
+
+                                </div>   
+
+                            <?php endif;
                             ?>
                     
                     </ul>
@@ -206,6 +218,7 @@ get_header();
 
 
                                                 <?php 
+                                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                                                 // Get repeater value
                                                 $repeater = get_field('monthly_details');
                                                 $date_stamp = array();
@@ -239,6 +252,16 @@ get_header();
                                                         <a href="#" data-slide-index="<?php echo $i; ?>"><?php if($row['date']): echo $row['date']; endif; ?></a>
                                                     </li>
                                                 <?php endforeach; endif; ?>
+
+                                            <?php else:?>
+
+                                                <div class="container">
+
+                                                    <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
+
+                                                </div>   
+
+                                            <?php endif;?>
                                                    
                                             </ul>
                                         </div>
@@ -369,6 +392,9 @@ get_header();
                             <h1><?php echo strtoupper(get_field('video_title')); ?></h1>
                             <div class="video-outer">
                                 <div id="slider" class="flexslider video">
+
+                                    <?php if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )): ?>
+
                                     <ul class="slides">
                                         <?php
                                         if( have_rows('youtube') ):
@@ -380,7 +406,7 @@ get_header();
                                             <li>
                                                 <div class="youtube-video">
                                                    
-                                                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $yt_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                  <iframe src="https://www.youtube.com/embed/<?php echo $yt_id; ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 
                                                 </div>
                                             </li>
@@ -404,6 +430,17 @@ get_header();
                                         <?php endif; endwhile; endif;  ?>
 
                                     </ul>
+
+                                    <?php else:?>
+
+                                        <div class="container">
+
+                                            <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+
+                                        </div>   
+
+                                    <?php endif;?>
+
                                 </div>
                             </div>
                         </div>
@@ -416,22 +453,10 @@ get_header();
         =================================================== -->
         <section class="signup-sec">
         <div class="container">
-            <div class="inner">
-                <h2><?php echo get_field('signup_text'); ?></h2>
-                <form class="form-inline signup-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="<?php if(get_field('placeholder_text')): echo get_field('placeholder_text'); endif; ?>">
-                    </div>
+            <div class="inner form-inline signup-form">
+                    
+                <?php get_template_part( 'template-parts/content', 'signup' ); ?>
 
-                    <button type="submit" class="btn btn-signup">
-                        <?php 
-                        if(get_field('button_text')): 
-                            echo strtoupper(get_field('button_text')); 
-                        endif; 
-                        ?>
-                    </button>
-
-                </form>
             </div>
         </div>
     </section>
@@ -439,6 +464,12 @@ get_header();
 
 
 
-</div>  
+</div> 
+
+<?php else:
+
+get_template_part( 'template-parts/acf', 'none'); 
+
+endif;?> 
 
 <?php get_footer(); ?>
