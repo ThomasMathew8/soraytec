@@ -43,7 +43,6 @@ get_header();
 
         <?php 
         $default = get_field( 'history_default' );
-        $default_img = $default['default_img'];
         ?>
         <section class="history">
             <div class="container">
@@ -59,7 +58,7 @@ get_header();
                                         <p><?php echo $default['default_desc']; ?></p>
                                     </div>
                                     <div class="col-md-7 right">
-                                        <figure><img src="<?php echo $default_img['url']; ?>" class="img-fluid" alt=""></figure>
+                                        <figure><img src="<?php echo $default['default_img']['url']; ?>" class="img-fluid" alt=""></figure>
                                     </div>
                                 </div>
                             </li>
@@ -105,7 +104,6 @@ get_header();
                                     if( $repeater ):
                                         foreach( $repeater as $row ) :
                                             $i++;
-                                            $img = $row['image'];
 
                                     ?>
                                             <li>
@@ -117,7 +115,7 @@ get_header();
                                                             <p><?php echo $row['desc']; ?></p>
                                                         </div>
                                                         <div class="col-md-7 right">
-                                                            <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
+                                                            <figure><img src="<?php echo $row['image']['url'];?>" alt=""></figure>
                                                         </div>
                                                     </div>
                                             </li>
@@ -315,13 +313,12 @@ get_header();
                                         <?php
                                         if( have_rows('youtube') ):
                                             while( have_rows('youtube') ) : the_row();
-                                            $yt_id = get_sub_field('id');
                                         ?>
 
                                             <li>
                                                 <div class="youtube-video">
                                                    
-                                                  <iframe src="https://www.youtube.com/embed/<?php echo $yt_id; ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                  <iframe src="https://www.youtube.com/embed/<?php the_sub_field('id'); ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 
                                                 </div>
                                             </li>
@@ -336,10 +333,9 @@ get_header();
                                         <?php
                                         if( have_rows('youtube') ):
                                             while( have_rows('youtube') ) : the_row();
-                                            $yt_id = get_sub_field('id');
                                         ?>
                                         
-                                            <li><img src="http://i3.ytimg.com/vi/<?php echo $yt_id; ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
+                                            <li><img src="http://i3.ytimg.com/vi/<?php the_sub_field('id'); ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
                                         
                                         <?php endwhile; endif;  ?>
 
