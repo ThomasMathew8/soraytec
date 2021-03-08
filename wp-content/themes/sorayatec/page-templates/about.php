@@ -69,60 +69,29 @@ get_header();
                             // get posts
                             $loop = new WP_Query( array(
                                 'post_type' => 'history',
-                                'orderby'=>'title',
-                                'order'=>'ASC'
+                                'orderby' => 'meta_value',
+                                'meta_type' => 'DATE',
+                                'meta_key' => 'history_date',
+                                'order'	=> 'ASC'
                             )
                             );
                             if( $loop->have_posts() ):  
                                 while ( $loop->have_posts() ) : $loop->the_post();
-
-                                
-                                    
-                                    // Get repeater value
-                                    $repeater = get_field('monthly_details');
-                                    $date_stamp = array();
-
-
-                                    // Obtain list of columns
-                                    foreach ($repeater as $key => $row):
-                                        $dates = $row['date'];
-
-                                        $pieces = explode(",", $dates);
-                                        $m = $pieces[0];
-                                        $y = $pieces[1];
-
-
-                                        // create UNIX
-                                        $date_stamp[$key] = strtotime("$m,$y");
-                                        
-                                    endforeach;
-
-                                    // Sort the data by date, ascending
-                                    array_multisort($date_stamp, SORT_ASC, $repeater);
-
-                                    // Display newly orded columns
-                                    // Unsure if this is the optimal way to do this...
-                                    if( $repeater ):
-                                        foreach( $repeater as $row ) :
-                                            $i++;
-                                            $img = $row['image'];
-
-                                    ?>
+                                $image = get_field('image');
+                            ?>
                                             <li>
                                                     <div class="row">
                                                         <div class="col-md-5 left">
                                                             <div class="title">
-                                                                <h2><?php echo $row['date']; ?></h2>
+                                                                <h2><?php the_field('history_date'); ?></h2>
                                                             </div>
-                                                            <p><?php echo $row['desc']; ?></p>
+                                                            <p><?php echo the_field('description'); ?></p>
                                                         </div>
                                                         <div class="col-md-7 right">
-                                                            <figure><img src="<?php echo $img['url'];?>" alt=""></figure>
+                                                            <figure><img src="<?php echo $image['url']; ?>" alt=""></figure>
                                                         </div>
                                                     </div>
                                             </li>
-                                    <?php endforeach; endif; ?>
-
 
                                     <?php 
                                     
@@ -148,81 +117,77 @@ get_header();
             <div id="content-6" class="content horizontal-images">
 
                     <?php 
-                    $args = array( 
+                    $j=0;
+                    $years = array();
+                    $loop = new WP_Query( array(
                         'post_type' => 'history',
-                        'orderby'=>'title',
-                        'order'=>'ASC');
-                    $loop = new WP_Query( $args );
+                        'orderby' => 'meta_value',
+                        'meta_type' => 'DATE',
+                        'meta_key' => 'history_date',
+                        'order'	=> 'ASC'
+                    )
+                    );
+                    if( $loop->have_posts() ):  
+                        while ( $loop->have_posts() ) : $loop->the_post();
+                        $dates = get_field('history_date');
+                        $pieces = explode(",", $dates);
+                        $years[$j] = $pieces[1];
+                        $j++;
+                    endwhile; endif; 
+                    wp_reset_query();
+                    $years = array_unique ( $years);
+                    $n = count($years);
+                    var_dump($years,$n);
                     ?>
 
-                        <ul class="timeline" id="bxpager">
-
-                            <?php 
+                    <ul class="timeline" id="bxpager">
+                            <?php
+                            $j=0;
                             $i=0;
-                            if( $loop->have_posts() ):  
-                                while ( $loop->have_posts() ) : $loop->the_post();
-                                $date= get_sub_field('date');
+                            while( $j < $n ):
+                                $current_year = $years[$j];
                             ?>    
-                                
-                                <li>
-                                    <div class="inner" id="inner-content">
-                                        <div class="circle"><?php echo the_title(); ?></div>
-                                        <div class="timeline-cnt">
-                                            <ul>
+                        <li>    
+                            <div class="inner" id="inner-content">
+                                    <div class="circle"><?php echo $current_year; ?></div>
+                                    <div class="timeline-cnt">
+                                        <ul>
+                                            <?php
+                                            $args = array( 
+                                                'post_type' => 'history',
+                                                'orderby' => 'meta_value',
+                                                'meta_type' => 'DATE',
+                                                'meta_key' => 'history_date',
+                                                'order'	=> 'ASC'
+                                            );
+                                            $loop = new WP_Query( $args ); 
+                                                if( $loop->have_posts() ):  
+                                                    while ( $loop->have_posts() ) : $loop->the_post();                                        
+                                                        $dates = get_field('history_date');
+                                                        $pieces = explode(",", $dates);
+                                                        $year = $pieces[1];
 
+                                                        if ( $year == $current_year ):
+                                                            $i++;
+                                            ?>
+                                                            <li>
+                                                                <a href="#" data-slide-index="<?php echo $i; ?>"><?php the_field('history_date'); ?></a>
+                                                            </li>
 
-                                                <?php 
-                                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
-                                                // Get repeater value
-                                                $repeater = get_field('monthly_details');
-                                                $date_stamp = array();
-                
-
-                                                // Obtain list of columns
-                                                foreach ($repeater as $key => $row):
-                                                    $dates = $row['date'];
-
-                                                    $pieces = explode(",", $dates);
-                                                    $m = $pieces[0];
-                                                    $y = $pieces[1];
-
-
-                                                    // create UNIX
-                                                    $date_stamp[$key] = strtotime("$m,$y");
-                                                   
-                                                endforeach;
-
-                                                // Sort the data by date, ascending
-                                                array_multisort($date_stamp, SORT_ASC,  $repeater);
-
-                                                // Display newly orded columns
-                                                // Unsure if this is the optimal way to do this...
-                                                if( $repeater ):
-                                                    foreach( $repeater as $row ) :
-                                                        $i++;
-
-                                                ?>
-                                                    <li>
-                                                        <a href="#" data-slide-index="<?php echo $i; ?>"><?php echo $row['date'];?></a>
-                                                    </li>
-                                                <?php endforeach; endif; ?>
-
-                                            <?php else:?>
-
-                                                <div class="container">
-
-                                                    <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
-
-                                                </div>   
-
-                                            <?php endif;?>
-                                                   
-                                            </ul>
-                                        </div>
+                                            <?php 
+                                                        endif;
+                                                    endwhile; 
+                                                endif; 
+                                            ?>
+                                        </ul>
                                     </div>
-                                </li>
-                            <?php  endwhile; endif; ?>     
-                        </ul>
+                            </div>
+                        </li>  
+                        <?php
+                            $j++; 
+                        endwhile; 
+                        ?>   
+                    </ul>
 
                     <?php wp_reset_query(); ?>   
                 
