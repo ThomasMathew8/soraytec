@@ -39,7 +39,7 @@ get_header();
                             </figure>
                         </div>
                         <div class="col-lg-4 left">
-                            <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
+                            <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
                             <div class="source">
                                 <span><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
@@ -84,7 +84,7 @@ get_header();
                                 <figure><img src="<?php echo $img['url']; ?>" alt=""></figure>
                             </div>
                             <div class="col-md-8">
-                                <h1><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h1>
+                                <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
                                 <span class="date"><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
                                 <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>

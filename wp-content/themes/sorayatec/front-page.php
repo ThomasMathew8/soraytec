@@ -18,7 +18,6 @@ get_header();
     =================================================== -->
     <?php 
     $primary = get_field( 'primary_info' );
-    $primary_img = $primary[ 'primary_info_img' ];
     ?> 
     
     <div class="banner">
@@ -32,7 +31,7 @@ get_header();
                 </div>
                 <div class="col-md-6 right">
                     <figure>
-                        <img src="<?php echo $primary_img['url']; ?>" >
+                        <img src="<?php echo $primary[ 'primary_info_img' ]['url']; ?>" >
                     </figure>
                 </div>
             </div>
@@ -60,7 +59,6 @@ get_header();
      <?php  while ( $loop->have_posts() ) : $loop->the_post();if($i%2==0):
             
             $even = get_field( 'aims' );
-            $even_img = $even[ 'aim_img' ];
             ?>
 
             <div class="vision">
@@ -75,7 +73,7 @@ get_header();
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <figure><img src="<?php echo $even_img['url']; ?>" class="rounded-circle" alt=""></figure>
+                            <figure><img src="<?php echo $even[ 'aim_img' ]['url']; ?>" class="rounded-circle" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -85,7 +83,6 @@ get_header();
 
             <?php 
             $odd = get_field( 'aims' );
-            $odd_img = $odd[ 'aim_img' ];
             ?>
             <div class="vision mission">
                 <div class="container">
@@ -99,7 +96,7 @@ get_header();
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <figure><img src="<?php echo $odd_img['url'];?>" class="rounded-circle" alt=""></figure>
+                            <figure><img src="<?php echo $odd['aim_img']['url'];?>" class="rounded-circle" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -134,11 +131,10 @@ get_header();
                 
                 $ecosystem = get_field( 'ecosystem_links' );
                 
-                $ecosystem_img = $ecosystem[ 'link_img' ];
                 ?> 
                         <li class="col-sm-6 col-md-4">
                             <a href="<?php echo $ecosystem[ 'link_url' ]; ?>" target="_blank">
-                            <img src="<?php echo $ecosystem_img['url']; ?>" alt="">
+                            <img src="<?php echo $ecosystem[ 'link_img' ]['url']; ?>" alt="">
                             </a>
                         </li>
                 <?php endwhile; ?> 

@@ -16,8 +16,6 @@ get_header();
     <?php 
     $banner = get_field('banner');
     if (!empty($banner)):
-        $right = $banner['right_img'];
-        $left = $banner['left_img'];
     ?>
     <div class="banner prdct-banner">
         <div class="container">
@@ -25,12 +23,12 @@ get_header();
                 <div class="col-md-4 left">
                     <p><?php echo wp_trim_words( $banner['banner_desc'], 15, '  .....'); ?></p>
                     <figure>
-                        <img src="<?php echo $left['url']; ?>" alt=""/>
+                        <img src="<?php echo $banner['left_img']['url']; ?>" alt=""/>
                     </figure>
                 </div>
                 <div class="col-md-8 right">
                     <figure>
-                        <img src="<?php echo $right['url']; ?>" alt="">
+                        <img src="<?php echo $banner['right_img']['url']; ?>" alt="">
                     </figure>
                 </div>
             </div>
@@ -63,18 +61,19 @@ get_header();
                     if( have_rows('features_loop') ):
                     while( have_rows('features_loop') ) : the_row();
                     $img = get_sub_field('img');
-                    $desc = get_sub_field('desc');
-                    ?>
+                ?>
 
-                        <li class="col-md-4 col-sm-6">
-                            <figure>
-                                <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
-                            </figure>
-                            <p><?php echo wp_trim_words( $desc, 10, '  .....'); ?></p>
-                        </li>
-                        
-                    <?php endwhile; endif;     
-                else:?>
+                    <li class="col-md-4 col-sm-6">
+                        <figure>
+                            <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
+                        </figure>
+                        <p><?php echo wp_trim_words(get_sub_field('desc'), 10, '  .....'); ?></p>
+                    </li>
+                    
+                <?php 
+                endwhile; endif;    
+                else:
+                ?>
 
                     <div class="container">
 
@@ -143,38 +142,35 @@ get_header();
                 <?php 
                 $application = get_field('application');
                 if (!empty($application)):
-                    $img = $application['image'];
                 ?>
                                     
                     <div class="col-md-6 left">
                         <h2><?php echo strtoupper($application['title']); ?></h2>
                         <ul>
-
                         
-                                <?php
-                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
-                                    if( have_rows('application_points') ):
-                                    while( have_rows('application_points') ) : the_row();
-                                    $point = get_sub_field('application_point');
-                                    ?>
+                              <?php
+                              if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                                  if( have_rows('application_points') ):
+                                      while( have_rows('application_points') ) : the_row();
+                              ?>
 
-                                    <li><?php echo $point; ?></li>
+                                         <li><?php echo get_sub_field('application_point'); ?></li>
+                          
+                                 <?php endwhile; endif; ?>
 
-                                    <?php endwhile; endif; ?>
+                              <?php else:?>
 
-                                <?php else:?>
+                                  <div class="container">
 
-                                    <div class="container">
+                                      <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
 
-                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
+                                  </div>   
 
-                                    </div>   
-
-                                <?php endif;?>
+                              <?php endif;?>
 
                         </ul>
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid" alt="" />
+                            <img src="<?php echo $application['image']['url']; ?>" class="img-fluid" alt="" />
                         </figure>
                     </div>
                 <?php endif; ?>
@@ -183,20 +179,18 @@ get_header();
                     if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                         if( have_rows('specification_box') ):
                         while( have_rows('specification_box') ) : the_row();
-                        $title = get_sub_field('title');
                         ?>
 
                             <div class="application-cnt">
-                                <h3><?php echo strtoupper($title); ?></h3>
+                                <h3><?php echo strtoupper(get_sub_field('title')); ?></h3>
                                 <ul>
                                     <?php
                                     if( have_rows('rows') ):
                                     while( have_rows('rows') ) : the_row();
-                                    $row_title = get_sub_field('row_title');
                                     ?>
                                         <li>
                                             <div class="left-table">
-                                                <h4><?php echo $row_title; ?></h4>
+                                                <h4><?php echo get_sub_field('row_title'); ?></h4>
                                             </div>
 
                                             <div class="right-table">
@@ -204,10 +198,9 @@ get_header();
                                                 <?php
                                                 if( have_rows('row_fields') ):
                                                 while( have_rows('row_fields') ) : the_row();
-                                                $column = get_sub_field('row_field');
                                                 ?>
 
-                                                    <span><?php echo $column; ?></span>
+                                                    <span><?php echo get_sub_field('row_field'); ?></span>
 
                                                 <?php endwhile; endif; ?>    
                                             </div>
@@ -245,7 +238,6 @@ get_header();
                     <div class="col-md-6 left">
                         <?php 
                         $features = get_field('features'); 
-                        $img = $features['img'];
                         ?>
                         <h2><?php echo strtoupper($features['title']); ?></h2>
 
@@ -254,10 +246,9 @@ get_header();
                             if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                                 if( have_rows('features_points') ):
                                     while( have_rows('features_points') ) : the_row();
-                                    $point = get_sub_field('features_point');
-                                ?>
+                            ?>
 
-                                <li><?php echo $point; ?></li>
+                                <li><?php echo get_sub_field('features_point'); ?></li>
 
                                 <?php endwhile; endif; ?>  
 
@@ -275,7 +266,7 @@ get_header();
                     </div>
                     <div class="col-md-6 right">
                         <figure>
-                            <img src="<?php echo $img['url']; ?>" class="img-fluid" alt="" />
+                            <img src="<?php echo $features['img']['url']; ?>" class="img-fluid" alt="" />
                         </figure>
                     </div>
                 </div>

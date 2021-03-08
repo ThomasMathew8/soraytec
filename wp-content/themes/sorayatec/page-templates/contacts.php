@@ -25,11 +25,10 @@ get_header();
                             if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                             if( have_rows('address') ):
                                 while( have_rows('address') ) : the_row();
-                                $country = get_sub_field('country');
                             ?>
 
                                 <div class="col-sm-6 address">
-                                    <h2><?php echo $country; ?></h2>
+                                    <h2><?php echo get_sub_field('country'); ?></h2>
                                     <address>
 
                                         <?php
@@ -68,8 +67,7 @@ get_header();
                     <div class="contact-form">
 
                         <?php
-                        $contact = '[contact-form-7 id="1796" title="Contact form 1"]';
-                        echo do_shortcode($contact);
+                        echo do_shortcode('[contact-form-7 id="1796" title="Contact form 1"]');
                         ?>
 
                         
