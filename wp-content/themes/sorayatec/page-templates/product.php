@@ -21,7 +21,7 @@ get_header();
         <div class="container">
             <div class="row align-items-end">
                 <div class="col-md-4 left">
-                    <p><?php echo $banner['banner_desc']; ?></p>
+                    <p><?php echo wp_trim_words( $banner['banner_desc'], 15, '  .....'); ?></p>
                     <figure>
                         <img src="<?php echo $banner['left_img']['url']; ?>" alt=""/>
                     </figure>
@@ -49,8 +49,10 @@ get_header();
 
         <div class="container">
             <div class="prdct-feature-header">
+
                 <h2><?php echo strtoupper($feature['title']); ?></h2>
-                <p><?php echo $feature['desc']; ?></p>
+                <p><?php echo wp_trim_words( $feature['desc'], 15, '  .....'); ?></p>
+
             </div>
             <ul class="row prdct-feature-cnt">
 
@@ -65,7 +67,7 @@ get_header();
                         <figure>
                             <img src="<?php echo $img['url']; ?>" class="img-fluid" alt=""/>
                         </figure>
-                        <p><?php the_sub_field('desc'); ?></p>
+                        <p><?php echo wp_trim_words(get_sub_field('desc'), 10, '  .....'); ?></p>
                     </li>
                     
                 <?php 

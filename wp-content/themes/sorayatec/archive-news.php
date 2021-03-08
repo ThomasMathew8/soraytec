@@ -44,7 +44,7 @@ get_header();
                                 <span><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
                             </div>
-                            <?php the_excerpt(); ?>
+                            <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
                             <ul class="follow-us">
 
                             <?php
@@ -87,7 +87,7 @@ get_header();
                                 <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
                                 <span class="date"><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
-                                <?php the_excerpt(); ?>
+                                <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
                                 <ul class="follow-us">
                                 
                                 <?php

@@ -66,7 +66,7 @@ input:focus, textarea:focus{
 /* Banner */ 
 /* ================================================== */
 .banner{
-    height: 670px;
+    min-height: 670px;
     padding: 50px 0 0;
     border-bottom: 17px solid #5b5b5b;
     background: url(../images/home-banner-bg.png) no-repeat center bottom / 100%;
@@ -1048,7 +1048,7 @@ ul.team-list li .source span{
     padding-right: 0px;
 }
 ul.post-lists > li{
-    margin-bottom: 100px;
+    margin-bottom: 100px !important;
 }
 ul.post-lists > li:last-child{
     margin-bottom: 0px;
@@ -1066,7 +1066,7 @@ ul.post-lists > li .date{
     color: #232323;
 }
 ul.post-lists > li p{
-    padding-bottom: 30px;
+    padding-bottom: 0px;
 }
 ul.post-lists > li .source{
     margin-bottom: 30px;

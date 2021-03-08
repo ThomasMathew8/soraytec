@@ -27,7 +27,7 @@ get_header();
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="about-desc">
-                            <p><?php echo $banner['banner_desc']; ?></p>
+                            <p><?php echo wp_trim_words( $banner['banner_desc'], 100, '  .....'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -48,14 +48,14 @@ get_header();
             <div class="container">
                 <h1><?php echo strtoupper($default['default_title']); ?></h1>
                 <div class="show-mob">
-                    <p><?php echo $default['default_desc']; ?></p>
+                    <p><?php echo wp_trim_words( $default['default_desc'], 30, '  .....'); ?></p>
                 </div>
                
                         <ul class="history-cnt" id="bxslider">
                             <li id="default" class="active">
                                 <div class="row">
                                     <div class="col-md-5 left">
-                                        <p><?php echo $default['default_desc']; ?></p>
+                                        <p><?php echo wp_trim_words( $default['default_desc'], 30, '  .....'); ?></p>
                                     </div>
                                     <div class="col-md-7 right">
                                         <figure><img src="<?php echo $default['default_img']['url']; ?>" class="img-fluid" alt=""></figure>
@@ -112,7 +112,7 @@ get_header();
                                                             <div class="title">
                                                                 <h2><?php echo $row['date']; ?></h2>
                                                             </div>
-                                                            <p><?php echo $row['desc']; ?></p>
+                                                            <p><?php echo wp_trim_words( $row['desc'], 30, '  .....'); ?></p>
                                                         </div>
                                                         <div class="col-md-7 right">
                                                             <figure><img src="<?php echo $row['image']['url'];?>" alt=""></figure>
@@ -244,7 +244,7 @@ get_header();
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="team-desc">
-                            <p><?php echo $team_top['team_desc']; ?> </p>
+                            <p><?php echo wp_trim_words( $team_top['team_desc'], 100, '  .....'); ?> </p>
                         </div>
                     </div>
                 </div>
@@ -275,7 +275,7 @@ get_header();
                                         </div>
                                         <div class="back">
                                             <p><?php echo $card[ 'card_text' ]; ?></p>
-                                            <p><?php echo $card[ 'card_desc' ]; ?></p>
+                                            <p><?php echo wp_trim_words( $card[ 'card_desc' ], 10, '  .....'); ?></p>
                                             <div class="d-flex mt-auto">
                                                 <a href="<?php echo get_field('linkedin_link'); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                             </div>
