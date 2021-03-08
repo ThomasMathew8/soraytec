@@ -31,6 +31,12 @@ input.wpcf7-form-control.wpcf7-submit {
     text-decoration: underline;
     cursor: pointer;}
 
+.error-404{
+    width: 1000px;
+    margin:auto;
+    margin-top: 80px;
+    margin-bottom: 80px;} 
+
  #mc_embed_signup_scroll{display: flex;}
 
  #mc_embed_signup_scroll h2{margin-top: 12px;}

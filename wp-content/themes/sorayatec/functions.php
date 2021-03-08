@@ -337,6 +337,20 @@ function sorayatec_site_logo_setup() {
  new HeaderFooter_Customizer();
 
 
+/**********URL Redirecting for search_form in 404 page*********/
+ function search_url_rewrite() {
+
+    if ( is_search() && ! empty( $_GET['s'] ) ) {
+
+      wp_redirect( home_url( "/" ) . urlencode( get_query_var( 's' ) ) );
+      exit();
+      
+    }	
+  
+}
+add_action( 'template_redirect', 'search_url_rewrite' );
+
+
 /*******Adding is_plugin_active function*******/
  if( !function_exists('is_plugin_active') ) {
   include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
