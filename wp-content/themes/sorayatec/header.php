@@ -10,17 +10,18 @@
  */
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html <?php language_attributes(); ?>>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
-    <?php wp_head(); ?>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
 
-
+	<?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
   <div class="main">
 
      <!-- ==============================================
@@ -29,14 +30,13 @@
     <header class="header">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
-            
-                <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
-                <?php
-                if ( function_exists( 'the_custom_logo' ) ) {
-                the_custom_logo();
-                }
-                ?>
-                </a>
+
+                <?php if(get_field('header_logo', 'option')): ?>
+                    <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
+                        <img src="<?php echo get_field('header_logo', 'option')['url']; ?>" alt="">
+                    </a>
+                <?php endif; ?>
+                    
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

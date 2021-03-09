@@ -23,7 +23,7 @@ get_header();
 			<div class="page-wrapper">
 				<div class="page-content">
 					
-					<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'sorayatec' ); ?></p>
+					<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'Sorayatec' ); ?></p>
 
 					<?php get_search_form(); ?>
                 </div><!-- .page-content -->

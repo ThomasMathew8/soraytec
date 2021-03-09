@@ -12,22 +12,14 @@ get_header();
 
 <?php 
 
-    if( $acf_label) :
 
-    $loop = new WP_Query( array(
-        'post_type' => 'news',
-        'posts_per_page' => -1,
-        'order' => 'ASC'
-    )
-    );
-    if ( $loop->have_posts() ): ?>
+    if ( have_posts() ): ?>
 
    <section class="inner-outer posts-outer">
 
             <?php
             $i=0;
-            while ( $loop->have_posts() ) : $loop->the_post();                 
-            $img = get_field( 'news_img' );
+            while ( have_posts() ) : the_post();                 
             if ($i!=1): 
             ?> 
             <div class="top-post">
@@ -35,7 +27,7 @@ get_header();
                     <div class="row">
                         <div class="col-lg-8 order-lg-2">
                             <figure>
-                                <img src="<?php echo $img['url']; ?>" class="img-fluid" alt="">
+                                <img src="<?php echo get_field( 'news_img' )['url']; ?>" class="img-fluid" alt="">
                             </figure>
                         </div>
                         <div class="col-lg-4 left">
@@ -47,24 +39,14 @@ get_header();
                             <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
                             <ul class="follow-us">
 
-                            <?php
-                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                            <?php                       
                                     if( have_rows('follow') ):
                                     while( have_rows('follow') ) : the_row();
                                     ?>
 
-                                        <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                        <li><a href="<?php the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php the_sub_field( 'icon_class' ); ?>"></i></a></li>
                                     
                                     <?php endwhile; endif; ?>                             
-                                <?php else:?>
-
-                                    <div class="container">
-
-                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
-
-                                    </div>   
-
-                                <?php endif;?> 
 
                             </ul>
                         </div>
@@ -81,33 +63,23 @@ get_header();
                     <ul class="post-lists">
                         <li class="row">
                             <div class="col-md-4">
-                                <figure><img src="<?php echo $img['url']; ?>" alt=""></figure>
+                                <figure><img src="<?php echo get_field( 'news_img' )['url']; ?>" alt=""></figure>
                             </div>
                             <div class="col-md-8">
-                                <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
+                                <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
                                 <span class="date"><?php echo get_field( 'date' ); ?></span>
                                 <?php echo get_field( 'place' ); ?>
                                 <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
                                 <ul class="follow-us">
                                 
                                 <?php
-                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                                     if( have_rows('follow') ):
                                     while( have_rows('follow') ) : the_row();
                                     ?>
 
-                                        <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                        <li><a href="<?php the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php the_sub_field( 'icon_class' ); ?>"></i></a></li>
                                     
                                     <?php endwhile; endif; ?>                             
-                                <?php else:?>
-
-                                    <div class="container">
-
-                                        <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
-
-                                    </div>   
-
-                                <?php endif;?>
                                 
                                 </ul>
                             </div>
@@ -119,7 +91,7 @@ get_header();
         <?php endif; endwhile; ?>
     </section>
 
-    <?php endif; wp_reset_query();?>
+    <?php endif; ?>
 
     <!-- ==============================================
     **Signup Newsletter**
@@ -136,12 +108,6 @@ get_header();
         </div>
         </div>
     </section>
-
-<?php else:
-
-get_template_part( 'template-parts/acf', 'none'); 
-
-endif;?> 
 
 <?php
 get_footer();

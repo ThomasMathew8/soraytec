@@ -8,7 +8,6 @@
 get_header(); 
 ?> 
 
-<?php if( $acf_label ) : ?>
 
 <!-- =============================================
     **Contact**
@@ -22,7 +21,6 @@ get_header();
                         <div class="row">
 
                             <?php
-                            if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                             if( have_rows('address') ):
                                 while( have_rows('address') ) : the_row();
                             ?>
@@ -50,15 +48,6 @@ get_header();
                                     </address>
                                 </div>
                             <?php endwhile; endif; ?> 
-                            <?php else:?>
-
-                                <div class="container">
-
-                                    <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
-
-                                </div>   
-
-                            <?php endif;?>
 
                         </div>
                     </div>
@@ -76,12 +65,7 @@ get_header();
             </div>
         </div>
     </div>
-
-<?php else:
-
-   get_template_part( 'template-parts/acf', 'none'); 
-
-endif;?> 
+ 
  
 <?php 
 get_footer();

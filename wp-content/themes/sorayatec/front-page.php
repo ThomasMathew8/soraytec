@@ -11,7 +11,6 @@ get_header();
 
       <main id="main" class="site-main" role="main">
 
-      <?php if( $acf_label ) : ?>
 
         <!-- ==============================================
     **Banner**
@@ -45,20 +44,15 @@ get_header();
 
     
     <?php 
-    $loop = new WP_Query( array(
-        'post_type' => 'aims',
-        'posts_per_page' => -1,
-        'order' => 'ASC'
-    )
-    );
+
     $i=0;
-    if ( $loop->have_posts() ): ?>
+    if( have_rows('aims') ):?>
     
      <section class="about-sec">
 
-     <?php  while ( $loop->have_posts() ) : $loop->the_post();if($i%2==0):
+     <?php   while( have_rows('aims') ) : the_row();if($i%2==0):
             
-            $even = get_field( 'aims' );
+
             ?>
 
             <div class="vision">
@@ -67,13 +61,13 @@ get_header();
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
 
-                                <h2><?php echo strtoupper($even['aim_title']); ?></h2>
-                                <p><?php echo wp_trim_words( $even['aim_desc'], 25, '  .....'); ?></p>
+                                <h2><?php echo strtoupper(get_sub_field('title')); ?></h2>
+                                <p><?php echo wp_trim_words( get_sub_field('desc'), 25, '  .....'); ?></p>
 
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <figure><img src="<?php echo $even[ 'aim_img' ]['url']; ?>" class="rounded-circle" alt=""></figure>
+                            <figure><img src="<?php echo get_sub_field('image')['url']; ?>" class="rounded-circle" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -90,13 +84,13 @@ get_header();
                         <div class="col-md-7 text-right">
                             <div class="inner">
 
-                                <h2><?php echo strtoupper($odd['aim_title']); ?></h2>
-                                <p><?php echo wp_trim_words( $odd['aim_desc'], 25, '  .....'); ?></p>
+                                <h2><?php echo strtoupper(get_sub_field('title')); ?></h2>
+                                <p><?php echo wp_trim_words( get_sub_field('desc'), 25, '  .....'); ?></p>
 
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <figure><img src="<?php echo $odd['aim_img']['url'];?>" class="rounded-circle" alt=""></figure>
+                            <figure><img src="<?php echo get_sub_field('image')['url'];?>" class="rounded-circle" alt=""></figure>
                         </div>
                     </div>
                 </div>
@@ -106,44 +100,36 @@ get_header();
         
      </section>
 
-    <?php endif; wp_reset_query(); ?> 
+    <?php endif; ?> 
 
     <!-- ==============================================
     **Soraytec Ecosystem**
     =================================================== -->
     
     <?php 
-    $loop = new WP_Query( array(
-        'post_type' => 'ecosystem',
-        'posts_per_page' => -1,
-        'order' => 'ASC'
-    )
-    );
-    if ( $loop->have_posts() ): ?>
+    if( have_rows('ecosystem') ): while ( have_rows('ecosystem') ) : the_row();  ?>
 
     <section class="soraytec-ecosystem">
         <div class="container">
-            <h2><?php echo strtoupper(get_field('ecosystem_title')); ?></h2>
+            <h2><?php echo strtoupper(get_sub_field('ecosystem_title')); ?></h2>
             <ul class="row logos-list">
             
                 <?php
-                while ( $loop->have_posts() ) : $loop->the_post(); 
-                
-                $ecosystem = get_field( 'ecosystem_links' );
+                if( have_rows('ecosystem_links' ) ): while ( have_rows('ecosystem_links')) : the_row(); 
                 
                 ?> 
                         <li class="col-sm-6 col-md-4">
-                            <a href="<?php echo $ecosystem[ 'link_url' ]; ?>" target="_blank">
-                            <img src="<?php echo $ecosystem[ 'link_img' ]['url']; ?>" alt="">
+                            <a href="<?php echo get_sub_field( 'link' ); ?>" target="_blank">
+                            <img src="<?php echo get_sub_field( 'logo' )['url']; ?>" alt="">
                             </a>
                         </li>
-                <?php endwhile; ?> 
+                <?php endwhile; endif; ?> 
 
             </ul>       
         </div>
     </section>     
 
-    <?php endif; wp_reset_query(); ?>   
+    <?php endwhile; endif; ?>   
 
     <!-- ==============================================
     **Signup Newsletter**
@@ -165,11 +151,6 @@ get_header();
 
 </div>
 
-<?php else:
-
-    get_template_part( 'template-parts/acf', 'none'); 
-
- endif;?> 
 
 <?php 
 get_footer();

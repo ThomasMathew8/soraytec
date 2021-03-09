@@ -8,7 +8,6 @@
 get_header(); 
 ?> 
 
-<?php if( $acf_label ) : ?>
 
 <!-- ==============================================
     **Banner**
@@ -64,7 +63,6 @@ get_header();
                             </li>
 
                             <?php 
-                            if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
                             // get posts
                             $loop = new WP_Query( array(
                                 'post_type' => 'history',
@@ -127,15 +125,6 @@ get_header();
                                     endwhile;  
                             endif;
                             wp_reset_query();
-                            else:?>
-
-                                <div class="container">
-
-                                    <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
-
-                                </div>   
-
-                            <?php endif;
                             ?>
                     
                     </ul>
@@ -169,8 +158,7 @@ get_header();
                                             <ul>
 
 
-                                                <?php 
-                                                if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )):
+                                                <?php                                                 
                                                 // Get repeater value
                                                 $repeater = get_field('monthly_details');
                                                 $date_stamp = array();
@@ -205,15 +193,6 @@ get_header();
                                                     </li>
                                                 <?php endforeach; endif; ?>
 
-                                            <?php else:?>
-
-                                                <div class="container">
-
-                                                    <h2 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h2>
-
-                                                </div>   
-
-                                            <?php endif;?>
                                                    
                                             </ul>
                                         </div>
@@ -233,65 +212,53 @@ get_header();
         =================================================== -->
         <section class="the-team">
             <div class="container">
+                <?php 
+                if( have_rows('team_section' ) ): while ( have_rows('team_section')) : the_row();
+                ?>
+                
                 <div class="row">
-
-                    <?php 
-                    $team_top = get_field( 'team_top' );
-                    ?>
-
                     <div class="col-md-5 col-lg-5">
-                        <h1><?php echo strtoupper($team_top['team_title']); ?></h1>
+                        <h1><?php echo strtoupper(get_sub_field('team_title')); ?></h1>
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="team-desc">
-                            <p><?php echo wp_trim_words( $team_top['team_desc'], 100, '  .....'); ?> </p>
+                            <p><?php echo wp_trim_words(get_sub_field('team_desc'), 100, '  .....'); ?> </p>
                         </div>
                     </div>
                 </div>
 
-                <?php 
-                $loop = new WP_Query( array(
-                    'post_type' => 'team',
-                    'posts_per_page' => -1,
-                    'order' => 'ASC'
-                )
-                );
-                if ( $loop->have_posts() ): ?>
 
                     <ul class="row team-list">
 
                         <?php
-                        while ( $loop->have_posts() ) : $loop->the_post();
-                        $member_img = get_field('member_img');
-                        $card = get_field('back_card');
-                        $member_info = get_field('member_info');
+                        if( have_rows('team_individuals' ) ): while ( have_rows('team_individuals')) : the_row();               
                         ?>
 
                             <li class="col-sm-6 col-md-4 col-lg-3">
                                 <div class="inner">
                                     <div class="flipper">
                                         <div class="front">
-                                            <img src="<?php echo $member_img[ 'url' ]; ?>" alt="">
+                                            <img src="<?php echo get_sub_field('image')[ 'url' ]; ?>" alt="">
                                         </div>
                                         <div class="back">
-                                            <p><?php echo $card[ 'card_text' ]; ?></p>
-                                            <p><?php echo wp_trim_words( $card[ 'card_desc' ], 10, '  .....'); ?></p>
+                                            <p><?php echo get_sub_field('card')[ 'title' ]; ?></p>
+                                            <p><?php echo wp_trim_words( get_sub_field('card')[ 'desc' ], 10, '  .....'); ?></p>
                                             <div class="d-flex mt-auto">
-                                                <a href="<?php echo get_field('linkedin_link'); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                <a href="<?php echo get_sub_field('card')['linkedin_link']; ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="source">
-                                        <div class="name"><?php echo $member_info[ 'name' ]; ?></div>
-                                        <span><?php echo $member_info[ 'position' ]; ?></span>
+                                        <div class="name"><?php echo get_sub_field( 'name' ); ?></div>
+                                        <span><?php echo get_sub_field( 'position' ); ?></span>
                                     </div>
                                 </div>
                             </li>
-                        <?php  endwhile; ?>
+                        <?php  endwhile; endif; ?>
                         
                     </ul>
 
-                <?php endif; wp_reset_query(); ?>    
+                <?php endwhile; endif; ?>    
 
             </div>
         </section>    
@@ -303,11 +270,13 @@ get_header();
         
                     <section class="video-sec">
                         <div class="container">
-                            <h1><?php echo strtoupper(get_field('video_title')); ?></h1>
+                        <?php 
+                        if( have_rows('video_section' ) ): while ( have_rows('video_section')) : the_row();
+                        ?>
+                            <h1><?php echo strtoupper(get_sub_field('title')); ?></h1>
                             <div class="video-outer">
                                 <div id="slider" class="flexslider video">
-
-                                    <?php if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' )): ?>
+         
 
                                     <ul class="slides">
                                         <?php
@@ -341,18 +310,10 @@ get_header();
 
                                     </ul>
 
-                                    <?php else:?>
-
-                                        <div class="container">
-
-                                            <h3 class="entry-header"><?php _e('Please Install ACF PRO Plugin!', 'Sorayatec'); ?></h3>
-
-                                        </div>   
-
-                                    <?php endif;?>
 
                                 </div>
                             </div>
+                            <?php endwhile;endif; ?>
                         </div>
                     </section>
 
@@ -375,11 +336,7 @@ get_header();
 
 
 </div> 
+ 
 
-<?php else:
-
-get_template_part( 'template-parts/acf', 'none'); 
-
-endif;?> 
-
-<?php get_footer(); ?>
+<?php 
+get_footer();

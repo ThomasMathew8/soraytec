@@ -19,37 +19,57 @@
         <div class="container">
             <div class="row top">
                 <div class="col-md-4">
-                    <a href="<?php echo get_home_url(); ?>" class="foot-logo">
-                    <img src="<?php echo wp_get_attachment_url(get_theme_mod('footer-image')); ?>" alt="" />
-                   </a>
+
+                    <?php if(get_field('footer_logo', 'option')): ?>
+                        <a href="<?php echo get_home_url(); ?>" class="foot-logo">
+                            <img src="<?php echo get_field('footer_logo', 'option')['url']; ?>" alt="" />
+                        </a>
+                    <?php endif; ?>
+
                 </div>
                 <div class="col-md-4 contact">
-                    <h4><?php echo get_theme_mod('footer_contact_title'); ?></h4>
-                    <a href="mailto:<?php echo get_theme_mod('footer_contact_email'); ?>" class="mail"><?php echo get_theme_mod('footer_contact_email'); ?></a>
+                    <h4><?php _e('Contact', 'Sorayatec'); ?></h4>
+                    <a href="mailto:<?php if(get_field('contact_email', 'option')): the_field('contact_email', 'option'); endif; ?>" class="mail">
+                        <?php if(get_field('contact_email', 'option')): the_field('contact_email', 'option'); endif; ?>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <h4><?php echo get_theme_mod('footer-follow-title'); ?></h4>
-                    <ul class="follow-us">
-                        <li><a href="<?php echo get_theme_mod('footer_url_setting_1'); ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="<?php echo get_theme_mod('footer_url_setting_2'); ?>" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="<?php echo get_theme_mod('footer_url_setting_3'); ?>"><i class="fab fa-facebook-f"></i></a></li>
-                    </ul>
+                    <h4><?php _e('Follow Us', 'Sorayatec') ?></h4>
+
+                    <?php if( have_rows('follow', 'option') ): ?>
+                        <ul class="follow-us">
+                            <?php while( have_rows('follow', 'option') ): the_row(); ?>
+                                <li>
+                                    <a href="<?php if(get_sub_field('link')): the_sub_field('link'); endif; ?>" target="_blank">
+                                        <i class="<?php if(get_sub_field('icon_class')): the_sub_field('icon_class'); endif;?>"></i>
+                                    </a>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    <?php endif; ?>  
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="<?php echo get_home_url(); ?>/privacy-policy/"  class="privacy"><?php echo get_theme_mod('footer_privacy_policy_title'); ?></a>
+
+                <?php if(get_field('privacy_policy_link', 'option')): ?>
+                    <a href="<?php echo get_field('privacy_policy_link', 'option')['url']; ?>"  class="privacy">
+                        <?php echo get_field('privacy_policy_link', 'option')['title'];  ?>
+                    </a>
+                <?php endif; ?>
+
                 </div>
                 <div class="col-md-4 copyright">
-                    <p><?php echo get_theme_mod('footer_copyright_title'); ?></p>
+                    <p><?php if(get_field('copyright', 'option')): the_field('copyright', 'option'); endif; ?></p>
                 </div>
             </div>
         </div>
     </footer>
 
-  <?php wp_footer(); ?>
+  </div><!-- main -->
 
-  </div>
+<?php wp_footer(); ?>
 
 </body>
 </html>

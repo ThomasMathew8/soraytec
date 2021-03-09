@@ -10,7 +10,6 @@
 get_header();
 ?>
 
-<?php if( $acf_label ) : ?>
     <section class="inner-outer posts-outer news-single">
         <div class="top-post">
             <div class="container">
@@ -28,8 +27,8 @@ get_header();
                             <span><?php echo get_field( 'date' ); ?></span>
                             <?php echo get_field( 'place' ); ?>
                         </div>
-                        <h1><a href="#"><?php echo the_title(); ?></a></h1>
-                        <p><?php echo the_content(); ?></p>
+                        <h1><a href="#"><?php the_title(); ?></a></h1>
+                        <?php the_content(); ?>
                         <ul class="follow-us">
                                 
                                 <?php
@@ -37,14 +36,14 @@ get_header();
                                 while( have_rows('follow') ) : the_row();
                                 ?>
 
-                                    <li><a href="<?php echo the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php echo the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                    <li><a href="<?php the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php the_sub_field( 'icon_class' ); ?>"></i></a></li>
                                 
                                 <?php endwhile; endif; ?> 
 
                         </ul>
                         <div class="pager">
-                            <a href="<?php echo get_permalink( get_adjacent_post()->ID ); ?>">&#60; PREVIOUS</a>
-                            <a href="<?php echo get_permalink( get_adjacent_post( false, '', false )->ID ); ?>" class="ml-auto">NEXT &#62;</a>
+                            <a href="<?php echo get_permalink( get_adjacent_post()->ID ); ?>">&#60; <?php _e('PREVIOUS', 'Sorayatec'); ?></a>
+                            <a href="<?php echo get_permalink( get_adjacent_post( false, '', false )->ID ); ?>" class="ml-auto"><?php _e('NEXT', 'Sorayatec'); ?> &#62;</a>
                         </div>
                     </div>
                 </div>
@@ -52,12 +51,6 @@ get_header();
         </div>
     </section>
     
-<?php else:
 
-get_template_part( 'template-parts/acf', 'none'); 
-
-endif;?>  
-
-<?php get_footer(); ?>
 <?php
 get_footer();

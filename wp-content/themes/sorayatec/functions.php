@@ -7,33 +7,109 @@
  * @package sorayatec
  */
 
- 
-/*******Add Theme Support*******/
-if ( ! function_exists( 'sorayatec_setup' ) ) :
-  function sorayatec_setup() {
-    add_theme_support( 'title-tag' );
-    add_theme_support( 'post-thumbnails' );
-    add_theme_support( 'post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'] );
-    add_theme_support('html5',
-                        array(
-                          'comment-form',
-                          'comment-list',
-                          'gallery',
-                          'caption',
-                          'script',
-                          'style',
-                          'navigation-widgets',
-                        )
-                      );
-    add_theme_support( 'automatic-feed-links' );
-    add_theme_support( 'custom-background' );
-    add_theme_support( 'custom-header' );
-    add_theme_support( 'custom-logo' );
-    add_theme_support( 'customize-selective-refresh-widgets' );
-    add_theme_support( 'starter-content' );
-  }
+
+if ( ! defined( '_S_VERSION' ) ) {
+	// Replace the version number of the theme on each release.
+	define( '_S_VERSION', '1.0.0' );
+}
+
+if ( ! function_exists( 'soraytec_setup' ) ) :
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	function soraytec_setup() {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on soraytec, use a find and replace
+		 * to change 'soraytec' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'soraytec', get_template_directory() . '/languages' );
+
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus(
+			array(
+				'menu-1' => esc_html__( 'Primary', 'soraytec' ),
+			)
+		);
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			)
+		);
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support(
+			'custom-background',
+			apply_filters(
+				'soraytec_custom_background_args',
+				array(
+					'default-color' => 'ffffff',
+					'default-image' => '',
+				)
+			)
+		);
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 250,
+				'width'       => 250,
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
+
+    /*******Register Menu Locations*******/
+    register_nav_menus( [
+      'main-menu' => esc_html__( 'Main Menu', 'sorayatec' ),
+    ]);
+
+	}
 endif;
-add_action( 'after_setup_theme', 'sorayatec_setup' );
+add_action( 'after_setup_theme', 'soraytec_setup' );
 
 
 /*******De-registering wordpress's jQuery********/
@@ -71,12 +147,6 @@ function wphierarchy_enqueue_styles_scripts() {
 add_action( 'wp_enqueue_scripts', 'wphierarchy_enqueue_styles_scripts' );
 
 
-/*******Register Menu Locations*******/
- register_nav_menus( [
-  'main-menu' => esc_html__( 'Main Menu', 'sorayatec' ),
- ]);
-
-
 /********Adding bootstrap-navwalker*********/
 function register_navwalker(){
 	require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
@@ -86,142 +156,6 @@ add_action( 'after_setup_theme', 'register_navwalker' );
 
 /*******Custom Post Type Start*******/
 function custom_post_type_init() {
-
-  /*******CPT-Ecosystem start*******/
-    //ecosystem labels
-    $labels = array(
-      'name' => __('Ecosystem Links', 'Sorayatec'),
-      'singular_name' => __('Ecosystem Link', 'Sorayatec'),
-      'add_new' => __('Add New Ecosystem Link', 'Sorayatec'),
-      'add_new_item' => __('Add New Ecosystem Link', 'Sorayatec'),
-      'edit_item' => __('Edit Ecosystem Link', 'Sorayatec'),
-      'new_item' => __('New Ecosystem Link', 'Sorayatec'),
-      'all_items' => __('All Ecosystem Links', 'Sorayatec'),
-      'view_item' => __('View Ecosystem Links', 'Sorayatec'),
-      'search_items' => __('Search Ecosystem Links', 'Sorayatec'),
-      'not_found' =>  __('No Ecosystem Links Found', 'Sorayatec'),
-      'not_found_in_trash' => __('No Ecosystem Links found in Trash', 'Sorayatec'), 
-      'parent_item_colon' => '',
-      'menu_name' => __('Ecosystem', 'Sorayatec'),
-  );
-    
-    // register post type
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => true,
-        'show_ui' => true,
-        'capability_type' => 'post',
-        'hierarchical' => false,
-        'rewrite' => array('slug' => 'ecosystem'),
-        'query_var' => true,
-        'menu_icon' => 'dashicons-admin-site-alt3',
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'trackbacks',
-            'custom-fields',
-            'comments',
-            'revisions',
-            'thumbnail',
-            'author',
-            'page-attributes'
-        )
-    );
-    register_post_type( 'ecosystem', $args );
-  /*******CPT-Ecosystem end*******/
-   
-  /*******CPT-Aims start*******/
-    //Aims label
-    $labels1 = array(
-    'name' => __('Aims', 'Sorayatec'),
-    'singular_name' => __('Aim', 'Sorayatec'),
-    'add_new' => __('Add New Aim', 'Sorayatec'),
-    'add_new_item' => __('Add New Aim', 'Sorayatec'),
-    'edit_item' => __('Edit Aim', 'Sorayatec'),
-    'new_item' => __('New Aim', 'Sorayatec'),
-    'all_items' => __('All Aims', 'Sorayatec'),
-    'view_item' => __('View Aim', 'Sorayatec'),
-    'search_items' => __('Search Aims', 'Sorayatec'),
-    'not_found' =>  __('No Aims Found', 'Sorayatec'),
-    'not_found_in_trash' => __('No Aims found in Trash', 'Sorayatec'), 
-    'parent_item_colon' => '',
-    'menu_name' => __('Aims', 'Sorayatec'),
-    );
-
-    // register post type
-    $args1 = array(
-        'labels' => $labels1,
-        'public' => true,
-        'has_archive' => true,
-        'show_ui' => true,
-        'capability_type' => 'post',
-        'hierarchical' => false,
-        'rewrite' => array('slug' => 'aims'),
-        'query_var' => true,
-        'menu_icon' => 'dashicons-image-filter',
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'trackbacks',
-            'custom-fields',
-            'comments',
-            'revisions',
-            'thumbnail',
-            'author',
-            'page-attributes'
-        )
-    );
-    register_post_type( 'aims', $args1 );
-  /*******CPT-Aims end*******/
-
-  /*******CPT-Team start*******/ 
-    //Team label
-    $labels2 = array(
-    'name' => __('Team Members', 'Sorayatec'),
-    'singular_name' => __('Team Member', 'Sorayatec'),
-    'add_new' => __('Add New Team Member', 'Sorayatec'),
-    'add_new_item' => __('Add New Team Member', 'Sorayatec'),
-    'edit_item' => __('Edit Team Member', 'Sorayatec'),
-    'new_item' => __('New Team Member', 'Sorayatec'),
-    'all_items' => __('All Team Members', 'Sorayatec'),
-    'view_item' => __('View Team Member', 'Sorayatec'),
-    'search_items' => __('Search Team Members', 'Sorayatec'),
-    'not_found' =>  __('No Team Member Found', 'Sorayatec'),
-    'not_found_in_trash' => __('No Team Member found in Trash', 'Sorayatec'), 
-    'parent_item_colon' => '',
-    'menu_name' => __('team', 'Sorayatec'),
-     );
-
-    // register post type
-    $args2 = array(
-      'labels' => $labels2,
-      'public' => true,
-      'has_archive' => true,
-      'show_ui' => true,
-      'capability_type' => 'post',
-      'hierarchical' => false,
-      'rewrite' => array('slug' => 'team'),
-      'query_var' => true,
-      'menu_icon' => 'dashicons-groups',
-      'supports' => array(
-          'title',
-          'editor',
-          'excerpt',
-          'trackbacks',
-          'custom-fields',
-          'comments',
-          'revisions',
-          'thumbnail',
-          'author',
-          'page-attributes'
-      )
-
-    );
-    register_post_type( 'team', $args2 );
-  /*******CPT-Team end*******/
 
   /*******CPT-History start*******/
     //News label
@@ -317,24 +251,30 @@ add_action( 'init', 'custom_post_type_init' );
 /*******Custom Post Type End*******/
 
 
-/*******Setting Up Site Logo*******/
-function sorayatec_site_logo_setup() {
-  $defaults = array(
-  'height'      => 100,
-  'width'       => 400,
-  'flex-height' => true,
-  'flex-width'  => true,
-  'header-text' => array( 'site-title', 'site-description' ),
- 'unlink-homepage-logo' => true, 
-  );
-  add_theme_support( 'site-logo', $defaults );
- }
- add_action( 'after_setup_theme', 'sorayatec_site_logo_setup' );
-
-
- /*******Adding Header Footer Customizer*******/
- require get_template_directory() . '/inc/headerfooter-customizer.php';
- new HeaderFooter_Customizer();
+ /*******Adding Header Footer Options page*******/
+ if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	
+}
 
 
 /**********URL Redirecting for search_form in 404 page*********/
@@ -349,18 +289,3 @@ function sorayatec_site_logo_setup() {
   
 }
 add_action( 'template_redirect', 'search_url_rewrite' );
-
-
-/*******Adding is_plugin_active function*******/
- if( !function_exists('is_plugin_active') ) {
-  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-}
-
-
-/***Checking if ACF is present***/
-if( class_exists('ACF') ){
-  $acf_label = True;
-}
-else{
-  $acf_label = False;
-}
