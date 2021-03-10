@@ -40,9 +40,13 @@
                         <ul class="follow-us">
                             <?php while( have_rows('follow', 'option') ): the_row(); ?>
                                 <li>
-                                    <a href="<?php if(get_sub_field('link')): the_sub_field('link'); endif; ?>" target="_blank">
-                                        <i class="<?php if(get_sub_field('icon_class')): the_sub_field('icon_class'); endif;?>"></i>
+                                    <?php if(get_sub_field('link','option')): ?>
+                                    <a href="<?php the_sub_field('link','option')['url']; ?>" target="_blank">
+                                        <?php if(get_sub_field('icon_class','options')): ?>
+                                        <i class="<?php echo get_sub_field('icon_class','options'); ?>"></i>
+                                        <?php endif; ?>
                                     </a>
+                                    <?php endif; ?>
                                 </li>
                             <?php endwhile; ?>
                         </ul>

@@ -13,26 +13,30 @@ get_header();
     **Banner**
     =================================================== -->
 
-    <?php 
-    $banner = get_field( 'banner' );
-    ?>
 
     <div class="inner-outer about-outer">
+    <?php 
+    if(get_field( 'banner' )):
+    ?>
         <div class="about-banner">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 col-lg-5">
-                        <h1><?php echo strtoupper($banner['banner_title']); ?></h1>
+                        <?php if(get_field( 'banner' )['banner_title']): ?>
+                        <h1><?php echo strtoupper(get_field( 'banner' )['banner_title']); ?></h1>
+                        <?php endif; ?>
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="about-desc">
-                            <p><?php echo wp_trim_words( $banner['banner_desc'], 100, '  .....'); ?></p>
+                            <?php if(get_field( 'banner' )['banner_desc']): ?>
+                            <p><?php echo wp_trim_words( get_field( 'banner' )['banner_desc'], 100, '  .....'); ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+    <?php endif; ?>
 
       <!-- ==============================================
         **History**
@@ -218,47 +222,67 @@ get_header();
                 
                 <div class="row">
                     <div class="col-md-5 col-lg-5">
+                        <?php if(get_sub_field('team_title')): ?>
                         <h1><?php echo strtoupper(get_sub_field('team_title')); ?></h1>
+                        <?php endif; ?>
                     </div>
                     <div class="col-md-7 col-lg-7">
                         <div class="team-desc">
+                            <?php if(get_sub_field('team_desc')): ?>
                             <p><?php echo wp_trim_words(get_sub_field('team_desc'), 100, '  .....'); ?> </p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
 
-
+                <?php if( have_rows('team_individuals' ) ): ?>
                     <ul class="row team-list">
 
                         <?php
-                        if( have_rows('team_individuals' ) ): while ( have_rows('team_individuals')) : the_row();               
+                        while ( have_rows('team_individuals')) : the_row();               
                         ?>
 
                             <li class="col-sm-6 col-md-4 col-lg-3">
                                 <div class="inner">
                                     <div class="flipper">
                                         <div class="front">
+                                            <?php if(get_sub_field('image')): ?>
                                             <img src="<?php echo get_sub_field('image')[ 'url' ]; ?>" alt="">
+                                            <?php endif; ?>
                                         </div>
                                         <div class="back">
+
+                                            <?php if(get_sub_field('card')[ 'title' ]): ?>
                                             <p><?php echo get_sub_field('card')[ 'title' ]; ?></p>
+                                            <?php endif; ?>
+                                            
+                                            <?php if(get_sub_field('card')[ 'desc' ]): ?>
                                             <p><?php echo wp_trim_words( get_sub_field('card')[ 'desc' ], 10, '  .....'); ?></p>
+                                            <?php endif; ?>
+
                                             <div class="d-flex mt-auto">
+                                                <?php if(get_sub_field('card')['linkedin_link']): ?>
                                                 <a href="<?php echo get_sub_field('card')['linkedin_link']; ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="source">
+                                        <?php if(get_sub_field( 'name' )): ?>
                                         <div class="name"><?php echo get_sub_field( 'name' ); ?></div>
+                                        <?php endif; ?>
+
+                                        <?php if(get_sub_field( 'position' )): ?>
                                         <span><?php echo get_sub_field( 'position' ); ?></span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </li>
-                        <?php  endwhile; endif; ?>
+                        <?php  endwhile; ?>
                         
                     </ul>
 
-                <?php endwhile; endif; ?>    
+                <?php endif; endwhile; endif; ?>    
 
             </div>
         </section>    
@@ -268,61 +292,66 @@ get_header();
         **Video**
         =================================================== -->
         
-                    <section class="video-sec">
-                        <div class="container">
-                        <?php 
-                        if( have_rows('video_section' ) ): while ( have_rows('video_section')) : the_row();
-                        ?>
-                            <h1><?php echo strtoupper(get_sub_field('title')); ?></h1>
-                            <div class="video-outer">
-                                <div id="slider" class="flexslider video">
-         
+        <section class="video-sec">
+            <div class="container">
+            <?php 
+            if( have_rows('video_section' ) ): while ( have_rows('video_section')) : the_row();
+            ?>
+                <?php if(get_sub_field('title')): ?>
+                <h1><?php echo strtoupper(get_sub_field('title')); ?></h1>
+                <?php endif; ?>
+                <div class="video-outer">
+                    <div id="slider" class="flexslider video">
 
-                                    <ul class="slides">
-                                        <?php
-                                        if( have_rows('youtube') ):
-                                            while( have_rows('youtube') ) : the_row();
-                                        ?>
-
-                                            <li>
-                                                <div class="youtube-video">
-                                                   
-                                                  <iframe src="https://www.youtube.com/embed/<?php the_sub_field('id'); ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                
-                                                </div>
-                                            </li>
-
-                                        <?php endwhile; endif; ?>
-
-                                    </ul>
-                                </div>
-                                <div id="carousel" class="flexslider thumbnail">
-                                    <ul class="slides">
-
-                                        <?php
-                                        if( have_rows('youtube') ):
-                                            while( have_rows('youtube') ) : the_row();
-                                        ?>
+                    <?php if( have_rows('youtube') ): ?>
+                        <ul class="slides">
+                            <?php
+                                while( have_rows('youtube') ) : the_row();
+                            ?>
+                                <?php if(get_sub_field('id')): ?>
+                                <li>
+                                    <div class="youtube-video">
                                         
-                                            <li><img src="http://i3.ytimg.com/vi/<?php the_sub_field('id'); ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
-                                        
-                                        <?php endwhile; endif;  ?>
+                                        <iframe src="https://www.youtube.com/embed/<?php the_sub_field('id'); ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    
+                                    </div>
+                                </li>
+                                <?php endif; ?>
 
-                                    </ul>
+                            <?php endwhile; ?>
 
+                        </ul>
+                    <?php endif; ?>
+                    </div>
 
-                                </div>
-                            </div>
-                            <?php endwhile;endif; ?>
-                        </div>
-                    </section>
+                    <div id="carousel" class="flexslider thumbnail">
+                    <?php if( have_rows('youtube') ): ?>
+                        <ul class="slides">
+
+                            <?php
+                                while( have_rows('youtube') ) : the_row();
+                            ?>
+                                <?php if(get_sub_field('id')): ?>
+                                <li><img src="http://i3.ytimg.com/vi/<?php the_sub_field('id'); ?>/hqdefault.jpg" class="img-fluid" alt=""></li>
+                                <?php endif; ?>
+                            
+                            <?php endwhile; ?>
+
+                        </ul>
+                    <?php endif; ?>
+
+                    </div>
+                </div>
+                <?php endwhile;endif; ?>
+            </div>
+        </section>
 
               
 
         <!-- ==============================================
             **Signup Newsletter**
         =================================================== -->
-        <section class="signup-sec">
+    <section class="signup-sec">
         <div class="container">
             <div class="inner form-inline signup-form">
                     
@@ -331,6 +360,7 @@ get_header();
             </div>
         </div>
     </section>
+
 
 
 

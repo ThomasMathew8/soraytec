@@ -2,9 +2,6 @@
 /**
  * The template for displaying archive page for News CPT
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package sorayatec
  */
 
 get_header(); 
@@ -26,29 +23,48 @@ get_header();
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 order-lg-2">
+                            <?php if(get_field('news_img')): ?>
                             <figure>
                                 <img src="<?php echo get_field( 'news_img' )['url']; ?>" class="img-fluid" alt="">
                             </figure>
+                            <?php endif; ?>
                         </div>
-                        <div class="col-lg-4 left">
+                        <div class="col-lg-4 left">  
                             <h1><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
+
                             <div class="source">
+                                <?php if(get_field('date')): ?>
                                 <span><?php echo get_field( 'date' ); ?></span>
-                                <?php echo get_field( 'place' ); ?>
+                                <?php endif; ?>
+
+                                <?php if(get_field('place')): echo get_field( 'place' ); endif;?>
                             </div>
+
                             <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
+                            
+                            <?php                           
+                            if( have_rows('follow') ):
+                            ?>
                             <ul class="follow-us">
 
                             <?php                       
-                                    if( have_rows('follow') ):
                                     while( have_rows('follow') ) : the_row();
                                     ?>
 
-                                        <li><a href="<?php the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php the_sub_field( 'icon_class' ); ?>"></i></a></li>
+                                        <li>
+                                            <?php if(get_sub_field('link')): ?>
+                                            <a href="<?php the_sub_field( 'link' ); ?>" target="_blank">
+                                                <?php if(get_sub_field('icon_class')): ?>
+                                                <i class="<?php the_sub_field( 'icon_class' ); ?>"></i>
+                                                <?php endif; ?>
+                                            </a>
+                                            <?php endif; ?>
+                                        </li>
                                     
-                                    <?php endwhile; endif; ?>                             
+                                    <?php endwhile; ?>                             
 
                             </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -63,25 +79,44 @@ get_header();
                     <ul class="post-lists">
                         <li class="row">
                             <div class="col-md-4">
+                                <?php if(get_field('news_img')): ?>
                                 <figure><img src="<?php echo get_field( 'news_img' )['url']; ?>" alt=""></figure>
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-8">
                                 <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-                                <span class="date"><?php echo get_field( 'date' ); ?></span>
-                                <?php echo get_field( 'place' ); ?>
-                                <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
-                                <ul class="follow-us">
-                                
-                                <?php
-                                    if( have_rows('follow') ):
-                                    while( have_rows('follow') ) : the_row();
-                                    ?>
 
-                                        <li><a href="<?php the_sub_field( 'link' ); ?>" target="_blank"><i class="<?php the_sub_field( 'icon_class' ); ?>"></i></a></li>
-                                    
-                                    <?php endwhile; endif; ?>                             
-                                
+                                <?php if(get_field('date')): ?>
+                                <span class="date"><?php echo get_field( 'date' ); ?></span>
+                                <?php endif; ?>
+
+                                <?php if(get_field('place')): echo get_field( 'place' ); endif;?>
+
+                                <p><?php echo wp_trim_words( get_the_content(), 20, '  .....'); ?></p>
+
+                                <?php                           
+                                if( have_rows('follow') ):
+                                ?>
+                                <ul class="follow-us">
+
+                                <?php                       
+                                        while( have_rows('follow') ) : the_row();
+                                        ?>
+
+                                            <li>
+                                                <?php if(get_sub_field('link')): ?>
+                                                <a href="<?php the_sub_field( 'link' ); ?>" target="_blank">
+                                                    <?php if(get_sub_field('icon_class')): ?>
+                                                    <i class="<?php the_sub_field( 'icon_class' ); ?>"></i>
+                                                    <?php endif; ?>
+                                                </a>
+                                                <?php endif; ?>
+                                            </li>
+                                        
+                                        <?php endwhile; ?>                             
+
                                 </ul>
+                                <?php endif; ?>
                             </div>
                         </li>
                     

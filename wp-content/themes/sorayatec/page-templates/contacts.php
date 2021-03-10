@@ -26,24 +26,31 @@ get_header();
                             ?>
 
                                 <div class="col-sm-6 address">
+                                    <?php if(get_sub_field('country')): ?>
                                     <h2><?php echo get_sub_field('country'); ?></h2>
+                                    <?php endif; ?>
+
                                     <address>
 
                                         <?php
                                         if( have_rows('address_fields') ):
                                         while( have_rows('address_fields') ) : the_row();
-                                        $field = get_sub_field('fields');
-                                        echo $field;
+
+                                        if(get_sub_field('fields')): 
+                                        echo get_sub_field('fields');
+                                        endif;
                                         ?>
 
                                         <br>
                                     
                                         <?php
-                                        endwhile; endif;
-                                        $email =  get_sub_field( 'email' );
-                                        ?> 
-
-                                        <span class="mail"><?php echo $email['text']; ?><a href="<?php echo $email['link']; ?>"><?php echo $email['link_text']; ?></a></span>
+                                        endwhile; endif; 
+                                        if(get_sub_field('email')):
+                                        ?>    
+                                        <span class="mail"><?php echo get_sub_field( 'email' )['text']; ?>
+                                        <a href="<?php echo get_sub_field( 'email' )['link']; ?>"><?php echo get_sub_field( 'email' )['link_text']; ?></a>
+                                        </span>
+                                        <?php endif; ?>
                                     
                                     </address>
                                 </div>
@@ -52,6 +59,8 @@ get_header();
                         </div>
                     </div>
                 </div>
+
+                <?php if(do_shortcode('[contact-form-7 id="1796" title="Contact form 1"]')): ?>
                 <div class="col-md-6">
                     <div class="contact-form">
 
@@ -62,6 +71,7 @@ get_header();
                         
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

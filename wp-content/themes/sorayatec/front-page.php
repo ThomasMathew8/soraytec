@@ -7,12 +7,7 @@
 get_header(); 
 ?> 
 
-<div id="primary" class="content-area">
-
-      <main id="main" class="site-main" role="main">
-
-
-        <!-- ==============================================
+    <!-- ==============================================
     **Banner**
     =================================================== -->
     <?php 
@@ -23,15 +18,21 @@ get_header();
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
+                    <?php if(get_field( 'primary_info' )['primary_info_title']): ?>
+                    <h1><?php echo strtoupper(get_field( 'primary_info' )['primary_info_title']); ?></h1>
+                    <?php endif; ?>
 
-                    <h1><?php echo strtoupper($primary['primary_info_title']); ?></h1>
-                     <p><?php echo wp_trim_words( $primary['primary_info_desc'], 100, '  .....'); ?></p>
+                    <?php if(get_field( 'primary_info' )['primary_info_desc']): ?>
+                    <p><?php echo wp_trim_words( get_field( 'primary_info' )['primary_info_desc'], 100, '  .....'); ?></p>
+                    <?php endif; ?>
 
                 </div>
                 <div class="col-md-6 right">
+                    <?php if(get_field( 'primary_info' )[ 'primary_info_img' ]): ?>
                     <figure>
-                        <img src="<?php echo $primary[ 'primary_info_img' ]['url']; ?>" >
+                        <img src="<?php echo get_field( 'primary_info' )[ 'primary_info_img' ]['url']; ?>" >
                     </figure>
+                    <?php endif; ?>
                 </div>
             </div>
         </div> 
@@ -60,14 +61,19 @@ get_header();
                     <div class="row">
                         <div class="col-md-7 order-md-1">
                             <div class="inner">
-
+                                <?php if(get_sub_field('title')): ?>
                                 <h2><?php echo strtoupper(get_sub_field('title')); ?></h2>
-                                <p><?php echo wp_trim_words( get_sub_field('desc'), 25, '  .....'); ?></p>
+                                <?php endif; ?>
 
+                                <?php if(get_sub_field('desc')): ?>
+                                <p><?php echo wp_trim_words( get_sub_field('desc'), 25, '  .....'); ?></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-5">
+                            <?php if(get_sub_field('image')): ?>
                             <figure><img src="<?php echo get_sub_field('image')['url']; ?>" class="rounded-circle" alt=""></figure>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -83,14 +89,19 @@ get_header();
                     <div class="row">
                         <div class="col-md-7 text-right">
                             <div class="inner">
-
+                                <?php if(get_sub_field('title')): ?>
                                 <h2><?php echo strtoupper(get_sub_field('title')); ?></h2>
-                                <p><?php echo wp_trim_words( get_sub_field('desc'), 25, '  .....'); ?></p>
+                                <?php endif; ?>
 
+                                <?php if(get_sub_field('desc')): ?>
+                                <p><?php echo wp_trim_words( get_sub_field('desc'), 25, '  .....'); ?></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-md-5">
+                            <?php if(get_sub_field('image')): ?>
                             <figure><img src="<?php echo get_sub_field('image')['url'];?>" class="rounded-circle" alt=""></figure>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -112,20 +123,27 @@ get_header();
     <section class="soraytec-ecosystem">
         <div class="container">
             <h2><?php echo strtoupper(get_sub_field('ecosystem_title')); ?></h2>
+
+            <?php if( have_rows('ecosystem_links' ) ): ?>
             <ul class="row logos-list">
             
                 <?php
-                if( have_rows('ecosystem_links' ) ): while ( have_rows('ecosystem_links')) : the_row(); 
+                 while ( have_rows('ecosystem_links')) : the_row(); 
                 
                 ?> 
                         <li class="col-sm-6 col-md-4">
+                            <?php if(get_sub_field('link')): ?>
                             <a href="<?php echo get_sub_field( 'link' ); ?>" target="_blank">
+                            <?php if(get_sub_field('logo')): ?>
                             <img src="<?php echo get_sub_field( 'logo' )['url']; ?>" alt="">
+                            <?php endif; ?> 
                             </a>
+                            <?php endif; ?> 
                         </li>
-                <?php endwhile; endif; ?> 
+                <?php endwhile; ?> 
 
-            </ul>       
+            </ul>  
+            <?php endif; ?>     
         </div>
     </section>     
 
@@ -135,7 +153,6 @@ get_header();
     **Signup Newsletter**
     =================================================== -->
  
-    
     <section class="signup-sec">
         <div class="container">
             <div class="inner form-inline signup-form">
@@ -145,12 +162,6 @@ get_header();
             </div>
         </div>
     </section>
-
-
-    </main>
-
-</div>
-
 
 <?php 
 get_footer();
