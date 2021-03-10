@@ -39,29 +39,34 @@ get_header();
     <?php endif; ?>
 
       <!-- ==============================================
-        **History**
+        *History*
         =================================================== -->
 
-
-
-        <?php 
-        $default = get_field( 'history_default' );
-        ?>
         <section class="history">
             <div class="container">
-                <h1><?php echo strtoupper($default['default_title']); ?></h1>
+
+                <?php if(get_field( 'history_default' )['default_title']): ?>
+                <h1><?php echo strtoupper(get_field( 'history_default' )['default_title']); ?></h1>
+                <?php endif; ?>
+
                 <div class="show-mob">
-                    <p><?php echo wp_trim_words( $default['default_desc'], 30, '  .....'); ?></p>
+                    <?php if(get_field( 'history_default' )['default_desc']): ?>
+                    <p><?php echo get_field( 'history_default' )['default_desc']; ?></p>
+                    <?php endif; ?>
                 </div>
                
                         <ul class="history-cnt" id="bxslider">
                             <li id="default" class="active">
                                 <div class="row">
-                                    <div class="col-md-5 left">
-                                        <p><?php echo wp_trim_words( $default['default_desc'], 30, '  .....'); ?></p>
+                                    <div class="col-md-5 left"> 
+                                        <?php if(get_field( 'history_default' )['default_desc']): ?>
+                                        <p><?php echo get_field( 'history_default' )['default_desc']; ?></p>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="col-md-7 right">
-                                        <figure><img src="<?php echo $default['default_img']['url']; ?>" class="img-fluid" alt=""></figure>
+                                        <?php if(get_field( 'history_default' )['default_img']): ?>
+                                        <figure><img src="<?php echo get_field( 'history_default' )['default_img']['url']; ?>" class="img-fluid" alt=""></figure>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </li>
@@ -70,59 +75,35 @@ get_header();
                             // get posts
                             $loop = new WP_Query( array(
                                 'post_type' => 'history',
-                                'orderby'=>'title',
-                                'order'=>'ASC'
+                                'orderby' => 'meta_value',
+                                'meta_type' => 'DATE',
+                                'meta_key' => 'history_date',
+                                'order'	=> 'ASC'
                             )
                             );
                             if( $loop->have_posts() ):  
                                 while ( $loop->have_posts() ) : $loop->the_post();
-
-                                
-                                    
-                                    // Get repeater value
-                                    $repeater = get_field('monthly_details');
-                                    $date_stamp = array();
-
-
-                                    // Obtain list of columns
-                                    foreach ($repeater as $key => $row):
-                                        $dates = $row['date'];
-
-                                        $pieces = explode(",", $dates);
-                                        $m = $pieces[0];
-                                        $y = $pieces[1];
-
-
-                                        // create UNIX
-                                        $date_stamp[$key] = strtotime("$m,$y");
-                                        
-                                    endforeach;
-
-                                    // Sort the data by date, ascending
-                                    array_multisort($date_stamp, SORT_ASC, $repeater);
-
-                                    // Display newly orded columns
-                                    // Unsure if this is the optimal way to do this...
-                                    if( $repeater ):
-                                        foreach( $repeater as $row ) :
-                                            $i++;
-
-                                    ?>
+                            ?>
                                             <li>
                                                     <div class="row">
                                                         <div class="col-md-5 left">
                                                             <div class="title">
-                                                                <h2><?php echo $row['date']; ?></h2>
+                                                                <?php if(get_field('history_date')): ?>
+                                                                <h2><?php the_field('history_date'); ?></h2>
+                                                                <?php endif; ?>
                                                             </div>
-                                                            <p><?php echo wp_trim_words( $row['desc'], 30, '  .....'); ?></p>
+
+                                                            <?php if(get_field('description')): ?>
+                                                            <p><?php echo the_field('description'); ?></p>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-7 right">
-                                                            <figure><img src="<?php echo $row['image']['url'];?>" alt=""></figure>
+                                                            <?php if(get_field('image')): ?>
+                                                            <figure><img src="<?php echo get_field('image')['url']; ?>" alt=""></figure>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                             </li>
-                                    <?php endforeach; endif; ?>
-
 
                                     <?php 
                                     
@@ -130,6 +111,7 @@ get_header();
                             endif;
                             wp_reset_query();
                             ?>
+
                     
                     </ul>
                 
@@ -139,71 +121,79 @@ get_header();
             <div id="content-6" class="content horizontal-images">
 
                     <?php 
-                    $args = array( 
+                    $j=0;
+                    $years = array();
+                    $loop = new WP_Query( array(
                         'post_type' => 'history',
-                        'orderby'=>'title',
-                        'order'=>'ASC');
-                    $loop = new WP_Query( $args );
+                        'orderby' => 'meta_value',
+                        'meta_type' => 'DATE',
+                        'meta_key' => 'history_date',
+                        'order'	=> 'ASC'
+                    )
+                    );
+                    if( $loop->have_posts() ):  
+                        while ( $loop->have_posts() ) : $loop->the_post();
+                        if(get_field('history_date')): 
+                        $dates = get_field('history_date');
+                        $pieces = explode(",", $dates);
+                        $years[$j] = $pieces[1];
+                        $j++;
+                        endif;
+                    endwhile; endif; 
+                    wp_reset_query();
+                    $years = array_unique ( $years );
                     ?>
 
-                        <ul class="timeline" id="bxpager">
+                    <ul class="timeline" id="bxpager">
+                        <?php                   
+                        $i=0;
+                        if(!empty($years)):
+                        foreach( $years as $year ):                               
+                        ?>    
+                        <li>    
+                            <div class="inner" id="inner-content">
+                                    <div class="circle"><?php echo $year; ?></div>
+                                    <div class="timeline-cnt">
+                                        <ul>
+                                            <?php
+                                            $args = array( 
+                                                'post_type' => 'history',
+                                                'orderby' => 'meta_value',
+                                                'meta_type' => 'DATE',
+                                                'meta_key' => 'history_date',
+                                                'order'	=> 'ASC'
+                                            );
+                                            $loop = new WP_Query( $args ); 
+                                                if( $loop->have_posts() ):  
+                                                    while ( $loop->have_posts() ) : $loop->the_post(); 
+                                                        if(get_field('history_date')):                                       
+                                                        $dates = get_field('history_date');
+                                                        //getting year
+                                                        $pieces = explode(",", $dates);
+                                                        $y = $pieces[1];
 
-                            <?php 
-                            $i=0;
-                            if( $loop->have_posts() ):  
-                                while ( $loop->have_posts() ) : $loop->the_post();
-                                $date= get_sub_field('date');
-                            ?>    
-                                
-                                <li>
-                                    <div class="inner" id="inner-content">
-                                        <div class="circle"><?php echo the_title(); ?></div>
-                                        <div class="timeline-cnt">
-                                            <ul>
+                                                        if ( $year == $y ):
+                                                            $i++;
+                                            ?>
+                                                            <li>
+                                                                <a href="#" data-slide-index="<?php echo $i; ?>"><?php the_field('history_date'); ?></a>
+                                                            </li>
 
-
-                                                <?php                                                 
-                                                // Get repeater value
-                                                $repeater = get_field('monthly_details');
-                                                $date_stamp = array();
-                
-
-                                                // Obtain list of columns
-                                                foreach ($repeater as $key => $row):
-                                                    $dates = $row['date'];
-
-                                                    $pieces = explode(",", $dates);
-                                                    $m = $pieces[0];
-                                                    $y = $pieces[1];
-
-
-                                                    // create UNIX
-                                                    $date_stamp[$key] = strtotime("$m,$y");
-                                                   
-                                                endforeach;
-
-                                                // Sort the data by date, ascending
-                                                array_multisort($date_stamp, SORT_ASC,  $repeater);
-
-                                                // Display newly orded columns
-                                                // Unsure if this is the optimal way to do this...
-                                                if( $repeater ):
-                                                    foreach( $repeater as $row ) :
-                                                        $i++;
-
-                                                ?>
-                                                    <li>
-                                                        <a href="#" data-slide-index="<?php echo $i; ?>"><?php echo $row['date'];?></a>
-                                                    </li>
-                                                <?php endforeach; endif; ?>
-
-                                                   
-                                            </ul>
-                                        </div>
+                                            <?php 
+                                                        endif;
+                                                        endif;
+                                                    endwhile; 
+                                                endif; 
+                                            ?>
+                                        </ul>
                                     </div>
-                                </li>
-                            <?php  endwhile; endif; ?>     
-                        </ul>
+                            </div>
+                        </li>  
+                        <?php                    
+                        endforeach; 
+                        endif;
+                        ?>   
+                    </ul>
 
                     <?php wp_reset_query(); ?>   
                 
@@ -312,7 +302,7 @@ get_header();
                                 <li>
                                     <div class="youtube-video">
                                         
-                                        <iframe src="https://www.youtube.com/embed/<?php the_sub_field('id'); ?>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe src="https://www.youtube.com/embed/<?php the_sub_field('id'); ?>?html5=1&enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     
                                     </div>
                                 </li>
@@ -367,6 +357,108 @@ get_header();
 
 </div> 
  
+<!-- Function for pausing videos on selection of another youtube video in about page -->
+<script>
+    var ytplayerList;
+
+    function onPlayerReady(e) {
+        var video_data = e.target.getVideoData(),
+            label = video_data.video_id+':'+video_data.title;
+        e.target.ulabel = label;
+        console.log(label + " is ready!");
+
+    }
+    function onPlayerError(e) {
+        console.log('[onPlayerError]');
+    }
+    function onPlayerStateChange(e) {
+        var label = e.target.ulabel;
+        if (e["data"] == YT.PlayerState.PLAYING) {
+            console.log({
+                event: "youtube",
+                action: "play:"+e.target.getPlaybackQuality(),
+                label: label
+            });
+            //if one video is play then pause other
+            pauseOthersYoutubes(e.target);
+        }
+        if (e["data"] == YT.PlayerState.PAUSED) {
+            console.log({
+                event: "youtube",
+                action: "pause:"+e.target.getPlaybackQuality(),
+                label: label
+            });
+        }
+        if (e["data"] == YT.PlayerState.ENDED) {
+            console.log({
+                event: "youtube",
+                action: "end",
+                label: label
+            });
+        }
+        //track number of buffering and quality of video
+        if (e["data"] == YT.PlayerState.BUFFERING) {
+            e.target.uBufferingCount?++e.target.uBufferingCount:e.target.uBufferingCount=1; 
+            console.log({
+                event: "youtube",
+                action: "buffering["+e.target.uBufferingCount+"]:"+e.target.getPlaybackQuality(),
+                label: label
+            });
+            //if one video is play then pause other, this is needed because at start video is in buffered state and start playing without go to playing state
+            if( YT.PlayerState.UNSTARTED ==  e.target.uLastPlayerState ){
+                pauseOthersYoutubes(e.target);
+            }
+        }
+        //last action keep stage in uLastPlayerState
+        if( e.data != e.target.uLastPlayerState ) {
+            console.log(label + ":state change from " + e.target.uLastPlayerState + " to " + e.data);
+            e.target.uLastPlayerState = e.data;
+        }
+    }
+    function initYoutubePlayers(){
+        ytplayerList = null; //reset
+        ytplayerList = []; //create new array to hold youtube player
+        for (var e = document.getElementsByTagName("iframe"), x = e.length; x-- ;)
+ {
+            if (/youtube.com\/embed/.test(e[x].src)) {
+                ytplayerList.push(initYoutubePlayer(e[x]));
+                console.log("create a Youtube player successfully");
+            }
+        }
+
+    }
+    function pauseOthersYoutubes( currentPlayer ) {
+        if (!currentPlayer) return;
+        for (var i = ytplayerList.length; i-- ;){
+            if( ytplayerList[i] && (ytplayerList[i] != currentPlayer) ){
+                ytplayerList[i].pauseVideo();
+            }
+        }  
+    }
+    //init a youtube iframe
+    function initYoutubePlayer(ytiframe){
+        console.log("have youtube iframe");
+        var ytp = new YT.Player(ytiframe, {
+            events: {
+                onStateChange: onPlayerStateChange,
+                onError: onPlayerError,
+                onReady: onPlayerReady
+            }
+        });
+        ytiframe.ytp = ytp;
+        return ytp;
+    }
+    function onYouTubeIframeAPIReady() {
+        console.log("YouTubeIframeAPI is ready");
+        initYoutubePlayers();
+    }
+    var tag = document.createElement('script');
+    //use https when loading script and youtube iframe src since if user is logging in youtube the youtube src will switch to https.
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);    
+
+  </script>
 
 <?php 
 get_footer();
