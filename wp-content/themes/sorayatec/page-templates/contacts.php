@@ -33,22 +33,18 @@ get_header();
                                     <address>
 
                                         <?php
-                                        if( have_rows('address_fields') ):
-                                        while( have_rows('address_fields') ) : the_row();
-
-                                        if(get_sub_field('fields')): 
-                                        echo get_sub_field('fields');
+                                        if(get_sub_field('address_fields')): 
+                                        echo get_sub_field('address_fields');
                                         endif;
                                         ?>
 
                                         <br>
                                     
                                         <?php
-                                        endwhile; endif; 
                                         if(get_sub_field('email')):
                                         ?>    
-                                        <span class="mail"><?php echo get_sub_field( 'email' )['text']; ?>
-                                        <a href="<?php echo get_sub_field( 'email' )['link']; ?>"><?php echo get_sub_field( 'email' )['link_text']; ?></a>
+                                        <span class="mail"><?php _e('Email:', 'Sorayatec'); ?>
+                                        <a href="mailto:<?php echo get_sub_field( 'email' ); ?>"><?php echo get_sub_field( 'email' );; ?></a>
                                         </span>
                                         <?php endif; ?>
                                     
