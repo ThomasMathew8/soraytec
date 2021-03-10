@@ -44,7 +44,7 @@ get_header();
                                         if(get_sub_field('email')):
                                         ?>    
                                         <span class="mail"><?php _e('Email:', 'Sorayatec'); ?>
-                                        <a href="mailto:<?php echo get_sub_field( 'email' ); ?>"><?php echo get_sub_field( 'email' );; ?></a>
+                                        <a href="mailto:<?php echo get_sub_field( 'email' ); ?>"><?php echo get_sub_field( 'email' ); ?></a>
                                         </span>
                                         <?php endif; ?>
                                     
